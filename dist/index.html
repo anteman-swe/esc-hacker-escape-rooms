@@ -9,7 +9,7 @@
 <body class="body-container">
     <header class="header">
         <div class="header__logo-head-cont">
-            <img src="resources/image 4.png" alt="ESC" class="header__logo">
+            <img src="resources/Group 1.png" alt="ESC" class="header__logo">
             <h1 class="header__headline">Hacker Escape Rooms</h1>
         </div>
         
@@ -21,7 +21,7 @@
                 <li class="header__nav-item">Contact us</li>
             </ul>
         </nav>
-        <img src="resources/image 2-1.png" alt="A hacker sitting at his computer" class="header__hero-image">
+        <!-- <img src="resources/image 2-1.png" alt="A hacker sitting at his computer" class="header__hero-image"> -->
     </header>
     <main class="main-content">
         <section class="secondary-nav">
@@ -41,43 +41,47 @@
             </article>
         </section>
         <section class="challenges">
+            <h2 class="challenges__headline">Popular challenges right now</h2>
             <article class="challenges__card">
-                <img src="" alt="" class="challenges__card-image">
-                <h4 class="challenges__card-title"></h4>
+                <h4 class="challenges__card-title">Title of room (on-site)</h4>
                 <div class="challenges__card-challenge-rating-container">
                     <span class="challenges__card-challenge-rating">
                         <img src="resources/Star 3.svg" alt="" class="challenges__rating-star--filled">
                         <img src="resources/Star 3.svg" alt="" class="challenges__rating-star--filled">
                         <img src="resources/Star 3.svg" alt="" class="challenges__rating-star--filled">
                         <img src="resources/Star 3.svg" alt="" class="challenges__rating-star--filled">
-                        <img src="resources/Star 5.png" alt="" class="challenges__rating-star--empty">
-                    </span>                    
+                        <img src="resources/Star 3 hollow.svg" alt="" class="challenges__rating-star--empty">
+                    </span>
+                    <span class="challenges__room-participants">2-6 participants</span>                   
+                </div>
+                <div class="challenges__description">
+                    Praeterea, ex culpa non invenies unum aut non accusatis unum. Et nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
                 </div>
                 <button class="challenges__card-button">Book this room</button>
             </article>
         </section>
         <section class="secondary-nav">
-            <button class="secondary-nav__primary">Online challenges</button>
-            <button class="secondary-nav__secondary">On-site challenges</button>
+            <button class="secondary-nav__btn--link-version">Online challenges</button>
+            <button class="secondary-nav__btn--secondary">On-site challenges</button>
         </section>
         <section class="information">
             <article class="information__story">
                 <p class="information__story-text">
                     Quodsi haberent magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino desit illud quo solo felicitatis libertatisque perficiuntur.                   
                 </p>
-                <button class="information__btn--primary-dark">Read the full story</button>
+                <button class="information__btn--primary-on-dark">Read the full story</button>
             </article>
-            <article class="information__booking">
-                <img src="" alt="" class="information__info-image">
-                <h4 class="information__header">Play with your friends or build your team stronger at work</h4>
+            <article class="information__booking-1">
+                <!-- <img src="" alt="" class="information__info-image"> -->
+                <h3 class="information__header">Play with your friends or build your team stronger at work</h3>
                 <p class="information__info-txt">
                     Praeterea, ex culpa non invenies unum aut non accusatis unum. Et nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
                 </p>
                 <button class="information__btn--primary">Book on-site today</button>
             </article>
-            <article class="information__booking">
-                <img src="" alt="" class="information__info-image">
-                <h4 class="information__header">Play online or visit our venue for one of our 25 escape rooms</h4>
+            <article class="information__booking-2">
+                <!-- <img src="" alt="" class="information__info-image"> -->
+                <h3 class="information__header">Play online or visit our venue for one of our 25 escape rooms</h3>
                 <p class="information__info-txt">
                     Praeterea, ex culpa non invenies unum aut non accusatis unum. Et nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
                 </p>
@@ -87,27 +91,31 @@
     </main>
     <footer class="footer">
         <section class="footer__info">
-            <h5 class="footer__info-header">[Esc] Hacker Escape Rooms</h5>
+            <h4 class="footer__info-header">[Esc] Hacker Escape Rooms</h4>
             <p class="footer__info-txt">
                 Quodsi haberent magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino desit illud quo solo felicitatis libertatisque perficiuntur.
             </p>   
         </section>
         <section class="footer__site-map">
-            <ul class="footer__site-map-list">Site map
-                <li class="footer__list-item">The story</li>
-                <li class="footer__list-item">Contact us</li>
-                <li class="footer__list-item">Legal</li>
-            </ul>
-            <ul class="footer__site-map-list">
-                <li class="footer__list-item">Play online</li>
-                <li class="footer__list-item">Play on-site</li>
-            </ul>
+            Site map
+            <div>
+                <ul class="footer__site-map-list">
+                    <li class="footer__list-item"><a href="#" class="footer__list-item--link">The story</a></li>
+                    <li class="footer__list-item"><a href="#" class="footer__list-item--link">Contact us</a></li>
+                    <li class="footer__list-item"><a href="#" class="footer__list-item--link">Legal</a></li>
+                </ul>
+                <ul class="footer__site-map-list">
+                    <li class="footer__list-item"><a href="#" class="footer__list-item--link">Play online</a></li>
+                    <li class="footer__list-item"><a href="#" class="footer__list-item--link">Play on-site</a></li>
+                </ul>
+            </div>
         </section>
         <section class="footer__social">
-            <ul class="footer__social-list">Follow us on
-                <li class="footer__list-item">Facebook</li>
-                <li class="footer__list-item">Instagram</li>
-                <li class="footer__list-item">Twitter</li>
+            Follow us on
+            <ul class="footer__social-list">
+                <li class="footer__list-item"><a href="#" class="footer__list-item--link">Facebook</a></li>
+                <li class="footer__list-item"><a href="#" class="footer__list-item--link">Instagram</a></li>
+                <li class="footer__list-item"><a href="#" class="footer__list-item--link">Twitter</a></li>
             </ul>
 
         </section>
