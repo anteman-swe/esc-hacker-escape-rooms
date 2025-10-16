@@ -2,3 +2,6 @@
 *.css.map
 *.sass.map
 *.scss.map
+*.d.ts
+*.d.ts.map
+*.js.map
