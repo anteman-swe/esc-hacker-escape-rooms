@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+// Colors used
 $color-red: #E3170A;
 $color-dark-blue: #011827;
 $color-gray: #B6BDB5;
@@ -7,15 +8,29 @@ $color-medium-blue: #36769D;
 $color-light-blue: #8ACFE5;
 $color-white: #FFFFFF;
 
+// Large button size
 $large-btn-width: 19.2rem;
 $large-btn-height: 4rem;
 $large-btn-fontsize: 1.5rem;
 
+// Medium button size
 $medium-btn-width: 11.3rem;
 $medium-btn-height: 2.7rem;
 $medium-btn-fontsize: 1rem;
 
+// Responsive breakpoints
+$small-screen: 480px;
+$medium-screen: 780px; // ??
+$large-screen: 1200px;
+
+// Font used in all DOM
 $main-font: 'Roboto';
+
+@mixin breakpoint($min-width) {
+    @media screen and (min-width: $min-width) {
+        @content;
+    }
+}
 
 @mixin primary($btnwidth, $btnheight, $btn-fontsize) {
     width: $btnwidth;
@@ -73,12 +88,16 @@ $main-font: 'Roboto';
 }
 
 .body-container {
-    background-color: $color-white;
+    background-color: blue;
+    // background-color: $color-white;
     display: flex;
     flex-direction: column;
-    max-width: 480px;
     min-width: 320px;
     margin: auto;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
+        max-width: 1280px;
+    }
 }
 
 .header {
@@ -86,22 +105,35 @@ $main-font: 'Roboto';
     height: 26.2rem;
     background-color: $color-dark-blue;
     background-image: url('/dist/resources/image 2-1.png');
-    background-size: 480px;
-    background-position: bottom;
+    background-size: 100% 65%;
+    background-position: center bottom;
     background-repeat: no-repeat;
-    // background-clip: padding-box;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
+        height: 43rem;
+        background-size: 100%;
+        background-position-y: -190%;
+        
+    }
 
     &__logo-head-cont {
+        background-color: $color-dark-blue;
         display: flex;
-        flex-direction: start;
         column-gap: 0.8rem;
         min-height: 8.5rem;
         align-items: center;
         padding: 1.8rem;
+        // @include breakpoint($medium-screen) {}
+        @include breakpoint($large-screen) {
+        align-items: end;
+        column-gap: 1.6rem;
+        }
     }
+
     &__logo {
         height: 5rem;
     }
+
     &__headline {
         // background-color: chartreuse;
         max-width: 5rem;
@@ -109,14 +141,56 @@ $main-font: 'Roboto';
         font-size: 1.5rem;
         line-height: 1.7rem;
         color: $color-white;
+        // @include breakpoint($medium-screen) {}
+        @include breakpoint($large-screen) {
+        max-width: fit-content;
+        font-size: 2.5rem;
+        line-height: 3rem;
+        }
     }
+
     &__nav {
         display: none;
+        width: 0;
+        height: 0;
+        // @include breakpoint($medium-screen) {}
+        @include breakpoint($large-screen) {
+            $top-padding: 2rem;
+            display: block;
+            padding-top: $top-padding;
+            width: 100%;
+            height: calc($top-padding + 3rem);
+            background-color: $color-dark-blue;
+        }
+    }
+
+    &__nav-list {
+        // @include breakpoint($medium-screen) {}
+        @include breakpoint($large-screen) {
+            width: 72%;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            list-style-type: none;
+            font-family: $main-font;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    }
+
+    &__nav-item {
+        color: $color-white;
+        cursor: pointer;
+        &:last-child {
+                color: $color-light-blue;
+        }
+        
     }
 }
 
 .main-content {
-    // background-color: beige;
+    background-color: beige;
     margin: 0;
     padding-top: 1rem;
     display: flex;
