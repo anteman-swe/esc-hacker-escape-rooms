@@ -27,6 +27,7 @@ $main-font: 'Roboto';
     background-color: $color-red;
     border: none;
     border-radius: 0.3rem;
+    cursor: pointer;
 }
 
 @mixin secondary($btnwidth, $btnheight, $btn-fontsize) {
@@ -38,6 +39,7 @@ $main-font: 'Roboto';
     background-color: $color-light-blue;
     border: none;
     border-radius: 0.3rem;
+    cursor: pointer;
 }
 
 @mixin primary-on-dark($btnwidth, $btnheight, $btn-fontsize) {
@@ -50,6 +52,7 @@ $main-font: 'Roboto';
     background: none;
     border: 0.15rem solid $color-light-blue;
     border-radius: 0.3rem;
+    cursor: pointer;
 }
 
 @mixin link-version {
@@ -140,10 +143,16 @@ $main-font: 'Roboto';
 }
 .reviews {
     // background-color: darkorange;
+    display: flex;
+    overflow-x: auto;
+    column-gap: 2rem;
     height: fit-content;
     padding: 2.6rem 1.3rem 7rem;
+
     &__review-item {
+        flex-shrink: 0;
         // background-color: coral;
+        width: 28rem;
         display: grid;
         grid-template-areas: 
         'pic txt txt txt txt' 
@@ -187,15 +196,23 @@ $main-font: 'Roboto';
         padding-bottom: 3rem;
     }
 
+    &__card-container {
+        // margin: 0 3.4rem;
+        display: flex;
+        overflow-x: auto;
+        // Testar med att dölja scrollbar för enheter som stödjer det
+        -webkit-overflow-scrolling: touch;
+    }
+
     &__card {
-        margin: auto;
+        flex-shrink: 0;
+        margin: 0 0 2rem 3.5rem;
         padding: 0 1.3rem 1rem;
         background-image: url('/dist/resources/image\ 2-1.png');
         background-size: 100%;
         background-position: top;
         background-repeat: no-repeat;
-        max-width: 23rem;
-        min-width: 18rem;
+        width: 23rem;
         height: 28rem;
         border-radius: 0.5rem;
         box-shadow: 0 0 0.6rem rgba($color: black, $alpha: 0.2);
@@ -203,7 +220,7 @@ $main-font: 'Roboto';
         flex-direction: column;
         justify-content: flex-end;
     }
-   
+
     &__card-title {
         font-family: $main-font;
         font-size: 1.8rem;
@@ -216,6 +233,7 @@ $main-font: 'Roboto';
         justify-content: space-between;
         height: 2.5rem;
     }
+
     &__card-challenge-rating {
         letter-spacing: 0.5rem;
     }
