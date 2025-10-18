@@ -9,14 +9,16 @@ $color-light-blue: #8ACFE5;
 $color-white: #FFFFFF;
 
 // Large button size
-$large-btn-width: 19.2rem;
-$large-btn-height: 4rem;
-$large-btn-fontsize: 1.5rem;
+$large-btn-width: 19.2rem;      // #
+$large-btn-height: 4rem;        // Not used directly, only if one want to change one parameter
+$large-btn-fontsize: 1.5rem;    // #
+$large-button: ($large-btn-width, $large-btn-height, $large-btn-fontsize);
 
 // Medium button size
-$medium-btn-width: 11.3rem;
-$medium-btn-height: 2.7rem;
-$medium-btn-fontsize: 1rem;
+$medium-btn-width: 11.3rem;     // #
+$medium-btn-height: 2.7rem;     // Not used directly, only if one want to change one parameter
+$medium-btn-fontsize: 1rem;     // #
+$medium-button: ($medium-btn-width, $medium-btn-height, $medium-btn-fontsize);
 
 // Responsive breakpoints
 $small-screen: 480px;
@@ -45,18 +47,6 @@ $main-font: 'Roboto';
     cursor: pointer;
 }
 
-@mixin secondary($btnwidth, $btnheight, $btn-fontsize) {
-    width: $btnwidth;
-    height: $btnheight;
-    font-size: $btn-fontsize;
-    font-family: $main-font;
-    font-weight: bold;
-    background-color: $color-light-blue;
-    border: none;
-    border-radius: 0.3rem;
-    cursor: pointer;
-}
-
 @mixin primary-on-dark($btnwidth, $btnheight, $btn-fontsize) {
     width: $btnwidth;
     height: $btnheight;
@@ -66,6 +56,18 @@ $main-font: 'Roboto';
     font-weight: bold;
     background: none;
     border: 0.15rem solid $color-light-blue;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+@mixin secondary($btnwidth, $btnheight, $btn-fontsize) {
+    width: $btnwidth;
+    height: $btnheight;
+    font-size: $btn-fontsize;
+    font-family: $main-font;
+    font-weight: bold;
+    background-color: $color-light-blue;
+    border: none;
     border-radius: 0.3rem;
     cursor: pointer;
 }
@@ -208,7 +210,7 @@ $main-font: 'Roboto';
 
     &__btn {
         &--secondary {
-           @include secondary($large-btn-width, $large-btn-height, $large-btn-fontsize); 
+           @include secondary($large-button...); 
         }
         &--link-version {
             @include link-version;    
@@ -328,7 +330,7 @@ $main-font: 'Roboto';
     }
 
     &__card-button {
-        @include primary($medium-btn-width, $medium-btn-height, $medium-btn-fontsize);
+        @include primary($medium-button...);
         align-self: flex-end;
     }
 }
@@ -357,7 +359,7 @@ $main-font: 'Roboto';
     }
 
     &__btn--primary-on-dark {
-        @include primary-on-dark($large-btn-width, $large-btn-height, $large-btn-fontsize);
+        @include primary-on-dark($large-button...);
         margin-top: 0.5rem;
     }
 
@@ -392,7 +394,7 @@ $main-font: 'Roboto';
     }
     &__btn--primary {
         margin-top: 1rem;
-        @include primary($large-btn-width, $large-btn-height, $large-btn-fontsize);
+        @include primary($large-button...);
     }
 }
 
