@@ -9,11 +9,12 @@
   background-color: blue;
   display: flex;
   flex-direction: column;
-  min-width: 320px;
+  min-width: 325px;
   margin: auto;
 }
 @media screen and (min-width: 1200px) {
   .body-container {
+    min-width: 480px;
     max-width: 1280px;
   }
 }
@@ -322,7 +323,6 @@
 
 .information {
   width: 100%;
-  margin: 2rem auto;
 }
 .information__story {
   width: 100%;
@@ -366,7 +366,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex: 100%;
   font-family: "Roboto";
 }
 @media screen and (min-width: 1200px) {
@@ -387,7 +386,6 @@
   }
 }
 .booking__info-container {
-  height: 50%;
   padding: 2rem 1.3rem 4rem;
   display: flex;
   flex-direction: column;
@@ -422,44 +420,63 @@
 
 .footer {
   background-color: #011827;
+  gap: 2rem;
   padding: 4rem 1.3rem;
   color: #FFFFFF;
   font-family: "Roboto";
 }
-.footer__info {
-  display: flex;
-  flex-direction: column;
+@media screen and (min-width: 1200px) {
+  .footer {
+    display: flex;
+    flex: 100%;
+    padding: 9rem 7rem;
+  }
 }
-.footer__info-header {
+
+@media screen and (min-width: 1200px) {
+  .info {
+    flex: 62%;
+  }
+}
+.info__header {
   font-size: 1.15rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
-.footer__info-txt {
+.info__txt {
   font-size: 1.15rem;
   line-height: 1.3rem;
   margin-bottom: 2rem;
 }
-.footer__site-map {
+@media screen and (min-width: 1200px) {
+  .info__txt {
+    width: 70%;
+  }
+}
+
+.site-map {
   font-size: 1.15rem;
   font-weight: bold;
 }
-.footer__site-map-list {
+@media screen and (min-width: 1200px) {
+  .site-map:nth-child(2) {
+    flex: 18%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .site-map:last-child {
+    flex: 20%;
+  }
+}
+.site-map__list {
   margin-top: 0.4rem;
   margin-bottom: 1.5rem;
 }
-.footer__social {
-  font-size: 1.15rem;
-  font-weight: bold;
-}
-.footer__social-list {
-  margin-top: 0.4rem;
-}
-.footer__list-item {
+.site-map__item {
   list-style-type: none;
   font-weight: normal;
 }
-.footer__list-item--link {
+.site-map__item--link {
   text-decoration: none;
   color: #FFFFFF;
 }

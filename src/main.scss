@@ -96,10 +96,11 @@ $main-font: 'Roboto';
     // background-color: $color-white;
     display: flex;
     flex-direction: column;
-    min-width: 320px;
+    min-width: 325px;
     margin: auto;
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
+        min-width: 480px;
         max-width: 1280px;
     }
 }
@@ -199,14 +200,6 @@ $main-font: 'Roboto';
     display: flex;
     flex-direction: column;
 }
-
-// .button {
-   
-//     &--primary {
-//         @include primary($large-button...);
-//     }
-
-// }
 
 .secondary-nav{
     width: 100%;
@@ -397,7 +390,6 @@ $main-font: 'Roboto';
 .information {
     // background-color: greenyellow;
     width: 100%;
-    margin: 2rem auto;
 
     &__story {
         width: 100%;
@@ -415,7 +407,8 @@ $main-font: 'Roboto';
         letter-spacing: 1%;
         padding-bottom: 3rem;
         max-width: 38rem;
-        margin: auto; 
+        margin: auto;
+        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             
         }   
@@ -424,6 +417,7 @@ $main-font: 'Roboto';
     &__btn--primary-on-dark {
         @include primary-on-dark($large-button...);
         margin-top: 0.5rem;
+        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             margin-top: -0.5rem;
             margin-bottom: 3rem;
@@ -437,10 +431,9 @@ $main-font: 'Roboto';
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex: 100%;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
+    // flex: 50%;
     font-family: $main-font;
+    // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
         flex-direction: row;
         &:last-child {
@@ -451,17 +444,18 @@ $main-font: 'Roboto';
     
     &__info-image {
         width: 100%;
+        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             flex: 50%;
         }
     }
 
     &__info-container {
-        height: 50%;
         padding: 2rem 1.3rem 4rem;
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
+        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             flex: 50%;
             padding: 2rem 7rem 4rem;
@@ -482,43 +476,66 @@ $main-font: 'Roboto';
 
 .footer {
     background-color: $color-dark-blue;
+    gap: 2rem;
     padding: 4rem 1.3rem;
     color: $color-white;
     font-family: $main-font;
-
-    &__info {
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
         display: flex;
-        flex-direction: column;
-
+        flex: 100%;
+        // justify-content: space-between;
+        // flex: 100%;
+        padding: 9rem 7rem;
     }
-    &__info-header {
+}
+
+.info {
+    // @include breakpoint($medium-screen) {}   
+    @include breakpoint($large-screen) {
+        // flex-grow: 5;
+        flex: 62%;
+    }
+    &__header {
         font-size: 1.15rem;
         font-weight: bold;
         margin-bottom: 0.5rem;
 
     }
-    &__info-txt {
+    &__txt {
         font-size: 1.15rem;
         line-height: 1.3rem;
         margin-bottom: 2rem;
+        // @include breakpoint($medium-screen) {}   
+        @include breakpoint($large-screen) {
+            width: 70%;
+        }
     }
-    &__site-map {
-        font-size: 1.15rem;
-        font-weight: bold;
+}
+
+.site-map {
+    font-size: 1.15rem;
+    font-weight: bold;
+
+    &:nth-child(2) {
+        // @include breakpoint($medium-screen) {} 
+        @include breakpoint($large-screen) {
+            flex: 18%;
+        }    
     }
-    &__site-map-list {
+    &:last-child {
+        // @include breakpoint($medium-screen) {} 
+        @include breakpoint($large-screen) {
+            flex: 20%;
+        }
+    }
+      
+    
+    &__list {
         margin-top: 0.4rem;
         margin-bottom: 1.5rem;
     }
-    &__social {
-        font-size: 1.15rem;
-        font-weight: bold;
-
-    }
-    &__social-list {
-        margin-top: 0.4rem;
-    }
-    &__list-item {
+    &__item {
         list-style-type: none;
         font-weight: normal;
         
