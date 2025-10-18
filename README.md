@@ -1,5 +1,5 @@
 # esc-hacker-escape-rooms
-### Min publicerade sida når du här: <a href="https://anteman-swe.github.io/esc-hacker-rooms/dist/">https://anteman-swe.github.io/esc-hacker-rooms/dist/</a>
+### Min publicerade sida når du här: <a href="https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/">https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/</a>
 
 **-------------------------------------------------------------------------------------------------------**
 ## Inlämningsuppgift 2 SJPI25 A2
