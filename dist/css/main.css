@@ -65,13 +65,14 @@
     line-height: 3rem;
   }
 }
-.header__nav {
+
+.navigation {
   display: none;
   width: 0;
   height: 0;
 }
 @media screen and (min-width: 1200px) {
-  .header__nav {
+  .navigation {
     display: block;
     padding-top: 2rem;
     width: 100%;
@@ -80,7 +81,7 @@
   }
 }
 @media screen and (min-width: 1200px) {
-  .header__nav-list {
+  .navigation__list {
     width: 72%;
     margin: auto;
     display: flex;
@@ -92,18 +93,17 @@
     font-weight: 600;
   }
 }
-.header__nav-item {
+.navigation__item {
   color: #FFFFFF;
   cursor: pointer;
 }
-.header__nav-item:last-child {
+.navigation__item:last-child {
   color: #8ACFE5;
 }
 
 .main-content {
+  position: relative;
   background-color: beige;
-  margin: 0;
-  padding-top: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -117,18 +117,18 @@
   align-items: center;
   row-gap: 0.5rem;
 }
-.secondary-nav__btn--secondary {
-  width: 19.2rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  font-family: "Roboto";
-  font-weight: bold;
-  background-color: #8ACFE5;
-  border: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
+@media screen and (min-width: 1200px) {
+  .secondary-nav {
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    height: fit-content;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1.5rem;
+  }
 }
-.secondary-nav__btn--link-version {
+.secondary-nav__btn:first-child {
   border: none;
   background: none;
   text-decoration-line: underline;
@@ -138,22 +138,66 @@
   font-weight: bold;
   cursor: pointer;
 }
+@media screen and (min-width: 1200px) {
+  .secondary-nav__btn:first-child {
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    width: 19.2rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-family: "Roboto";
+    color: #FFFFFF;
+    background-color: #E3170A;
+    border: none;
+  }
+}
+.secondary-nav__btn:last-child {
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  width: 19.2rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  font-family: "Roboto";
+  color: #011827;
+  background-color: #8ACFE5;
+  border: none;
+}
+
+.reviews-n-challenges {
+  padding: 5rem 1.3rem 0;
+}
 
 .reviews {
+  width: 82vw;
+  min-width: fit-content;
+  margin: auto;
   display: flex;
   overflow-x: auto;
-  column-gap: 2rem;
+  column-gap: 3rem;
   height: fit-content;
-  padding: 2.6rem 1.3rem 7rem;
+  padding: 2.6rem 0 7rem;
+}
+@media screen and (min-width: 1200px) {
+  .reviews {
+    column-gap: 1rem;
+  }
 }
 .reviews__review-item {
   flex-shrink: 0;
-  width: 28rem;
   display: grid;
   grid-template-areas: "pic txt txt txt txt" "pic info info info info";
   column-gap: 1rem;
   row-gap: 0.5rem;
   font-family: "Roboto";
+}
+@media screen and (min-width: 1200px) {
+  .reviews__review-item {
+    row-gap: 1rem;
+  }
 }
 .reviews__review-item--hidden {
   display: none;
@@ -163,15 +207,33 @@
   width: 4.6rem;
   padding-top: 0.2rem;
 }
+@media screen and (min-width: 1200px) {
+  .reviews__reviewer-image {
+    width: 6.2rem;
+  }
+}
 .reviews__review-txt {
   grid-area: txt;
   font-size: 1.5rem;
   font-style: italic;
-  margin-right: 2rem;
+  width: 20rem;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__review-txt {
+    width: 26rem;
+    text-align: left;
+  }
 }
 .reviews__reviewer-data {
   grid-area: info;
+  width: 20rem;
   font-size: 1.1rem;
+}
+@media screen and (min-width: 1200px) {
+  .reviews__reviewer-data {
+    width: 18rem;
+    text-align: left;
+  }
 }
 
 .challenges {
@@ -184,14 +246,24 @@
   text-align: center;
   padding-bottom: 3rem;
 }
-.challenges__card-container {
+
+.card-container {
+  width: fit-content;
+  margin-left: 1.5rem;
   display: flex;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  column-gap: 2rem;
 }
-.challenges__card {
+@media screen and (min-width: 1200px) {
+  .card-container {
+    margin: auto;
+    padding: 0 0.2rem;
+  }
+}
+
+.card {
   flex-shrink: 0;
-  margin: 0 0 2rem 3.5rem;
+  margin-bottom: 0.5rem;
   padding: 0 1.3rem 1rem;
   background-image: url("/dist/resources/image 2-1.png");
   background-size: 100%;
@@ -205,44 +277,47 @@
   flex-direction: column;
   justify-content: flex-end;
 }
-.challenges__card-title {
+.card__title {
   font-family: "Roboto";
   font-size: 1.8rem;
   font-weight: 400;
 }
-.challenges__card-challenge-rating-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 2.5rem;
-}
-.challenges__card-challenge-rating {
-  letter-spacing: 0.5rem;
-}
-.challenges__room-participants {
+.card__room-participants {
   font-family: "Roboto";
   font-weight: 400;
   font-size: 0.9rem;
 }
-.challenges__description {
+.card__description {
   font-family: "Roboto";
   font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.25rem;
   margin-bottom: 1.8rem;
 }
-.challenges__card-button {
-  width: 11.3rem;
-  height: 2.7rem;
-  color: #FFFFFF;
-  font-size: 1rem;
-  font-family: "Roboto";
+.card__button {
   font-weight: bold;
-  background-color: #E3170A;
-  border: none;
+  text-decoration: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  width: 11.3rem;
+  height: 2.7rem;
+  font-size: 1rem;
+  font-family: "Roboto";
+  color: #FFFFFF;
+  background-color: #E3170A;
+  border: none;
   align-self: flex-end;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 2.5rem;
+}
+
+.rating {
+  letter-spacing: 0.5rem;
 }
 
 .information {
@@ -259,68 +334,90 @@
 .information__story-text {
   color: #FFFFFF;
   font-family: "Roboto";
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   text-align: center;
   letter-spacing: 1%;
   padding-bottom: 3rem;
+  max-width: 38rem;
+  margin: auto;
 }
 .information__btn--primary-on-dark {
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
   width: 19.2rem;
   height: 4rem;
-  color: #8ACFE5;
   font-size: 1.5rem;
   font-family: "Roboto";
-  font-weight: bold;
+  color: #8ACFE5;
   background: none;
   border: 0.15rem solid #8ACFE5;
-  border-radius: 0.3rem;
-  cursor: pointer;
   margin-top: 0.5rem;
 }
-.information__booking-1 {
+@media screen and (min-width: 1200px) {
+  .information__btn--primary-on-dark {
+    margin-top: -0.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.booking {
   width: 100%;
-  height: 44rem;
-  background-repeat: no-repeat;
-  background-size: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  row-gap: 2rem;
-  padding: 0 1.3rem 4rem 1.3rem;
+  flex: 100%;
   font-family: "Roboto";
-  background-image: url("/dist/resources/nesa-by-makers-IgUR1iX0mqM-unsplash 1-1.png");
 }
-.information__booking-2 {
+@media screen and (min-width: 1200px) {
+  .booking {
+    flex-direction: row;
+  }
+  .booking:last-child {
+    flex-direction: row-reverse;
+    justify-content: start;
+  }
+}
+.booking__info-image {
   width: 100%;
-  height: 44rem;
-  background-repeat: no-repeat;
-  background-size: 100%;
+}
+@media screen and (min-width: 1200px) {
+  .booking__info-image {
+    flex: 50%;
+  }
+}
+.booking__info-container {
+  height: 50%;
+  padding: 2rem 1.3rem 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  row-gap: 2rem;
-  padding: 0 1.3rem 4rem 1.3rem;
-  font-family: "Roboto";
-  background-image: url("/dist/resources/kelly-sikkema-YK0HPwWDJ1I-unsplash 1-1.png");
+  row-gap: 1rem;
 }
-.information__header {
+@media screen and (min-width: 1200px) {
+  .booking__info-container {
+    flex: 50%;
+    padding: 2rem 7rem 4rem;
+  }
+}
+.booking__header {
   font-size: 2rem;
 }
-.information__info-txt {
+.booking__info-txt {
   font-size: 1.5rem;
 }
-.information__btn--primary {
-  margin-top: 1rem;
-  width: 19.2rem;
-  height: 4rem;
-  color: #FFFFFF;
-  font-size: 1.5rem;
-  font-family: "Roboto";
+.booking__btn {
+  margin-top: 2rem;
   font-weight: bold;
-  background-color: #E3170A;
-  border: none;
+  text-decoration: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  width: 19.2rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  font-family: "Roboto";
+  color: #FFFFFF;
+  background-color: #E3170A;
+  border: none;
 }
 
 .footer {
