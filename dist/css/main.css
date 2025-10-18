@@ -180,9 +180,10 @@
   margin: auto;
   display: flex;
   overflow-x: auto;
-  column-gap: 3rem;
+  overflow: hidden;
+  column-gap: 3.5rem;
   height: fit-content;
-  padding: 2.6rem 0 7rem;
+  padding: 2.5rem 0 7rem;
 }
 @media screen and (min-width: 1200px) {
   .reviews {
@@ -259,6 +260,7 @@
   margin-left: 1.5rem;
   display: flex;
   overflow-x: auto;
+  overflow: hidden;
   column-gap: 2rem;
 }
 @media screen and (min-width: 1200px) {
