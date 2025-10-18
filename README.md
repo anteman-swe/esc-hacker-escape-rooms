@@ -1,5 +1,8 @@
-# esc-hacker-rooms
-Inlämningsuppgift 2 SJPI25 A2  
+# esc-hacker-escape-rooms
+### Min publicerade sida når du här: <a href="https://anteman-swe.github.io/esc-hacker-rooms/dist/">https://anteman-swe.github.io/esc-hacker-rooms/dist/</a>
+
+**-------------------------------------------------------------------------------------------------------**
+## Inlämningsuppgift 2 SJPI25 A2
 
 Inlämningsuppgift 3 fil(er)
 Med denna uppgift inleds utbildningens andra projekt, som kommer att fortgå under nio veckor och bestå av flera delinlämningar.
