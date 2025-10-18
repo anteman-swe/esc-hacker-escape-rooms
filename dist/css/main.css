@@ -25,9 +25,10 @@
   height: 26.2rem;
   background-color: #011827;
   background-image: url("/dist/resources/hacker-image.png");
-  background-size: 100% 65%;
   background-position: center bottom;
   background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: 100%;
 }
 @media screen and (min-width: 1200px) {
   .header {
@@ -200,6 +201,7 @@
 }
 @media screen and (min-width: 1200px) {
   .reviews__review-item {
+    max-width: 32rem;
     row-gap: 1rem;
   }
 }
@@ -274,7 +276,7 @@
   flex-shrink: 0;
   margin-bottom: 0.5rem;
   padding: 0 1.3rem 1rem;
-  background-image: url("/dist/resources/image 2-1.png");
+  background-image: url("/dist/resources/hacker-image.png");
   background-size: 100%;
   background-position: top;
   background-repeat: no-repeat;

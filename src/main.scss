@@ -110,9 +110,11 @@ $main-font: 'Roboto';
     height: 26.2rem;
     background-color: $color-dark-blue;
     background-image: url('/dist/resources/hacker-image.png');
-    background-size: 100% 65%;
     background-position: center bottom;
     background-repeat: no-repeat;
+    background-attachment: local;
+    background-size: 100%;
+    
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
         height: 43rem;
@@ -153,8 +155,6 @@ $main-font: 'Roboto';
         line-height: 3rem;
         }
     }
-
-    
 }
 
 .navigation {
@@ -269,6 +269,7 @@ $main-font: 'Roboto';
         font-family: $main-font;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
+            max-width: 32rem;
             row-gap: 1rem;
         }
     }
@@ -287,7 +288,6 @@ $main-font: 'Roboto';
         grid-area: txt;
         font-size: 1.5rem;
         font-style: italic;
-        // margin-right: 2rem;
         width: 20rem;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
@@ -343,7 +343,7 @@ $main-font: 'Roboto';
     flex-shrink: 0;
     margin-bottom: 0.5rem;
     padding: 0 1.3rem 1rem;
-    background-image: url('/dist/resources/image\ 2-1.png');
+    background-image: url('/dist/resources/hacker-image.png');
     background-size: 100%;
     background-position: top;
     background-repeat: no-repeat;
