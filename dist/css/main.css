@@ -105,14 +105,34 @@
 }
 
 .main-content {
-  position: relative;
   display: flex;
   flex-direction: column;
 }
 
+.secondary-nav-container {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+}
+.secondary-nav-container--first {
+  margin: 2.3rem 0 4.2rem;
+}
+@media screen and (min-width: 1200px) {
+  .secondary-nav-container--first {
+    margin-bottom: 4.7rem;
+  }
+}
+.secondary-nav-container--second {
+  margin: 2.275rem 0 3.5rem;
+}
+@media screen and (min-width: 1200px) {
+  .secondary-nav-container--second {
+    margin: 6.9rem 0 1.1rem;
+  }
+}
+
 .secondary-nav {
   width: 100%;
-  height: 10rem;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-evenly;
@@ -121,7 +141,7 @@
 }
 @media screen and (min-width: 1200px) {
   .secondary-nav {
-    position: absolute;
+    position: relative;
     top: 0;
     transform: translateY(-50%);
     height: fit-content;
@@ -130,7 +150,8 @@
     column-gap: 1.5rem;
   }
 }
-.secondary-nav__btn:first-child {
+.secondary-nav__btn--primary {
+  margin-top: 1.875rem;
   border: none;
   background: none;
   text-decoration-line: underline;
@@ -141,7 +162,8 @@
   cursor: pointer;
 }
 @media screen and (min-width: 1200px) {
-  .secondary-nav__btn:first-child {
+  .secondary-nav__btn--primary {
+    margin: 0;
     font-weight: bold;
     text-decoration: none;
     border-radius: 0.3rem;
@@ -155,7 +177,8 @@
     border: none;
   }
 }
-.secondary-nav__btn:last-child {
+.secondary-nav__btn--secondary {
+  margin: 0;
   font-weight: bold;
   text-decoration: none;
   border-radius: 0.3rem;
@@ -169,19 +192,13 @@
   border: none;
 }
 
-.reviews-n-challenges {
-  padding: 5rem 1.3rem 0;
-  width: 100%;
-  margin: auto;
-}
-
 .reviews {
-  margin: auto;
+  margin: 0 0 6.5rem;
   display: flex;
   overflow-x: auto;
   column-gap: 3.5rem;
   height: fit-content;
-  padding: 2.5rem 0 7rem;
+  padding: 0 1.3rem;
 }
 @media screen and (min-width: 1200px) {
   .reviews {
@@ -195,7 +212,6 @@
   display: grid;
   grid-template-areas: "pic txt" "pic info";
   grid-template-columns: 4.6rem auto;
-  grid-template-rows: auto auto;
   column-gap: 0.5rem;
   row-gap: 0.5rem;
   font-family: "Roboto";
@@ -204,19 +220,13 @@
   .reviews__review-item {
     max-width: 32rem;
     grid-template-columns: 6.2rem auto;
-    grid-template-rows: auto auto;
     row-gap: 1rem;
   }
 }
 .reviews__reviewer-image {
   grid-area: pic;
-  width: 4.6rem;
+  width: 100%;
   padding-top: 0.2rem;
-}
-@media screen and (min-width: 1200px) {
-  .reviews__reviewer-image {
-    width: 6.2rem;
-  }
 }
 .reviews__review-txt {
   grid-area: txt;
@@ -234,6 +244,7 @@
 .reviews__reviewer-data {
   grid-area: info;
   width: 66vw;
+  min-width: 12rem;
   font-size: 1.1rem;
 }
 @media screen and (min-width: 1200px) {
@@ -245,14 +256,13 @@
 
 .challenges {
   height: fit-content;
-  padding: 1rem;
+  padding: 0 0 0 1.3rem;
 }
 .challenges__headline {
   font-family: "Roboto";
   font-size: 2rem;
   font-weight: 400;
   text-align: center;
-  padding-bottom: 3rem;
 }
 @media screen and (min-width: 1200px) {
   .challenges__headline {
@@ -262,31 +272,31 @@
 }
 
 .card-container {
-  width: fit-content;
-  margin-left: 1.5rem;
+  margin: auto;
   display: flex;
   overflow-x: auto;
-  column-gap: 2rem;
+  column-gap: 0.45rem;
+  padding-bottom: 0.625rem;
 }
 @media screen and (min-width: 1200px) {
   .card-container {
     margin: auto;
-    padding: 0 0.2rem;
+    padding: 0 0.2rem 0.625rem;
   }
 }
 
 .card {
   flex-shrink: 0;
-  margin-bottom: 0.5rem;
-  padding: 0 1.3rem 1rem;
+  margin-left: 1.95rem;
+  padding: 0 1rem 0.8rem;
   background-image: url("../resources/hacker-image.png");
   background-size: 100%;
   background-position: top;
   background-repeat: no-repeat;
-  max-width: 23rem;
+  max-width: 22.7rem;
   width: 76vw;
   min-width: 17rem;
-  height: 28rem;
+  height: 27.9rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
   display: flex;
@@ -311,6 +321,7 @@
   margin-bottom: 1.8rem;
 }
 .card__button {
+  margin: 0;
   font-weight: bold;
   text-decoration: none;
   border-radius: 0.3rem;
@@ -337,7 +348,6 @@
 }
 
 .information {
-  margin-top: 2.2rem;
   width: 100%;
 }
 .information__story {
@@ -358,6 +368,7 @@
   margin: auto;
 }
 .information__btn--primary-on-dark {
+  margin: 0;
   font-weight: bold;
   text-decoration: none;
   border-radius: 0.3rem;
@@ -402,10 +413,9 @@
   }
 }
 .booking__info-container {
-  padding: 2rem 1.3rem 4rem;
+  padding: 1.9rem 1.3rem 4rem;
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
 }
 @media screen and (min-width: 1200px) {
   .booking__info-container {
@@ -415,12 +425,14 @@
 }
 .booking__header {
   font-size: 2rem;
+  padding-bottom: 1.7rem;
 }
 .booking__info-txt {
   font-size: 1.5rem;
+  padding-bottom: 3.1rem;
 }
 .booking__btn {
-  margin-top: 2rem;
+  margin: 0;
   font-weight: bold;
   text-decoration: none;
   border-radius: 0.3rem;

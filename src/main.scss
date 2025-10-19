@@ -35,6 +35,7 @@ $main-font: 'Roboto';
 }
 
 @mixin button-common {
+    margin: 0;
     font-weight: bold;
     text-decoration: none;
     border-radius: 0.3rem;
@@ -75,6 +76,7 @@ $main-font: 'Roboto';
 }
 
 @mixin link-version {
+    margin-top: 1.875rem;
     border: none;
     background: none;
     text-decoration-line: underline;
@@ -196,14 +198,31 @@ $main-font: 'Roboto';
 }
 .main-content {
     // background-color: beige;
-    position: relative;
     display: flex;
     flex-direction: column;
 }
+.secondary-nav-container {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
 
+    &--first {
+        margin: 2.3rem 0 4.2rem;
+        // @include breakpoint($medium-screen) {}
+        @include breakpoint($large-screen) {
+           margin-bottom: 4.7rem;
+        }
+    }
+
+    &--second {
+        margin: 2.275rem 0 3.5rem;
+        @include breakpoint($large-screen) {
+           margin: 6.9rem 0 1.1rem;
+        }
+    }
+}
 .secondary-nav{
     width: 100%;
-    height: 10rem;
     display:flex;
     flex-direction: column-reverse;
     justify-content: space-evenly;
@@ -211,7 +230,7 @@ $main-font: 'Roboto';
     row-gap: 0.5rem;
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
-        position: absolute;
+        position: relative;
         top: 0;
         transform: translateY(-50%);
         height: fit-content;
@@ -221,7 +240,8 @@ $main-font: 'Roboto';
     }
 
     &__btn {
-        &:first-child {
+
+        &--primary {
             @include link-version;
             // @include breakpoint($medium-screen) {}
             @include breakpoint($large-screen) {
@@ -229,32 +249,24 @@ $main-font: 'Roboto';
             }
         }
 
-        &:last-child {
+        &--secondary {
            @include secondary($large-button...);
         }
     }
 }
 
-.reviews-n-challenges {
-    padding: 5rem 1.3rem 0;
-    width: 100%;
-    margin: auto;
-}
-
 .reviews {
     // background-color: darkorange;
-    // 
-    margin: auto;
+    margin: 0 0 6.5rem;
     display: flex;
     overflow-x: auto;
     column-gap: 3.5rem;
     height: fit-content;
-    padding: 2.5rem 0 7rem;
+    padding: 0 1.3rem;
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
         max-width: 80%;
         min-width: fit-content;
-        // overflow: hidden;
         column-gap: 1.25rem;
     }
 
@@ -266,7 +278,6 @@ $main-font: 'Roboto';
         'pic txt' 
         'pic info';
         grid-template-columns: 4.6rem auto;
-        grid-template-rows: auto auto;
         column-gap: 0.5rem;
         row-gap: 0.5rem;
         font-family: $main-font;
@@ -274,18 +285,17 @@ $main-font: 'Roboto';
         @include breakpoint($large-screen) {
             max-width: 32rem;
            grid-template-columns: 6.2rem auto;
-            grid-template-rows: auto auto;
             row-gap: 1rem;
         }
     }
 
     &__reviewer-image {
         grid-area: pic;
-        width: 4.6rem;
+        width: 100%;
         padding-top: 0.2rem;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
-            width: 6.2rem;
+            // width: 6.2rem;
         }
     }
 
@@ -304,8 +314,8 @@ $main-font: 'Roboto';
 
     &__reviewer-data {
         grid-area: info;
-        // width: 20rem;
         width: 66vw;
+        min-width: 12rem;
         font-size: 1.1rem;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
@@ -317,13 +327,13 @@ $main-font: 'Roboto';
 
 .challenges {
     height: fit-content;
-    padding: 1rem;
+    padding: 0 0 0 1.3rem;
     &__headline {
         font-family: $main-font;
         font-size: 2rem;
         font-weight: 400;
         text-align: center;
-        padding-bottom: 3rem;
+        
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             font-size: 2.2rem;
@@ -333,30 +343,31 @@ $main-font: 'Roboto';
 }
 
 .card-container {
-    width: fit-content;
-    margin-left: 1.5rem;
+    margin: auto;
     display: flex;
     overflow-x: auto;
-    column-gap: 2rem;
+    column-gap: 0.45rem;
+    padding-bottom: 0.625rem;
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
         margin: auto;
-        padding: 0 0.2rem;
+        padding: 0 0.2rem 0.625rem;
     }
 }
 
 .card {
     flex-shrink: 0;
-    margin-bottom: 0.5rem;
-    padding: 0 1.3rem 1rem;
+    // margin-bottom: 0.625rem;
+    margin-left: 1.95rem;
+    padding: 0 1rem 0.8rem;
     background-image: url('../resources/hacker-image.png');
     background-size: 100%;
     background-position: top;
     background-repeat: no-repeat;
-    max-width: 23rem;
+    max-width: 22.7rem;
     width: 76vw;
     min-width: 17rem;
-    height: 28rem;
+    height: 27.9rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.6rem rgba($color: black, $alpha: 0.2);
     display: flex;
@@ -402,7 +413,6 @@ $main-font: 'Roboto';
 
 .information {
     // background-color: greenyellow;
-    margin-top: 2.2rem;
     width: 100%;
 
     &__story {
@@ -445,7 +455,6 @@ $main-font: 'Roboto';
     width: 100%;
     display: flex;
     flex-direction: column;
-    // flex: 50%;
     font-family: $main-font;
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
@@ -465,10 +474,9 @@ $main-font: 'Roboto';
     }
 
     &__info-container {
-        padding: 2rem 1.3rem 4rem;
+        padding: 1.9rem 1.3rem 4rem;
         display: flex;
         flex-direction: column;
-        row-gap: 1rem;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             flex: 50%;
@@ -478,14 +486,16 @@ $main-font: 'Roboto';
 
     &__header {
         font-size: 2rem;
+        padding-bottom: 1.7rem;
     }
 
     &__info-txt {
         font-size: 1.5rem;
+        padding-bottom: 3.1rem;
     }
 
     &__btn {
-        margin-top: 2rem;
+        // margin-top: 2rem;
         @include primary($large-button...);
     } 
 }
