@@ -8,22 +8,24 @@ $color-medium-blue: #36769D;
 $color-light-blue: #8ACFE5;
 $color-white: #FFFFFF;
 
-// Large button size
-$large-btn-width: 19.2rem;      // #
-$large-btn-height: 4rem;        // Not used directly, only if one want to change only one parameter
-$large-btn-fontsize: 1.5rem;    // #
-$large-button: ($large-btn-width, $large-btn-height, $large-btn-fontsize);
+$button-sizes: (
+    'large': (
+        width: 19.2rem,
+        height: 4rem,
+        fontsize: 1.5rem
+    ),
+    'medium': (
+        width: 11.3rem,
+        height: 2.7rem,
+        fontsize: 1rem
+    )
+);
 
-// Medium button size
-$medium-btn-width: 11.3rem;     // #
-$medium-btn-height: 2.7rem;     // Not used directly, only if one want to change only one parameter
-$medium-btn-fontsize: 1rem;     // #
-$medium-button: ($medium-btn-width, $medium-btn-height, $medium-btn-fontsize);
+// Responsive breakpoint
+$large-screen: 44rem;
 
-// Responsive breakpoints
-$small-screen: 480px;
-$medium-screen: 780px; // ??
-$large-screen: 1200px;
+$large-screen-limit: 80rem;
+$large-screen-max: 120rem;
 
 // Font used in all DOM
 $main-font: 'Roboto';
@@ -42,33 +44,36 @@ $main-font: 'Roboto';
     cursor: pointer;
 }
 
-@mixin primary($btnwidth, $btnheight, $btn-fontsize) {
+@mixin primary($btn-size) {
     @include button-common;
-    width: $btnwidth;
-    height: $btnheight;
-    font-size: $btn-fontsize;
+    $size-map: map-get($button-sizes, $btn-size);
+    width: map-get($size-map, 'width');
+    height: map-get($size-map, 'height');
+    font-size: map-get($size-map, 'fontsize');
     font-family: $main-font;
     color: $color-white;
     background-color: $color-red;
     border: none;
 }
 
-@mixin primary-on-dark($btnwidth, $btnheight, $btn-fontsize) {
+@mixin primary-on-dark($btn-size) {
     @include button-common;
-    width: $btnwidth;
-    height: $btnheight;
-    font-size: $btn-fontsize;
+    $size-map: map-get($button-sizes, $btn-size);
+    width: map-get($size-map, 'width');
+    height: map-get($size-map, 'height');
+    font-size: map-get($size-map, 'fontsize');
     font-family: $main-font;
     color: $color-light-blue;
     background: none;
     border: 0.15rem solid $color-light-blue;
 }
 
-@mixin secondary($btnwidth, $btnheight, $btn-fontsize) {
+@mixin secondary($btn-size) {
     @include button-common;
-    width: $btnwidth;
-    height: $btnheight;
-    font-size: $btn-fontsize;
+   $size-map: map-get($button-sizes, $btn-size);
+    width: map-get($size-map, 'width');
+    height: map-get($size-map, 'height');
+    font-size: map-get($size-map, 'fontsize');
     font-family: $main-font;
     color: $color-dark-blue;
     background-color: $color-light-blue;
@@ -97,13 +102,12 @@ $main-font: 'Roboto';
     background-color: $color-white;
     display: flex;
     flex-direction: column;
-    min-width: 325px;
+    min-width: 20rem;
+    max-width: 38rem;
     margin: auto;
     border: 1px solid lightgray;
-    // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
-        min-width: 480px;
-        max-width: 1280px;
+        max-width: $large-screen-max;
     }
 }
 
@@ -116,12 +120,11 @@ $main-font: 'Roboto';
     background-repeat: no-repeat;
     background-attachment: local;
     background-size: 100%;
-    
-    // @include breakpoint($medium-screen) {}
+    overflow: hidden;
     @include breakpoint($large-screen) {
         height: 43rem;
-        background-size: 100%;
-        background-position-y: -190%;
+        background-size: cover;
+        background-position: center calc(100% + 7rem);
         
     }
 
@@ -132,7 +135,6 @@ $main-font: 'Roboto';
         min-height: 8.5rem;
         align-items: center;
         padding: 1.8rem;
-        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
         align-items: end;
         column-gap: 1.6rem;
@@ -150,7 +152,6 @@ $main-font: 'Roboto';
         font-size: 1.5rem;
         line-height: 1.7rem;
         color: $color-white;
-        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
         max-width: fit-content;
         font-size: 2.5rem;
@@ -163,7 +164,6 @@ $main-font: 'Roboto';
     display: none;
     width: 0;
     height: 0;
-    // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
         $top-padding: 2rem;
         display: block;
@@ -174,7 +174,6 @@ $main-font: 'Roboto';
     }
 
     &__list {
-        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             width: 72%;
             margin: auto;
@@ -189,9 +188,10 @@ $main-font: 'Roboto';
     }
 
     &__item {
+        text-decoration: none;
         color: $color-white;
-        cursor: pointer;
-        &:last-child {
+        &--last-one {
+                text-decoration: none;
                 color: $color-light-blue;
         } 
     }
@@ -210,14 +210,14 @@ $main-font: 'Roboto';
         margin: 2.3rem 0 4.2rem;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
-           margin-bottom: 4.7rem;
+           margin: 0 0 4.7rem;
         }
     }
 
     &--second {
         margin: 2.275rem 0 3.5rem;
         @include breakpoint($large-screen) {
-           margin: 6.9rem 0 1.1rem;
+           margin: 6.9rem 0 3.225rem;
         }
     }
 }
@@ -228,7 +228,6 @@ $main-font: 'Roboto';
     justify-content: space-evenly;
     align-items: center;
     row-gap: 0.5rem;
-    // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
         position: relative;
         top: 0;
@@ -243,14 +242,13 @@ $main-font: 'Roboto';
 
         &--primary {
             @include link-version;
-            // @include breakpoint($medium-screen) {}
             @include breakpoint($large-screen) {
-                @include primary($large-button...);
+                @include primary(large);
             }
         }
 
         &--secondary {
-           @include secondary($large-button...);
+           @include secondary(large);
         }
     }
 }
@@ -262,26 +260,25 @@ $main-font: 'Roboto';
     overflow-x: auto;
     column-gap: 3.5rem;
     height: fit-content;
-    padding: 0 1.3rem;
-    // @include breakpoint($medium-screen) {}
+    padding: 0 1.3rem 1rem;
     @include breakpoint($large-screen) {
+        margin: 0 auto 6.5rem;
         max-width: 80%;
         min-width: fit-content;
-        column-gap: 1.25rem;
+        column-gap: 2rem;
     }
 
     &__review-item {
         // background-color: coral;
         flex-shrink: 0;
         display: grid;
-        grid-template-areas: 
+        grid-template-areas:
         'pic txt' 
         'pic info';
         grid-template-columns: 4.6rem auto;
         column-gap: 0.5rem;
         row-gap: 0.5rem;
         font-family: $main-font;
-        // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
             max-width: 32rem;
            grid-template-columns: 6.2rem auto;
@@ -305,7 +302,7 @@ $main-font: 'Roboto';
         font-style: italic;
         max-width: 20rem;
         width: 66vw;
-        // @include breakpoint($medium-screen) {}
+        min-width: 12rem;
         @include breakpoint($large-screen) {
             max-width: 26rem;
             text-align: left;
@@ -327,54 +324,62 @@ $main-font: 'Roboto';
 
 .challenges {
     height: fit-content;
-    padding: 0 0 0 1.3rem;
+     @include breakpoint($large-screen-limit) {
+        margin: auto;
+    }
+    
     &__headline {
         font-family: $main-font;
         font-size: 2rem;
         font-weight: 400;
         text-align: center;
-        
-        // @include breakpoint($medium-screen) {}
+        margin-bottom: 2.75rem;
         @include breakpoint($large-screen) {
             font-size: 2.2rem;
-            padding-bottom: 5rem;
+            margin-bottom: 5rem;
         }
     }
 }
 
 .card-container {
-    margin: auto;
     display: flex;
-    overflow-x: auto;
-    column-gap: 0.45rem;
+    overflow-x: scroll;
+    column-gap: 2rem;
     padding-bottom: 0.625rem;
-    // @include breakpoint($medium-screen) {}
+    padding-left: 10vw;
     @include breakpoint($large-screen) {
-        margin: auto;
+        
         padding: 0 0.2rem 0.625rem;
+    }
+
+    @include breakpoint($large-screen-limit) {
+        margin: auto;
+
     }
 }
 
 .card {
     flex-shrink: 0;
-    // margin-bottom: 0.625rem;
-    margin-left: 1.95rem;
-    padding: 0 1rem 0.8rem;
-    background-image: url('../resources/hacker-image.png');
     background-size: 100%;
     background-position: top;
     background-repeat: no-repeat;
     max-width: 22.7rem;
     width: 76vw;
-    min-width: 17rem;
+    min-width: 17.9rem;
     height: 27.9rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.6rem rgba($color: black, $alpha: 0.2);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
+
+    &__image {
+        width: 100%;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
 
     &__title {
+        margin: 0.75rem 0 0 1rem;
         font-family: $main-font;
         font-size: 1.8rem;
         font-weight: 400;
@@ -387,24 +392,26 @@ $main-font: 'Roboto';
     }
 
     &__description{
+        margin: 1.1rem 1rem 1.8rem;
         font-family: $main-font;
         font-size: 1.1rem;
         font-weight: 400;
         line-height: 1.25rem;
-        margin-bottom: 1.8rem;
     }
 
     &__button {
-        @include primary($medium-button...);
+        @include primary(medium);
         align-self: flex-end;
+        margin: 0 1rem 1rem 0;
     }
 }
 
 .rating-container {
+    margin: 0 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 2.5rem;
+    // height: 2.5rem;
 }
 
 .rating {
@@ -439,7 +446,7 @@ $main-font: 'Roboto';
     }
 
     &__btn--primary-on-dark {
-        @include primary-on-dark($large-button...);
+        @include primary-on-dark(large);
         margin-top: 0.5rem;
         // @include breakpoint($medium-screen) {}
         @include breakpoint($large-screen) {
@@ -496,7 +503,7 @@ $main-font: 'Roboto';
 
     &__btn {
         // margin-top: 2rem;
-        @include primary($large-button...);
+        @include primary(large);
     } 
 }
 
@@ -542,18 +549,18 @@ $main-font: 'Roboto';
 }
 
 .site-map {
-    font-size: 1.15rem;
-    font-weight: bold;
+    &__header {
+        font-size: 1.15rem;
+        font-weight: bold;
+    }
 
     &:nth-child(2) {
-        // @include breakpoint($medium-screen) {} 
         @include breakpoint($large-screen) {
             flex: 18%;
         }    
     }
 
     &:last-child {
-        // @include breakpoint($medium-screen) {} 
         @include breakpoint($large-screen) {
             flex: 20%;
         }

@@ -9,14 +9,14 @@
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  min-width: 325px;
+  min-width: 20rem;
+  max-width: 38rem;
   margin: auto;
   border: 1px solid lightgray;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .body-container {
-    min-width: 480px;
-    max-width: 1280px;
+    max-width: 120rem;
   }
 }
 
@@ -29,12 +29,13 @@
   background-repeat: no-repeat;
   background-attachment: local;
   background-size: 100%;
+  overflow: hidden;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .header {
     height: 43rem;
-    background-size: 100%;
-    background-position-y: -190%;
+    background-size: cover;
+    background-position: center calc(100% + 7rem);
   }
 }
 .header__logo-head-cont {
@@ -45,7 +46,7 @@
   align-items: center;
   padding: 1.8rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .header__logo-head-cont {
     align-items: end;
     column-gap: 1.6rem;
@@ -61,7 +62,7 @@
   line-height: 1.7rem;
   color: #FFFFFF;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .header__headline {
     max-width: fit-content;
     font-size: 2.5rem;
@@ -74,7 +75,7 @@
   width: 0;
   height: 0;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .navigation {
     display: block;
     padding-top: 2rem;
@@ -83,7 +84,7 @@
     background-color: #011827;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .navigation__list {
     width: 72%;
     margin: auto;
@@ -97,10 +98,11 @@
   }
 }
 .navigation__item {
+  text-decoration: none;
   color: #FFFFFF;
-  cursor: pointer;
 }
-.navigation__item:last-child {
+.navigation__item--last-one {
+  text-decoration: none;
   color: #8ACFE5;
 }
 
@@ -117,17 +119,17 @@
 .secondary-nav-container--first {
   margin: 2.3rem 0 4.2rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .secondary-nav-container--first {
-    margin-bottom: 4.7rem;
+    margin: 0 0 4.7rem;
   }
 }
 .secondary-nav-container--second {
   margin: 2.275rem 0 3.5rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .secondary-nav-container--second {
-    margin: 6.9rem 0 1.1rem;
+    margin: 6.9rem 0 3.225rem;
   }
 }
 
@@ -139,7 +141,7 @@
   align-items: center;
   row-gap: 0.5rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .secondary-nav {
     position: relative;
     top: 0;
@@ -161,7 +163,7 @@
   font-weight: bold;
   cursor: pointer;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .secondary-nav__btn--primary {
     margin: 0;
     font-weight: bold;
@@ -198,13 +200,14 @@
   overflow-x: auto;
   column-gap: 3.5rem;
   height: fit-content;
-  padding: 0 1.3rem;
+  padding: 0 1.3rem 1rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .reviews {
+    margin: 0 auto 6.5rem;
     max-width: 80%;
     min-width: fit-content;
-    column-gap: 1.25rem;
+    column-gap: 2rem;
   }
 }
 .reviews__review-item {
@@ -216,7 +219,7 @@
   row-gap: 0.5rem;
   font-family: "Roboto";
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .reviews__review-item {
     max-width: 32rem;
     grid-template-columns: 6.2rem auto;
@@ -234,8 +237,9 @@
   font-style: italic;
   max-width: 20rem;
   width: 66vw;
+  min-width: 12rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .reviews__review-txt {
     max-width: 26rem;
     text-align: left;
@@ -247,7 +251,7 @@
   min-width: 12rem;
   font-size: 1.1rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .reviews__reviewer-data {
     max-width: 18rem;
     text-align: left;
@@ -256,54 +260,65 @@
 
 .challenges {
   height: fit-content;
-  padding: 0 0 0 1.3rem;
+}
+@media screen and (min-width: 80rem) {
+  .challenges {
+    margin: auto;
+  }
 }
 .challenges__headline {
   font-family: "Roboto";
   font-size: 2rem;
   font-weight: 400;
   text-align: center;
+  margin-bottom: 2.75rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .challenges__headline {
     font-size: 2.2rem;
-    padding-bottom: 5rem;
+    margin-bottom: 5rem;
   }
 }
 
 .card-container {
-  margin: auto;
   display: flex;
-  overflow-x: auto;
-  column-gap: 0.45rem;
+  overflow-x: scroll;
+  column-gap: 2rem;
   padding-bottom: 0.625rem;
+  padding-left: 10vw;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
+  .card-container {
+    padding: 0 0.2rem 0.625rem;
+  }
+}
+@media screen and (min-width: 80rem) {
   .card-container {
     margin: auto;
-    padding: 0 0.2rem 0.625rem;
   }
 }
 
 .card {
   flex-shrink: 0;
-  margin-left: 1.95rem;
-  padding: 0 1rem 0.8rem;
-  background-image: url("../resources/hacker-image.png");
   background-size: 100%;
   background-position: top;
   background-repeat: no-repeat;
   max-width: 22.7rem;
   width: 76vw;
-  min-width: 17rem;
+  min-width: 17.9rem;
   height: 27.9rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+.card__image {
+  width: 100%;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 .card__title {
+  margin: 0.75rem 0 0 1rem;
   font-family: "Roboto";
   font-size: 1.8rem;
   font-weight: 400;
@@ -314,11 +329,11 @@
   font-size: 0.9rem;
 }
 .card__description {
+  margin: 1.1rem 1rem 1.8rem;
   font-family: "Roboto";
   font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.25rem;
-  margin-bottom: 1.8rem;
 }
 .card__button {
   margin: 0;
@@ -334,13 +349,14 @@
   background-color: #E3170A;
   border: none;
   align-self: flex-end;
+  margin: 0 1rem 1rem 0;
 }
 
 .rating-container {
+  margin: 0 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 2.5rem;
 }
 
 .rating {
@@ -382,7 +398,7 @@
   border: 0.15rem solid #8ACFE5;
   margin-top: 0.5rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .information__btn--primary-on-dark {
     margin-top: -0.5rem;
     margin-bottom: 3rem;
@@ -395,7 +411,7 @@
   flex-direction: column;
   font-family: "Roboto";
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .booking {
     flex-direction: row;
   }
@@ -407,7 +423,7 @@
 .booking__info-image {
   width: 100%;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .booking__info-image {
     flex: 50%;
   }
@@ -417,7 +433,7 @@
   display: flex;
   flex-direction: column;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .booking__info-container {
     flex: 50%;
     padding: 2rem 7rem 4rem;
@@ -454,7 +470,7 @@
   color: #FFFFFF;
   font-family: "Roboto";
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .footer {
     margin-top: 11rem;
     display: flex;
@@ -463,7 +479,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .info {
     flex: 62%;
   }
@@ -478,22 +494,22 @@
   line-height: 1.3rem;
   margin-bottom: 2rem;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .info__txt {
     width: 70%;
   }
 }
 
-.site-map {
+.site-map__header {
   font-size: 1.15rem;
   font-weight: bold;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .site-map:nth-child(2) {
     flex: 18%;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 44rem) {
   .site-map:last-child {
     flex: 20%;
   }
