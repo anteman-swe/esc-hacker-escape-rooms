@@ -6,7 +6,7 @@
 }
 
 .body-container {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   min-width: 20rem;
@@ -60,7 +60,7 @@
   font-family: "Roboto";
   font-size: 1.5rem;
   line-height: 1.7rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 @media screen and (min-width: 44rem) {
   .header__headline {
@@ -99,11 +99,11 @@
 }
 .navigation__item {
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .navigation__item--last-one {
   text-decoration: none;
-  color: #8ACFE5;
+  color: #8acfe5;
 }
 
 .main-content {
@@ -157,7 +157,7 @@
   border: none;
   background: none;
   text-decoration-line: underline;
-  color: #36769D;
+  color: #36769d;
   font-family: "Roboto";
   font-size: 1rem;
   font-weight: bold;
@@ -174,8 +174,8 @@
     height: 4rem;
     font-size: 1.5rem;
     font-family: "Roboto";
-    color: #FFFFFF;
-    background-color: #E3170A;
+    color: #ffffff;
+    background-color: #e3170a;
     border: none;
   }
 }
@@ -190,7 +190,7 @@
   font-size: 1.5rem;
   font-family: "Roboto";
   color: #011827;
-  background-color: #8ACFE5;
+  background-color: #8acfe5;
   border: none;
 }
 
@@ -345,8 +345,8 @@
   height: 2.7rem;
   font-size: 1rem;
   font-family: "Roboto";
-  color: #FFFFFF;
-  background-color: #E3170A;
+  color: #ffffff;
+  background-color: #e3170a;
   border: none;
   align-self: flex-end;
   margin: 0 1rem 1rem 0;
@@ -374,7 +374,7 @@
   text-align: center;
 }
 .information__story-text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Roboto";
   font-size: 1.7rem;
   text-align: center;
@@ -393,9 +393,9 @@
   height: 4rem;
   font-size: 1.5rem;
   font-family: "Roboto";
-  color: #8ACFE5;
+  color: #8acfe5;
   background: none;
-  border: 0.15rem solid #8ACFE5;
+  border: 0.15rem solid #8acfe5;
   margin-top: 0.5rem;
 }
 @media screen and (min-width: 44rem) {
@@ -457,8 +457,8 @@
   height: 4rem;
   font-size: 1.5rem;
   font-family: "Roboto";
-  color: #FFFFFF;
-  background-color: #E3170A;
+  color: #ffffff;
+  background-color: #e3170a;
   border: none;
 }
 
@@ -467,7 +467,7 @@
   margin-top: 2rem;
   gap: 2rem;
   padding: 4rem 1.3rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Roboto";
 }
 @media screen and (min-width: 44rem) {
@@ -524,5 +524,5 @@
 }
 .site-map__item--link {
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }

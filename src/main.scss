@@ -1,585 +1,576 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 // Colors used
-$color-red: #E3170A;
+$color-red: #e3170a;
 $color-dark-blue: #011827;
-$color-gray: #B6BDB5;
-$color-medium-blue: #36769D;
-$color-light-blue: #8ACFE5;
-$color-white: #FFFFFF;
+$color-gray: #b6bdb5;
+$color-medium-blue: #36769d;
+$color-light-blue: #8acfe5;
+$color-white: #ffffff;
 
 $button-sizes: (
-    'large': (
-        width: 19.2rem,
-        height: 4rem,
-        fontsize: 1.5rem
-    ),
-    'medium': (
-        width: 11.3rem,
-        height: 2.7rem,
-        fontsize: 1rem
-    )
+  "large": (
+    width: 19.2rem,
+    height: 4rem,
+    fontsize: 1.5rem,
+  ),
+  "medium": (
+    width: 11.3rem,
+    height: 2.7rem,
+    fontsize: 1rem,
+  ),
 );
 
 // Responsive breakpoint
 $large-screen: 44rem;
 
 $large-screen-limit: 80rem;
-$large-screen-max: 120rem;
+$large-screen-max: 100rem;
 
 // Font used in all DOM
-$main-font: 'Roboto';
+$main-font: "Roboto";
 
 @mixin breakpoint($min-width) {
-    @media screen and (min-width: $min-width) {
-        @content;
-    }
+  @media screen and (min-width: $min-width) {
+    @content;
+  }
 }
 
 @mixin button-common {
-    margin: 0;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 0.3rem;
-    cursor: pointer;
+  margin: 0;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 @mixin primary($btn-size) {
-    @include button-common;
-    $size-map: map-get($button-sizes, $btn-size);
-    width: map-get($size-map, 'width');
-    height: map-get($size-map, 'height');
-    font-size: map-get($size-map, 'fontsize');
-    font-family: $main-font;
-    color: $color-white;
-    background-color: $color-red;
-    border: none;
+  @include button-common;
+  $size-map: map-get($button-sizes, $btn-size);
+  width: map-get($size-map, "width");
+  height: map-get($size-map, "height");
+  font-size: map-get($size-map, "fontsize");
+  font-family: $main-font;
+  color: $color-white;
+  background-color: $color-red;
+  border: none;
 }
 
 @mixin primary-on-dark($btn-size) {
-    @include button-common;
-    $size-map: map-get($button-sizes, $btn-size);
-    width: map-get($size-map, 'width');
-    height: map-get($size-map, 'height');
-    font-size: map-get($size-map, 'fontsize');
-    font-family: $main-font;
-    color: $color-light-blue;
-    background: none;
-    border: 0.15rem solid $color-light-blue;
+  @include button-common;
+  $size-map: map-get($button-sizes, $btn-size);
+  width: map-get($size-map, "width");
+  height: map-get($size-map, "height");
+  font-size: map-get($size-map, "fontsize");
+  font-family: $main-font;
+  color: $color-light-blue;
+  background: none;
+  border: 0.15rem solid $color-light-blue;
 }
 
 @mixin secondary($btn-size) {
-    @include button-common;
-   $size-map: map-get($button-sizes, $btn-size);
-    width: map-get($size-map, 'width');
-    height: map-get($size-map, 'height');
-    font-size: map-get($size-map, 'fontsize');
-    font-family: $main-font;
-    color: $color-dark-blue;
-    background-color: $color-light-blue;
-    border: none;
+  @include button-common;
+  $size-map: map-get($button-sizes, $btn-size);
+  width: map-get($size-map, "width");
+  height: map-get($size-map, "height");
+  font-size: map-get($size-map, "fontsize");
+  font-family: $main-font;
+  color: $color-dark-blue;
+  background-color: $color-light-blue;
+  border: none;
 }
 
 @mixin link-version {
-    margin-top: 1.875rem;
-    border: none;
-    background: none;
-    text-decoration-line: underline;
-    color: $color-medium-blue;
-    font-family: $main-font;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
+  margin-top: 1.875rem;
+  border: none;
+  background: none;
+  text-decoration-line: underline;
+  color: $color-medium-blue;
+  font-family: $main-font;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding:0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .body-container {
-    background-color: $color-white;
-    display: flex;
-    flex-direction: column;
-    min-width: 20rem;
-    max-width: 38rem;
-    margin: auto;
-    border: 1px solid lightgray;
-    @include breakpoint($large-screen) {
-        max-width: $large-screen-max;
-    }
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+  max-width: 38rem;
+  margin: auto;
+  border: 1px solid lightgray;
+  @include breakpoint($large-screen) {
+    max-width: $large-screen-max;
+  }
 }
 
 .header {
-    width: 100%;
-    height: 26.2rem;
+  width: 100%;
+  height: 26.2rem;
+  background-color: $color-dark-blue;
+  background-image: url("../resources/hacker-image.png");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: 100%;
+  overflow: hidden;
+  @include breakpoint($large-screen) {
+    height: 43rem;
+    background-size: cover;
+    background-position: center calc(100% + 7rem);
+  }
+
+  &__logo-head-cont {
     background-color: $color-dark-blue;
-    background-image: url('../resources/hacker-image.png');
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-attachment: local;
-    background-size: 100%;
-    overflow: hidden;
+    display: flex;
+    column-gap: 0.8rem;
+    min-height: 8.5rem;
+    align-items: center;
+    padding: 1.8rem;
     @include breakpoint($large-screen) {
-        height: 43rem;
-        background-size: cover;
-        background-position: center calc(100% + 7rem);
-        
+      align-items: end;
+      column-gap: 1.6rem;
     }
+  }
 
-    &__logo-head-cont {
-        background-color: $color-dark-blue;
-        display: flex;
-        column-gap: 0.8rem;
-        min-height: 8.5rem;
-        align-items: center;
-        padding: 1.8rem;
-        @include breakpoint($large-screen) {
-        align-items: end;
-        column-gap: 1.6rem;
-        }
-    }
+  &__logo {
+    height: 5rem;
+  }
 
-    &__logo {
-        height: 5rem;
+  &__headline {
+    // background-color: chartreuse;
+    max-width: 5rem;
+    font-family: $main-font;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    color: $color-white;
+    @include breakpoint($large-screen) {
+      max-width: fit-content;
+      font-size: 2.5rem;
+      line-height: 3rem;
     }
-
-    &__headline {
-        // background-color: chartreuse;
-        max-width: 5rem;
-        font-family: $main-font;
-        font-size: 1.5rem;
-        line-height: 1.7rem;
-        color: $color-white;
-        @include breakpoint($large-screen) {
-        max-width: fit-content;
-        font-size: 2.5rem;
-        line-height: 3rem;
-        }
-    }
+  }
 }
 
 .navigation {
-    display: none;
-    width: 0;
-    height: 0;
+  display: none;
+  width: 0;
+  height: 0;
+  @include breakpoint($large-screen) {
+    $top-padding: 2rem;
+    display: block;
+    padding-top: $top-padding;
+    width: 100%;
+    height: calc($top-padding + 3rem);
+    background-color: $color-dark-blue;
+  }
+
+  &__list {
     @include breakpoint($large-screen) {
-        $top-padding: 2rem;
-        display: block;
-        padding-top: $top-padding;
-        width: 100%;
-        height: calc($top-padding + 3rem);
-        background-color: $color-dark-blue;
+      width: 72%;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      list-style-type: none;
+      font-family: $main-font;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
+  }
 
-    &__list {
-        @include breakpoint($large-screen) {
-            width: 72%;
-            margin: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            list-style-type: none;
-            font-family: $main-font;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
+  &__item {
+    text-decoration: none;
+    color: $color-white;
+    &--last-one {
+      text-decoration: none;
+      color: $color-light-blue;
     }
-
-    &__item {
-        text-decoration: none;
-        color: $color-white;
-        &--last-one {
-                text-decoration: none;
-                color: $color-light-blue;
-        } 
-    }
+  }
 }
 .main-content {
-    // background-color: beige;
-    display: flex;
-    flex-direction: column;
+  // background-color: beige;
+  display: flex;
+  flex-direction: column;
 }
 .secondary-nav-container {
-    position: absolute;
-    width: 100%;
-    height: fit-content;
+  position: absolute;
+  width: 100%;
+  height: fit-content;
 
-    &--first {
-        margin: 2.3rem 0 4.2rem;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-           margin: 0 0 4.7rem;
-        }
-    }
-
-    &--second {
-        margin: 2.275rem 0 3.5rem;
-        @include breakpoint($large-screen) {
-           margin: 6.9rem 0 3.225rem;
-        }
-    }
-}
-.secondary-nav{
-    width: 100%;
-    display:flex;
-    flex-direction: column-reverse;
-    justify-content: space-evenly;
-    align-items: center;
-    row-gap: 0.5rem;
+  &--first {
+    margin: 2.3rem 0 4.2rem;
+    // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
-        position: relative;
-        top: 0;
-        transform: translateY(-50%);
-        height: fit-content;
-        flex-direction: row;
-        justify-content: center;
-        column-gap: 1.5rem;
+      margin: 0 0 4.7rem;
+    }
+  }
+
+  &--second {
+    margin: 2.275rem 0 3.5rem;
+    @include breakpoint($large-screen) {
+      margin: 6.9rem 0 3.225rem;
+    }
+  }
+}
+.secondary-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: 0.5rem;
+  @include breakpoint($large-screen) {
+    position: relative;
+    top: 0;
+    transform: translateY(-50%);
+    height: fit-content;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1.5rem;
+  }
+
+  &__btn {
+    &--primary {
+      @include link-version;
+      @include breakpoint($large-screen) {
+        @include primary(large);
+      }
     }
 
-    &__btn {
-
-        &--primary {
-            @include link-version;
-            @include breakpoint($large-screen) {
-                @include primary(large);
-            }
-        }
-
-        &--secondary {
-           @include secondary(large);
-        }
+    &--secondary {
+      @include secondary(large);
     }
+  }
 }
 
 .reviews {
-    // background-color: darkorange;
-    margin: 0 0 6.5rem;
-    display: flex;
-    overflow-x: auto;
-    column-gap: 3.5rem;
-    height: fit-content;
-    padding: 0 1.3rem 1rem;
+  // background-color: darkorange;
+  margin: 0 0 6.5rem;
+  display: flex;
+  overflow-x: auto;
+  column-gap: 3.5rem;
+  height: fit-content;
+  padding: 0 1.3rem 1rem;
+  @include breakpoint($large-screen) {
+    margin: 0 auto 6.5rem;
+    max-width: 80%;
+    min-width: fit-content;
+    column-gap: 2rem;
+  }
+
+  &__review-item {
+    // background-color: coral;
+    flex-shrink: 0;
+    display: grid;
+    grid-template-areas:
+      "pic txt"
+      "pic info";
+    grid-template-columns: 4.6rem auto;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    font-family: $main-font;
     @include breakpoint($large-screen) {
-        margin: 0 auto 6.5rem;
-        max-width: 80%;
-        min-width: fit-content;
-        column-gap: 2rem;
+      max-width: 32rem;
+      grid-template-columns: 6.2rem auto;
+      row-gap: 1rem;
     }
+  }
 
-    &__review-item {
-        // background-color: coral;
-        flex-shrink: 0;
-        display: grid;
-        grid-template-areas:
-        'pic txt' 
-        'pic info';
-        grid-template-columns: 4.6rem auto;
-        column-gap: 0.5rem;
-        row-gap: 0.5rem;
-        font-family: $main-font;
-        @include breakpoint($large-screen) {
-            max-width: 32rem;
-           grid-template-columns: 6.2rem auto;
-            row-gap: 1rem;
-        }
+  &__reviewer-image {
+    grid-area: pic;
+    width: 100%;
+    padding-top: 0.2rem;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
+      // width: 6.2rem;
     }
+  }
 
-    &__reviewer-image {
-        grid-area: pic;
-        width: 100%;
-        padding-top: 0.2rem;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-            // width: 6.2rem;
-        }
+  &__review-txt {
+    grid-area: txt;
+    font-size: 1.5rem;
+    font-style: italic;
+    max-width: 20rem;
+    width: 66vw;
+    min-width: 12rem;
+    @include breakpoint($large-screen) {
+      max-width: 26rem;
+      text-align: left;
     }
+  }
 
-    &__review-txt {
-        grid-area: txt;
-        font-size: 1.5rem;
-        font-style: italic;
-        max-width: 20rem;
-        width: 66vw;
-        min-width: 12rem;
-        @include breakpoint($large-screen) {
-            max-width: 26rem;
-            text-align: left;
-        }
+  &__reviewer-data {
+    grid-area: info;
+    width: 66vw;
+    min-width: 12rem;
+    font-size: 1.1rem;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
+      max-width: 18rem;
+      text-align: left;
     }
-
-    &__reviewer-data {
-        grid-area: info;
-        width: 66vw;
-        min-width: 12rem;
-        font-size: 1.1rem;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-            max-width: 18rem;
-            text-align: left;
-        }
-    }
+  }
 }
 
 .challenges {
-    height: fit-content;
-     @include breakpoint($large-screen-limit) {
-        margin: auto;
+  height: fit-content;
+  @include breakpoint($large-screen-limit) {
+    margin: auto;
+  }
+
+  &__headline {
+    font-family: $main-font;
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 2.75rem;
+    @include breakpoint($large-screen) {
+      font-size: 2.2rem;
+      margin-bottom: 5rem;
     }
-    
-    &__headline {
-        font-family: $main-font;
-        font-size: 2rem;
-        font-weight: 400;
-        text-align: center;
-        margin-bottom: 2.75rem;
-        @include breakpoint($large-screen) {
-            font-size: 2.2rem;
-            margin-bottom: 5rem;
-        }
-    }
+  }
 }
 
 .card-container {
-    display: flex;
-    overflow-x: scroll;
-    column-gap: 2rem;
-    padding-bottom: 0.625rem;
-    padding-left: 10vw;
-    @include breakpoint($large-screen) {
-        
-        padding: 0 0.2rem 0.625rem;
-    }
+  display: flex;
+  overflow-x: scroll;
+  column-gap: 2rem;
+  padding-bottom: 0.625rem;
+  padding-left: 10vw;
+  @include breakpoint($large-screen) {
+    padding: 0 0.2rem 0.625rem;
+  }
 
-    @include breakpoint($large-screen-limit) {
-        margin: auto;
-
-    }
+  @include breakpoint($large-screen-limit) {
+    margin: auto;
+  }
 }
 
 .card {
-    flex-shrink: 0;
-    background-size: 100%;
-    background-position: top;
-    background-repeat: no-repeat;
-    max-width: 22.7rem;
-    width: 76vw;
-    min-width: 17.9rem;
-    height: 27.9rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.6rem rgba($color: black, $alpha: 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex-shrink: 0;
+  background-size: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  max-width: 22.7rem;
+  width: 76vw;
+  min-width: 17.9rem;
+  height: 27.9rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.6rem rgba($color: black, $alpha: 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    &__image {
-        width: 100%;
-        border-radius: 0.5rem 0.5rem 0 0;
-    }
+  &__image {
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
 
-    &__title {
-        margin: 0.75rem 0 0 1rem;
-        font-family: $main-font;
-        font-size: 1.8rem;
-        font-weight: 400;
-    }
+  &__title {
+    margin: 0.75rem 0 0 1rem;
+    font-family: $main-font;
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
 
-    &__room-participants {
-        font-family: $main-font;
-        font-weight: 400;
-        font-size: 0.9rem;
-    }
+  &__room-participants {
+    font-family: $main-font;
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
 
-    &__description{
-        margin: 1.1rem 1rem 1.8rem;
-        font-family: $main-font;
-        font-size: 1.1rem;
-        font-weight: 400;
-        line-height: 1.25rem;
-    }
+  &__description {
+    margin: 1.1rem 1rem 1.8rem;
+    font-family: $main-font;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+  }
 
-    &__button {
-        @include primary(medium);
-        align-self: flex-end;
-        margin: 0 1rem 1rem 0;
-    }
+  &__button {
+    @include primary(medium);
+    align-self: flex-end;
+    margin: 0 1rem 1rem 0;
+  }
 }
 
 .rating-container {
-    margin: 0 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    // height: 2.5rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // height: 2.5rem;
 }
 
 .rating {
-    letter-spacing: 0.5rem;
+  letter-spacing: 0.5rem;
 }
 
 .information {
-    // background-color: greenyellow;
+  // background-color: greenyellow;
+  width: 100%;
+
+  &__story {
     width: 100%;
+    height: fit-content;
+    background-color: $color-dark-blue;
+    padding: 6rem 1.3rem;
+    text-align: center;
+  }
 
-    &__story {
-        width: 100%;
-        height: fit-content;
-        background-color: $color-dark-blue;
-        padding: 6rem 1.3rem;
-        text-align: center;
+  &__story-text {
+    color: $color-white;
+    font-family: $main-font;
+    font-size: 1.7rem;
+    text-align: center;
+    letter-spacing: 1%;
+    padding-bottom: 3rem;
+    max-width: 38rem;
+    margin: auto;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
     }
+  }
 
-    &__story-text {
-        color: $color-white;
-        font-family: $main-font;
-        font-size: 1.7rem;
-        text-align: center;
-        letter-spacing: 1%;
-        padding-bottom: 3rem;
-        max-width: 38rem;
-        margin: auto;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-            
-        }   
+  &__btn--primary-on-dark {
+    @include primary-on-dark(large);
+    margin-top: 0.5rem;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
+      margin-top: -0.5rem;
+      margin-bottom: 3rem;
     }
-
-    &__btn--primary-on-dark {
-        @include primary-on-dark(large);
-        margin-top: 0.5rem;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-            margin-top: -0.5rem;
-            margin-bottom: 3rem;
-        }
-           
-    }
+  }
 }
 
 .booking {
-    // background-color: lightskyblue;
+  // background-color: lightskyblue;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: $main-font;
+  // @include breakpoint($medium-screen) {}
+  @include breakpoint($large-screen) {
+    flex-direction: row;
+    &:last-child {
+      flex-direction: row-reverse;
+      justify-content: start;
+    }
+  }
+
+  &__info-image {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-family: $main-font;
     // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
-        flex-direction: row;
-        &:last-child {
-            flex-direction: row-reverse;
-            justify-content: start;
-        }        
-    } 
-    
-    &__info-image {
-        width: 100%;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-            flex: 50%;
-        }
+      flex: 50%;
     }
+  }
 
-    &__info-container {
-        padding: 1.9rem 1.3rem 4rem;
-        display: flex;
-        flex-direction: column;
-        // @include breakpoint($medium-screen) {}
-        @include breakpoint($large-screen) {
-            flex: 50%;
-            padding: 2rem 7rem 4rem;
-        }
+  &__info-container {
+    padding: 1.9rem 1.3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    // @include breakpoint($medium-screen) {}
+    @include breakpoint($large-screen) {
+      flex: 50%;
+      padding: 2rem 7rem 4rem;
     }
+  }
 
-    &__header {
-        font-size: 2rem;
-        padding-bottom: 1.7rem;
-    }
+  &__header {
+    font-size: 2rem;
+    padding-bottom: 1.7rem;
+  }
 
-    &__info-txt {
-        font-size: 1.5rem;
-        padding-bottom: 3.1rem;
-    }
+  &__info-txt {
+    font-size: 1.5rem;
+    padding-bottom: 3.1rem;
+  }
 
-    &__btn {
-        // margin-top: 2rem;
-        @include primary(large);
-    } 
+  &__btn {
+    // margin-top: 2rem;
+    @include primary(large);
+  }
 }
 
 .footer {
-    background-color: $color-dark-blue;
-    margin-top: 2rem;
-    gap: 2rem;
-    padding: 4rem 1.3rem;
-    color: $color-white;
-    font-family: $main-font;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
-        margin-top: 11rem;
-        display: flex;
-        flex: 100%;
-        padding: 9rem 7rem;
-    }
+  background-color: $color-dark-blue;
+  margin-top: 2rem;
+  gap: 2rem;
+  padding: 4rem 1.3rem;
+  color: $color-white;
+  font-family: $main-font;
+  // @include breakpoint($medium-screen) {}
+  @include breakpoint($large-screen) {
+    margin-top: 11rem;
+    display: flex;
+    flex: 100%;
+    padding: 9rem 7rem;
+  }
 }
 
 .info {
-    // @include breakpoint($medium-screen) {}   
+  // @include breakpoint($medium-screen) {}
+  @include breakpoint($large-screen) {
+    // flex-grow: 5;
+    flex: 62%;
+  }
+
+  &__header {
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  &__txt {
+    font-size: 1.15rem;
+    line-height: 1.3rem;
+    margin-bottom: 2rem;
+    // @include breakpoint($medium-screen) {}
     @include breakpoint($large-screen) {
-        // flex-grow: 5;
-        flex: 62%;
+      width: 70%;
     }
-
-    &__header {
-        font-size: 1.15rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-
-    }
-
-    &__txt {
-        font-size: 1.15rem;
-        line-height: 1.3rem;
-        margin-bottom: 2rem;
-        // @include breakpoint($medium-screen) {}   
-        @include breakpoint($large-screen) {
-            width: 70%;
-        }
-    }
+  }
 }
 
 .site-map {
-    &__header {
-        font-size: 1.15rem;
-        font-weight: bold;
-    }
+  &__header {
+    font-size: 1.15rem;
+    font-weight: bold;
+  }
 
-    &:nth-child(2) {
-        @include breakpoint($large-screen) {
-            flex: 18%;
-        }    
+  &:nth-child(2) {
+    @include breakpoint($large-screen) {
+      flex: 18%;
     }
+  }
 
-    &:last-child {
-        @include breakpoint($large-screen) {
-            flex: 20%;
-        }
+  &:last-child {
+    @include breakpoint($large-screen) {
+      flex: 20%;
     }
-      
-    
-    &__list {
-        margin-top: 0.4rem;
-        margin-bottom: 1.5rem;
-    }
+  }
 
-    &__item {
-        list-style-type: none;
-        font-weight: normal;
-        
-        &--link {
-            text-decoration: none;
-            color: $color-white;
-            
-        }
+  &__list {
+    margin-top: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__item {
+    list-style-type: none;
+    font-weight: normal;
+
+    &--link {
+      text-decoration: none;
+      color: $color-white;
     }
+  }
 }
