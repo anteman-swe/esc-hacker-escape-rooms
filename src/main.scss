@@ -22,9 +22,10 @@ $button-sizes: (
 );
 
 // Responsive breakpoint
-$large-screen: 44rem;
+$small-to-large: 44rem;
 
 $large-screen-limit: 80rem;
+
 $large-screen-max: 100rem;
 
 // Font used in all DOM
@@ -38,19 +39,23 @@ $main-font: "Roboto";
 
 @mixin button-common {
   margin: 0;
+  font-family: $main-font;
   font-weight: bold;
   text-decoration: none;
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
-@mixin primary($btn-size) {
-  @include button-common;
+@mixin button-size($btn-size) {
   $size-map: map-get($button-sizes, $btn-size);
   width: map-get($size-map, "width");
   height: map-get($size-map, "height");
   font-size: map-get($size-map, "fontsize");
-  font-family: $main-font;
+}
+
+@mixin primary($btn-size) {
+  @include button-common;
+  @include button-size($btn-size);
   color: $color-white;
   background-color: $color-red;
   border: none;
@@ -58,11 +63,7 @@ $main-font: "Roboto";
 
 @mixin primary-on-dark($btn-size) {
   @include button-common;
-  $size-map: map-get($button-sizes, $btn-size);
-  width: map-get($size-map, "width");
-  height: map-get($size-map, "height");
-  font-size: map-get($size-map, "fontsize");
-  font-family: $main-font;
+  @include button-size($btn-size);
   color: $color-light-blue;
   background: none;
   border: 0.15rem solid $color-light-blue;
@@ -70,23 +71,19 @@ $main-font: "Roboto";
 
 @mixin secondary($btn-size) {
   @include button-common;
-  $size-map: map-get($button-sizes, $btn-size);
-  width: map-get($size-map, "width");
-  height: map-get($size-map, "height");
-  font-size: map-get($size-map, "fontsize");
-  font-family: $main-font;
+  @include button-size($btn-size);
   color: $color-dark-blue;
   background-color: $color-light-blue;
   border: none;
 }
 
-@mixin link-version {
-  margin-top: 1.875rem;
+@mixin link-version($btn-size) {
+  @include button-common;
+  @include button-size($btn-size);
   border: none;
   background: none;
   text-decoration-line: underline;
   color: $color-medium-blue;
-  font-family: $main-font;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -106,7 +103,7 @@ $main-font: "Roboto";
   max-width: 38rem;
   margin: auto;
   border: 1px solid lightgray;
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     max-width: $large-screen-max;
   }
 }
@@ -121,10 +118,13 @@ $main-font: "Roboto";
   background-attachment: local;
   background-size: 100%;
   overflow: hidden;
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     height: 43rem;
     background-size: cover;
     background-position: center calc(100% + 7rem);
+  }
+  @include breakpoint($large-screen-limit) {
+    background-position: center calc(100% + 13rem);
   }
 
   &__logo-head-cont {
@@ -134,7 +134,7 @@ $main-font: "Roboto";
     min-height: 8.5rem;
     align-items: center;
     padding: 1.8rem;
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       align-items: end;
       column-gap: 1.6rem;
     }
@@ -151,7 +151,7 @@ $main-font: "Roboto";
     font-size: 1.5rem;
     line-height: 1.7rem;
     color: $color-white;
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       max-width: fit-content;
       font-size: 2.5rem;
       line-height: 3rem;
@@ -163,7 +163,7 @@ $main-font: "Roboto";
   display: none;
   width: 0;
   height: 0;
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     $top-padding: 2rem;
     display: block;
     padding-top: $top-padding;
@@ -173,7 +173,7 @@ $main-font: "Roboto";
   }
 
   &__list {
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       width: 72%;
       margin: auto;
       display: flex;
@@ -187,11 +187,15 @@ $main-font: "Roboto";
   }
 
   &__item {
-    text-decoration: none;
-    color: $color-white;
-    &--last-one {
+    a {
       text-decoration: none;
-      color: $color-light-blue;
+      color: $color-white;
+    }
+    &:last-child {
+      a {
+        text-decoration: none;
+        color: $color-light-blue;
+      }
     }
   }
 }
@@ -200,26 +204,7 @@ $main-font: "Roboto";
   display: flex;
   flex-direction: column;
 }
-.secondary-nav-container {
-  position: absolute;
-  width: 100%;
-  height: fit-content;
 
-  &--first {
-    margin: 2.3rem 0 4.2rem;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
-      margin: 0 0 4.7rem;
-    }
-  }
-
-  &--second {
-    margin: 2.275rem 0 3.5rem;
-    @include breakpoint($large-screen) {
-      margin: 6.9rem 0 3.225rem;
-    }
-  }
-}
 .secondary-nav {
   width: 100%;
   display: flex;
@@ -227,20 +212,32 @@ $main-font: "Roboto";
   justify-content: space-evenly;
   align-items: center;
   row-gap: 0.5rem;
-  @include breakpoint($large-screen) {
-    position: relative;
-    top: 0;
-    transform: translateY(-50%);
+  &:first-child {
+    margin: 2.3rem 0 4.2rem;
+    @include breakpoint($small-to-large) {
+      transform: translateY(-50%);
+      margin: 0 0 4.7rem;
+    }
+  }
+
+  &:nth-last-child(3) {
+    margin: 2.275rem 0 3.5rem;
+    @include breakpoint($small-to-large) {
+      margin: 4.9rem 0 5.225rem;
+    }
+  }
+
+  @include breakpoint($small-to-large) {
     height: fit-content;
     flex-direction: row;
     justify-content: center;
-    column-gap: 1.5rem;
+    column-gap: 1rem;
   }
 
   &__btn {
     &--primary {
-      @include link-version;
-      @include breakpoint($large-screen) {
+      @include link-version(large);
+      @include breakpoint($small-to-large) {
         @include primary(large);
       }
     }
@@ -259,11 +256,11 @@ $main-font: "Roboto";
   column-gap: 3.5rem;
   height: fit-content;
   padding: 0 1.3rem 1rem;
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     margin: 0 auto 6.5rem;
     max-width: 80%;
     min-width: fit-content;
-    column-gap: 2rem;
+    column-gap: 1.4rem;
   }
 
   &__review-item {
@@ -277,7 +274,7 @@ $main-font: "Roboto";
     column-gap: 0.5rem;
     row-gap: 0.5rem;
     font-family: $main-font;
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       max-width: 32rem;
       grid-template-columns: 6.2rem auto;
       row-gap: 1rem;
@@ -288,10 +285,6 @@ $main-font: "Roboto";
     grid-area: pic;
     width: 100%;
     padding-top: 0.2rem;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
-      // width: 6.2rem;
-    }
   }
 
   &__review-txt {
@@ -301,7 +294,7 @@ $main-font: "Roboto";
     max-width: 20rem;
     width: 66vw;
     min-width: 12rem;
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       max-width: 26rem;
       text-align: left;
     }
@@ -312,8 +305,7 @@ $main-font: "Roboto";
     width: 66vw;
     min-width: 12rem;
     font-size: 1.1rem;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       max-width: 18rem;
       text-align: left;
     }
@@ -332,7 +324,7 @@ $main-font: "Roboto";
     font-weight: 400;
     text-align: center;
     margin-bottom: 2.75rem;
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       font-size: 2.2rem;
       margin-bottom: 5rem;
     }
@@ -345,7 +337,7 @@ $main-font: "Roboto";
   column-gap: 2rem;
   padding-bottom: 0.625rem;
   padding-left: 10vw;
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     padding: 0 0.2rem 0.625rem;
   }
 
@@ -407,7 +399,6 @@ $main-font: "Roboto";
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // height: 2.5rem;
 }
 
 .rating {
@@ -435,16 +426,14 @@ $main-font: "Roboto";
     padding-bottom: 3rem;
     max-width: 38rem;
     margin: auto;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
     }
   }
 
   &__btn--primary-on-dark {
     @include primary-on-dark(large);
     margin-top: 0.5rem;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       margin-top: -0.5rem;
       margin-bottom: 3rem;
     }
@@ -457,8 +446,7 @@ $main-font: "Roboto";
   display: flex;
   flex-direction: column;
   font-family: $main-font;
-  // @include breakpoint($medium-screen) {}
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     flex-direction: row;
     &:last-child {
       flex-direction: row-reverse;
@@ -468,8 +456,7 @@ $main-font: "Roboto";
 
   &__info-image {
     width: 100%;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       flex: 50%;
     }
   }
@@ -478,8 +465,7 @@ $main-font: "Roboto";
     padding: 1.9rem 1.3rem 4rem;
     display: flex;
     flex-direction: column;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       flex: 50%;
       padding: 2rem 7rem 4rem;
     }
@@ -496,7 +482,6 @@ $main-font: "Roboto";
   }
 
   &__btn {
-    // margin-top: 2rem;
     @include primary(large);
   }
 }
@@ -508,8 +493,7 @@ $main-font: "Roboto";
   padding: 4rem 1.3rem;
   color: $color-white;
   font-family: $main-font;
-  // @include breakpoint($medium-screen) {}
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     margin-top: 11rem;
     display: flex;
     flex: 100%;
@@ -518,8 +502,7 @@ $main-font: "Roboto";
 }
 
 .info {
-  // @include breakpoint($medium-screen) {}
-  @include breakpoint($large-screen) {
+  @include breakpoint($small-to-large) {
     // flex-grow: 5;
     flex: 62%;
   }
@@ -534,8 +517,7 @@ $main-font: "Roboto";
     font-size: 1.15rem;
     line-height: 1.3rem;
     margin-bottom: 2rem;
-    // @include breakpoint($medium-screen) {}
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       width: 70%;
     }
   }
@@ -547,14 +529,14 @@ $main-font: "Roboto";
     font-weight: bold;
   }
 
-  &:nth-child(2) {
-    @include breakpoint($large-screen) {
+  &:nth-last-child(2) {
+    @include breakpoint($small-to-large) {
       flex: 18%;
     }
   }
 
   &:last-child {
-    @include breakpoint($large-screen) {
+    @include breakpoint($small-to-large) {
       flex: 20%;
     }
   }
