@@ -21,7 +21,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sass --watch --no-source-map src/main.scss dist/css/main.css"
+    "sass-watch": "sass --watch --no-source-map src/main.scss dist/css/main.css",
+    "tsc-watch": "tsc --watch"
   },
   "dependencies": {
     "braces": "^3.0.3",
