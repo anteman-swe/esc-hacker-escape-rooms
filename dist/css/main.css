@@ -75,6 +75,39 @@
   }
 }
 
+.hamburger-button {
+  position: absolute;
+  right: 1.5em;
+  top: 2.5em;
+  z-index: 20;
+  cursor: pointer;
+  user-select: none;
+}
+.hamburger-button span {
+  height: 0.3rem;
+  width: 3rem;
+  border-radius: 0.15rem;
+  background-color: white;
+  position: relative;
+  display: block;
+  transition: all 0.2s ease-in-out;
+}
+.hamburger-button span:before {
+  top: -0.75rem;
+}
+.hamburger-button span:after {
+  top: 0.75rem;
+}
+.hamburger-button span:before, .hamburger-button span:after {
+  height: 0.3rem;
+  width: 3rem;
+  border-radius: 0.15rem;
+  background-color: white;
+  position: absolute;
+  content: "";
+  transition: all 0.2s ease-in-out;
+}
+
 .navigation {
   display: none;
   width: 0;

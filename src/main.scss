@@ -159,6 +159,44 @@ $main-font: "Roboto";
   }
 }
 
+.hamburger-button {
+  position: absolute;
+  right: 1.5em;
+  top: 2.5em;
+  z-index: 20;
+  cursor: pointer;
+  user-select: none;
+  span {
+    $line-width: 3rem;
+    $line-height: 0.3rem;
+    $h-multiplier: 2.5;
+    height: $line-height;
+    width: $line-width;
+    border-radius: calc($line-height/2);
+    background-color: white;
+    position: relative;
+    display: block;
+    transition: all 0.2s ease-in-out;
+    &:before {
+      top: -(calc($line-height*$h-multiplier));
+      // visibility: visible;
+    }
+    &:after {
+      top: calc($line-height*$h-multiplier);
+    }
+    &:before,
+    &:after {
+      height: $line-height;
+      width: $line-width;
+      border-radius: calc($line-height/2);
+      background-color: white;
+      position: absolute;
+      content: "";
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
+
 .navigation {
   display: none;
   width: 0;
