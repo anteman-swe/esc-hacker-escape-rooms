@@ -169,12 +169,12 @@ $main-font: "Roboto";
 }
 
 .hamburger-button {
-  position: absolute;
+  position: fixed;
   right: 1.5em;
   top: 2.5em;
   z-index: 20;
   cursor: pointer;
-  user-select: none;
+  // user-select: none;
   span {
     $line-width: 3rem;
     $line-height: 0.3rem;
@@ -284,12 +284,13 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: column;
     text-align: center;
+    gap: 0.8rem;
     height: 100vh;
     padding-left: 0;
     list-style-type: none;
     font-family: $main-font;
-    font-weight: 600;
-    font-size: 2rem;
+    font-weight: 700;
+    font-size: 2.2rem;
     @include breakpoint($small-to-large) {
       width: 72%;
       margin: auto;
