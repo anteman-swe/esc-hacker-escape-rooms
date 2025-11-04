@@ -198,7 +198,10 @@ $main-font: "Roboto";
 }
 
 input[type=checkbox] {
-  visibility: hidden;
+  display: none;
+  // &:checked ~.hamburger-button {
+  //   position: fixed;
+  // }
 }
 
 .navigation {
