@@ -108,6 +108,10 @@
   transition: all 0.2s ease-in-out;
 }
 
+input[type=checkbox] {
+  visibility: hidden;
+}
+
 .navigation {
   display: none;
   width: 0;

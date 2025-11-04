@@ -197,6 +197,10 @@ $main-font: "Roboto";
   }
 }
 
+input[type=checkbox] {
+  visibility: hidden;
+}
+
 .navigation {
   display: none;
   width: 0;
