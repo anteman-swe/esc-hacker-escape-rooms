@@ -133,7 +133,7 @@ input[type=checkbox]:checked ~ .navigation {
 }
 input[type=checkbox]:checked ~ .navigation-dimmer {
   visibility: visible;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 input[type=checkbox]:checked ~ .hamburger-button {
   position: fixed;
@@ -159,7 +159,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 9;
   background-color: #ffffff;
   transition: opacity 0.3s;
 }
