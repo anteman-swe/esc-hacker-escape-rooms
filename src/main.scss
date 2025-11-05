@@ -109,7 +109,9 @@ $main-font: "Roboto";
 }
 
 .header {
+  position: sticky;
   width: 100%;
+  max-width: 38rem;
   height: 26.2rem;
   background-color: $color-dark-blue;
   background-image: url("../resources/hacker-image.png");
@@ -119,6 +121,7 @@ $main-font: "Roboto";
   background-size: 100%;
   overflow: hidden;
   @include breakpoint($small-to-large) {
+    max-width: $large-screen-max;
     height: 43rem;
     background-size: cover;
     background-position: center calc(100% + 7rem);
@@ -160,40 +163,29 @@ $main-font: "Roboto";
 }
 
 .hamburger-button {
+  background-color: $color-dark-blue;
+  border: none;
   position: absolute;
   right: 1.5em;
   top: 2.5em;
   z-index: 20;
   cursor: pointer;
-  user-select: none;
+  // user-select: none;
+  @include breakpoint($small-to-large) {
+    display: none;
+  }
   span {
     $line-width: 3rem;
     $line-height: 0.3rem;
     $h-multiplier: 2.5;
     height: $line-height;
     width: $line-width;
+    margin-bottom: calc($line-height + 0.2rem);
     border-radius: calc($line-height/2);
     background-color: white;
     position: relative;
     display: block;
     transition: all 0.2s ease-in-out;
-    &:before {
-      top: -(calc($line-height*$h-multiplier));
-      // visibility: visible;
-    }
-    &:after {
-      top: calc($line-height*$h-multiplier);
-    }
-    &:before,
-    &:after {
-      height: $line-height;
-      width: $line-width;
-      border-radius: calc($line-height/2);
-      background-color: white;
-      position: absolute;
-      content: "";
-      transition: all 0.2s ease-in-out;
-    }
   }
 }
 
@@ -204,36 +196,80 @@ input[type=checkbox] {
   // }
 }
 
+.navigation-dimmer {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: $color-white;
+  transition: opacity 0.3s;
+}
+
 .navigation {
-  display: none;
-  width: 0;
-  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  scale: 90%;
+  height: calc(100vh - 3rem);
+  width: calc(100vw - 3rem);
+  background: $color-dark-blue;
+  box-shadow: 0 0 8rem $color-light-blue;
+  z-index: 10;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  transition: all 0.2s ease-in 0.1s;
+  // transition: scale 0.3s ease-in 0.15s;
   @include breakpoint($small-to-large) {
     $top-padding: 1rem;
     display: block;
+    position: initial;
+    visibility: visible;
+    z-index: auto;
+    opacity: 1;
+    box-shadow: none;
+    scale: 100%;
     // padding-top: $top-padding;
     width: 100%;
     height: calc($top-padding + 3rem);
     background-color: $color-dark-blue;
   }
 
+  &.active {
+    visibility: visible;
+  }
+
   &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+    height: 100vh;
+    padding-left: 0;
+    list-style-type: none;
+    font-family: $main-font;
+    font-weight: 700;
+    font-size: 2.2rem;
     @include breakpoint($small-to-large) {
       width: 72%;
+      height: fit-content;
       margin: auto;
-      display: flex;
       flex-direction: row;
       justify-content: space-between;
-      list-style-type: none;
-      font-family: $main-font;
+      gap: 0;
       font-size: 1.5rem;
-      font-weight: 600;
     }
   }
 
   &__item {
-    padding: 0.1rem 1rem;
-    &:hover{
+    padding: 1rem;
+    white-space: nowrap;
+    &:hover {
       border: 1px solid $color-medium-blue;
       border-radius: 0.8rem 0.4rem 0.8rem 0;
     }
@@ -244,21 +280,21 @@ input[type=checkbox] {
         color: $color-medium-blue;
       }
     }
-    &:last-child {
-      &:hover{
-        border: 1px solid $color-white;
-        border-radius: 0.8rem 0.4rem 0.8rem 0;
-      }
-      a {
-        text-decoration: none;
-        color: $color-light-blue;
+    @include breakpoint($small-to-large) {
+      &:last-child {
         &:hover {
-          color: $color-white;
+          border: 1px solid $color-white;
+          border-radius: 0.8rem 0.4rem 0.8rem 0;
+        }
+        a {
+          text-decoration: none;
+          color: $color-light-blue;
+          &:hover {
+            color: $color-white;
+          }
         }
       }
     }
-
-    
   }
 }
 .main-content {
