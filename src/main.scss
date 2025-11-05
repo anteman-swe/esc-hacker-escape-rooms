@@ -169,7 +169,7 @@ $main-font: "Roboto";
 }
 
 .hamburger-button {
-  position: fixed;
+  position: absolute;
   right: 1.5em;
   top: 2.5em;
   z-index: 20;
@@ -222,6 +222,7 @@ input[type="checkbox"] {
   }
 
   &:checked ~ .hamburger-button {
+    position: fixed;
     padding: 1rem 1rem 0 0;
     &:hover span,
     span {
