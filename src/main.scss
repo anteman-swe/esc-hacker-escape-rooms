@@ -118,7 +118,9 @@ $main-font: "Roboto";
 }
 
 .header {
+  position: sticky;
   width: 100%;
+  max-width: 38rem;
   height: 26.2rem;
   background-color: $color-dark-blue;
   background-image: url("../resources/hacker-image.png");
@@ -128,6 +130,7 @@ $main-font: "Roboto";
   background-size: 100%;
   overflow: hidden;
   @include breakpoint($small-to-large) {
+    max-width: $large-screen-max;
     height: 43rem;
     background-size: cover;
     background-position: center calc(100% + 7rem);
@@ -175,6 +178,9 @@ $main-font: "Roboto";
   z-index: 20;
   cursor: pointer;
   // user-select: none;
+  @include breakpoint($small-to-large) {
+    display: none;
+  }
   span {
     $line-width: 3rem;
     $line-height: 0.3rem;
@@ -269,6 +275,12 @@ input[type="checkbox"] {
   @include breakpoint($small-to-large) {
     $top-padding: 1rem;
     display: block;
+    position: initial;
+    visibility: visible;
+    z-index: auto;
+    opacity: 1;
+    box-shadow: none;
+    scale: 100%;
     // padding-top: $top-padding;
     width: 100%;
     height: calc($top-padding + 3rem);
@@ -294,16 +306,18 @@ input[type="checkbox"] {
     font-size: 2.2rem;
     @include breakpoint($small-to-large) {
       width: 72%;
+      height: fit-content;
       margin: auto;
       flex-direction: row;
       justify-content: space-between;
+      gap: 0;
       font-size: 1.5rem;
     }
   }
 
   &__item {
     padding: 1rem;
-
+    white-space: nowrap;
     &:hover {
       border: 1px solid $color-medium-blue;
       border-radius: 0.8rem 0.4rem 0.8rem 0;
