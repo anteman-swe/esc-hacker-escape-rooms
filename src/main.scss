@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 // Colors used
@@ -47,10 +49,10 @@ $main-font: "Roboto";
 }
 
 @mixin button-size($btn-size) {
-  $size-map: map-get($button-sizes, $btn-size);
-  width: map-get($size-map, "width");
-  height: map-get($size-map, "height");
-  font-size: map-get($size-map, "fontsize");
+  $size-map: map.get($button-sizes, $btn-size);
+  width: map.get($size-map, "width");
+  height: map.get($size-map, "height");
+  font-size: map.get($size-map, "fontsize");
 }
 
 @mixin primary($btn-size) {
