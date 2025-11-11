@@ -157,8 +157,8 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  right: 0;
   z-index: 9;
   background-color: #ffffff;
   transition: opacity 0.3s;
@@ -448,7 +448,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   max-width: 22.7rem;
   width: 76vw;
   min-width: 17.9rem;
-  height: 27.9rem;
+  min-height: 27.9rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
   display: flex;
@@ -461,6 +461,9 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
 }
 .card__title {
   margin: 0.75rem 0 0 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: "Roboto";
   font-size: 1.8rem;
   font-weight: 400;
