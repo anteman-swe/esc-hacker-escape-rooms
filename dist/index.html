@@ -65,10 +65,8 @@
     </header>
     <main class="main-content">
       <section class="secondary-nav">
-        <button class="secondary-nav__btn--primary">Online challenges</button>
-        <button class="secondary-nav__btn--secondary">
-          On-site challenges
-        </button>
+        <button data-action="online" class="secondary-nav__btn--primary">Online challenges</button>
+        <button data-action="onsite" class="secondary-nav__btn--secondary">On-site challenges</button>
       </section>
       <section class="reviews">
         <article class="reviews__review-item">
@@ -107,10 +105,8 @@
         </div>
       </section>
       <section class="secondary-nav">
-        <button class="secondary-nav__btn--primary">Online challenges</button>
-        <button class="secondary-nav__btn--secondary">
-          On-site challenges
-        </button>
+        <button data-action="online" class="secondary-nav__btn--primary">Online challenges</button>
+        <button data-action="onsite" class="secondary-nav__btn--secondary">On-site challenges</button>
       </section>
       <section class="information">
         <article class="information__story">
@@ -119,9 +115,7 @@
             quidem haec eo spectant haec quoque vos omnino desit illud quo solo
             felicitatis libertatisque perficiuntur.
           </p>
-          <button class="information__btn--primary-on-dark">
-            Read the full story
-          </button>
+          <button data-action="story" class="information__btn--primary-on-dark">Read the full story</button>
         </article>
       </section>
       <section class="booking-container">
@@ -139,7 +133,7 @@
               Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
               nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
             </p>
-            <button class="booking__btn">Book on-site today</button>
+            <button data-action="onsite" class="booking__btn">Book on-site today</button>
           </div>
         </article>
         <article class="booking">
@@ -156,7 +150,7 @@
               Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
               nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
             </p>
-            <button class="booking__btn">See all challenges</button>
+            <button data-action="see_all" class="booking__btn">See all challenges</button>
           </div>
         </article>
       </section>
@@ -186,10 +180,10 @@
           </ul>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play online</a>
+              <a href="challenges.html?filter=online" class="site-map__item--link">Play online</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play on-site</a>
+              <a href="challenges.html?filter=onsite" class="site-map__item--link">Play on-site</a>
             </li>
           </ul>
         </div>

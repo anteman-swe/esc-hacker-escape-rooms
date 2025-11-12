@@ -6,136 +6,183 @@ let challengeArray: Array<oneChallenge>;
 let topRatedChalls: Array<oneChallenge> = new Array(3).fill({});
 
 // DOM-pointers
-const card_section: HTMLElement = document.querySelector('.card-container') as HTMLElement;
-const buttons_online_challs: NodeListOf<HTMLElement> = document.querySelectorAll('.secondary-nav__btn--primary');
-const buttons_onsite_challs: NodeListOf<HTMLElement> = document.querySelectorAll('.secondary-nav__btn--secondary');
-buttons_online_challs.forEach(element => {
-    element.addEventListener('click', () => {
-        window.open('challenges.html?filter=online', '_self');
-    });
-    
+const overAllElement: HTMLElement = document.querySelector(
+  "main"
+) as HTMLElement;
+const card_section: HTMLElement = document.querySelector(
+  ".card-container"
+) as HTMLElement;
+
+overAllElement.addEventListener("click", (event) => {
+  event.preventDefault();
+  const target: HTMLElement = event.target as HTMLElement;
+  console.log(target.tagName);
+  if (target.tagName === "BUTTON") {
+    const action: string = target.dataset.action as string;
+    const targetId: string = target.dataset.id as string;
+
+    /* switch(action) {
+        case 'online':
+            window.open('challenges.html?filter=online', "challengesTab");
+            break;
+
+        case 'onsite':
+            window.open('challenges.html?filter=onsite', "challengesTab");
+            break;
+        
+        case 'story':
+            window.open('storypage.html', "ESCStoryTab");
+            break;
+
+        case 'see_all':
+            window.open('challenges.html?filter=none', "challengesTab");
+            break;
+
+        case 'booking':
+            bookRoonModal(targetId);
+            break;
+    } */
+    console.log(action, " - ", targetId);
+  }
 });
-async function fetchChallengesAndSaveToLocal(){
-    try {
-        const url: string = "https://lernia-sjj-assignments.vercel.app/api/challenges";
-        const response = await fetch(url);
-        const data: multipleChallenges = await response.json();
-        const challengesList: Array<oneChallenge> = data.challenges;
-        localStorage.setItem('savedChallenges', JSON.stringify(challengesList));
-        localStorage.setItem('lastFetch', JSON.stringify(Date.now()));
-        return challengesList;      
-    } catch (error: any) {
-        console.error(error.message);
+
+async function fetchChallengesAndSaveToLocal() {
+  try {
+    const url: string =
+      "https://lernia-sjj-assignments.vercel.app/api/challenges";
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
     }
+    const data: multipleChallenges = await response.json();
+    const challengesList: Array<oneChallenge> = data.challenges;
+    localStorage.clear();
+    localStorage.setItem("savedChallenges", JSON.stringify(challengesList));
+    localStorage.setItem("lastFetch", JSON.stringify(Date.now()));
+
+    return challengesList;
+  } catch (error: any) {
+    console.error(error.message);
+  }
 }
 
-function getChallengeList():Array<oneChallenge> {
-    let tempChallengeArray: Array<oneChallenge>;
-    if (localStorage.getItem('savedChallenges') && checkIntervall()) {
-        
-        const tempStorage: string | null = localStorage.getItem('savedChallenges');
-        if (tempStorage) {
-            tempChallengeArray = JSON.parse(tempStorage);
-        } else {
-            throw new Error('Problem has arised with challenges saved in localStorage.')
-        }    
+function getChallengeList(): Array<oneChallenge> {
+  let tempChallengeArray: Array<oneChallenge>;
+  if (localStorage.getItem("savedChallenges") && checkIntervall()) {
+    const tempStorage: string | null = localStorage.getItem("savedChallenges");
+    if (tempStorage) {
+      tempChallengeArray = JSON.parse(tempStorage);
     } else {
-        const tempArray: unknown = fetchChallengesAndSaveToLocal();
-        tempChallengeArray = tempArray as Array<oneChallenge>;
+      throw new Error(
+        "Problem has arised with challenges saved in localStorage."
+      );
     }
-    return tempChallengeArray;
-    
+  } else {
+    const tempArray: unknown = fetchChallengesAndSaveToLocal();
+    tempChallengeArray = tempArray as Array<oneChallenge>;
+  }
+  return tempChallengeArray;
 }
 
 const checkIntervall = (): boolean => {
-    let lastFetchString: string | null = localStorage.getItem('lastFetch');
-    let lastFetchTime: number = 0;
-    if (lastFetchString) {
-        lastFetchTime = +lastFetchString;
-    }
-    const timeNow: number = Date.now();
+  let lastFetchString: string | null = localStorage.getItem("lastFetch");
+  let lastFetchTime: number = 0;
+  if (lastFetchString) {
+    lastFetchTime = +lastFetchString;
+  }
+  const timeNow: number = Date.now();
 
-    return ((timeNow - lastFetchTime) < maxFetchIntervall);
-}
+  return timeNow - lastFetchTime < maxFetchIntervall;
+};
 
 function sortOutTopRated(inputArray: Array<oneChallenge>): void {
-    if (localStorage.getItem('savedTopThree') && checkIntervall()) {
-        const tempTopThree: string | null = localStorage.getItem('savedTopThree');
-        if (tempTopThree) {
-            topRatedChalls = JSON.parse(tempTopThree);
-        } else {
-            throw new Error('Problem has arised with top three list saved in localStorage');
-        }
+  if (localStorage.getItem("savedTopThree") && checkIntervall()) {
+    const tempTopThree: string | null = localStorage.getItem("savedTopThree");
+    if (tempTopThree) {
+      topRatedChalls = JSON.parse(tempTopThree);
     } else {
-        const sortedArray: Array<oneChallenge> = [...inputArray].sort((a, b) => b.rating - a.rating);
-        const newTopThree: Array<oneChallenge> = sortedArray.slice(0, 3);
-        topRatedChalls = newTopThree;
-        localStorage.setItem('savedTopThree', (JSON.stringify(newTopThree)));
+      throw new Error(
+        "Problem has arised with top three list saved in localStorage"
+      );
     }
+  } else {
+    const sortedArray: Array<oneChallenge> = [...inputArray].sort(
+      (a, b) => b.rating - a.rating
+    );
+    const newTopThree: Array<oneChallenge> = sortedArray.slice(0, 3);
+    topRatedChalls = newTopThree;
+    localStorage.setItem("savedTopThree", JSON.stringify(newTopThree));
+  }
 }
 
-// Function that inserts top three challenge-cards in the startpage 
+// Function that inserts top three challenge-cards in the startpage
 const putTopRatedInDOM = (): void => {
-    topRatedChalls.forEach(element => {
-        
-        const cardImg: HTMLImageElement = document.createElement('img');
-        cardImg.setAttribute('src', element.image);
-        cardImg.setAttribute('class', 'card__image');
+  topRatedChalls.forEach((element) => {
+    const cardImg: HTMLImageElement = document.createElement("img");
+    cardImg.setAttribute("src", element.image);
+    cardImg.setAttribute("class", "card__image");
 
-        const card_title: HTMLElement = document.createElement('h4');
-        card_title.setAttribute('class', 'card__title');
-        card_title.innerText = element.title;
+    const card_title: HTMLElement = document.createElement("h4");
+    card_title.setAttribute("class", "card__title");
+    card_title.innerText = element.title;
 
-        const rating_container: HTMLElement = document.createElement('div');
-        const rating: HTMLElement = document.createElement('span');
-        const rating_real: number = element.rating;
-        const rating_rounded: number = Math.ceil(element.rating);
-        for (let index = 1; index <= rating_rounded; index++) {
-            const rating_star: HTMLImageElement = document.createElement('img');
-            if(0 < index - rating_real && index - rating_real < 1) {
-                rating_star.setAttribute('src', 'resources/Star 3 half.svg');
-                rating_star.setAttribute('class', 'rating__star--half');
-                rating.appendChild(rating_star);
-            } else {
-                rating_star.setAttribute('src', 'resources/Star 3.svg');
-                rating_star.setAttribute('class', 'rating__star');
-                rating.appendChild(rating_star);
-            }
-        }
-        if (5 - rating_rounded > 0) {
-            for (let index = 0; index < 5 - rating_rounded; index++) {
-                const rating_star: HTMLImageElement = document.createElement('img');
-                rating_star.setAttribute('src', 'resources/Star 3 hollow.svg');
-                rating_star.setAttribute('class', 'rating__star--empty');
-                rating.appendChild(rating_star);
-            }
-        }
-        rating_container.appendChild(rating);
-        rating_container.setAttribute('class', 'rating-container');
-        const room_participants: HTMLElement = document.createElement('span');
-        room_participants.innerText = element.minParticipants + ' - ' + element.maxParticipants + ' participants';
-        room_participants.setAttribute('class', 'card__room-participants');
-        rating_container.appendChild(room_participants);
+    const rating_container: HTMLElement = document.createElement("div");
+    const rating: HTMLElement = document.createElement("span");
+    const rating_real: number = element.rating;
+    const rating_rounded: number = Math.ceil(element.rating);
+    for (let index = 1; index <= rating_rounded; index++) {
+      const rating_star: HTMLImageElement = document.createElement("img");
+      if (0 < index - rating_real && index - rating_real < 1) {
+        rating_star.setAttribute("src", "resources/Star 3 half.svg");
+        rating_star.setAttribute("class", "rating__star--half");
+        rating.appendChild(rating_star);
+      } else {
+        rating_star.setAttribute("src", "resources/Star 3.svg");
+        rating_star.setAttribute("class", "rating__star");
+        rating.appendChild(rating_star);
+      }
+    }
+    if (5 - rating_rounded > 0) {
+      for (let index = 0; index < 5 - rating_rounded; index++) {
+        const rating_star: HTMLImageElement = document.createElement("img");
+        rating_star.setAttribute("src", "resources/Star 3 hollow.svg");
+        rating_star.setAttribute("class", "rating__star--empty");
+        rating.appendChild(rating_star);
+      }
+    }
+    rating_container.appendChild(rating);
+    rating_container.setAttribute("class", "rating-container");
+    const room_participants: HTMLElement = document.createElement("span");
+    room_participants.innerText =
+      element.minParticipants +
+      " - " +
+      element.maxParticipants +
+      " participants";
+    room_participants.setAttribute("class", "card__room-participants");
+    rating_container.appendChild(room_participants);
 
-        const card_description: HTMLElement = document.createElement('div');
-        card_description.setAttribute('class', 'card__description');
-        card_description.innerText = element.description;
+    const card_description: HTMLElement = document.createElement("div");
+    card_description.setAttribute("class", "card__description");
+    card_description.innerText = element.description;
 
-        const card_button: HTMLButtonElement = document.createElement('button');
-        card_button.setAttribute('class', 'card__button');
-        card_button.innerText = 'Book this room';
+    const card_button: HTMLButtonElement = document.createElement("button");
+    card_button.setAttribute("class", "card__button");
+    card_button.setAttribute("data-action", "booking");
+    card_button.setAttribute("data-id", '' + element.id);
+    card_button.innerText = "Book this room";
 
-        const card: HTMLElement = document.createElement('article');
-        card.setAttribute('class', 'card');
-        card.appendChild(cardImg);
-        card.appendChild(card_title);
-        card.appendChild(rating_container);
-        card.appendChild(card_description);
-        card.appendChild(card_button);
-        
-        card_section.appendChild(card);
-    });
-} 
+    const card: HTMLElement = document.createElement("article");
+    card.setAttribute("id", '' + element.id);
+    card.setAttribute("class", "card");
+    card.appendChild(cardImg);
+    card.appendChild(card_title);
+    card.appendChild(rating_container);
+    card.appendChild(card_description);
+    card.appendChild(card_button);
+
+    card_section.appendChild(card);
+  });
+};
 
 challengeArray = await getChallengeList();
 sortOutTopRated(challengeArray);
