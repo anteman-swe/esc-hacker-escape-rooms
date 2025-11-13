@@ -55,4 +55,3 @@ function makeMobileMenu() {
     }
 }
 export {};
-//# sourceMappingURL=index.mjs.map
