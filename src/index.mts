@@ -42,7 +42,7 @@ navigation.addEventListener("click", (event) => {
         default:
           console.log('Nothing to see here!');
     } */
-    console.log(action, " - ", targetId);
+    console.log('Action from clicked: ', action);
   }
 });
 
@@ -78,7 +78,7 @@ mainSection.addEventListener("click", (event) => {
         default:
           console.log('Nothing to see here!');        
     } */
-    console.log(action, " - ", targetId);
+    console.log('Action from clicked: ', action, " - ID if it exist: ", targetId);
   }
 });
 
