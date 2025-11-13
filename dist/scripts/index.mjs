@@ -54,5 +54,23 @@ function makeMobileMenu() {
             throw new Error('Hamburgerbutton DOM connections is missing!');
     }
 }
+//Navigering till challenge sidan med förfiltrering
+function goToChallengePage(type) {
+    window.location.assign(`./challenges.html?type=${encodeURIComponent(type)}`);
+}
+//Hämtar alla knappar för navigering till challenge sidan
+const challengeNavButtons = document.querySelectorAll('.js-challenge-nav');
+//Lägger till event listeners för varje knapp
+challengeNavButtons.forEach(btn => {
+    const type = btn.dataset.type || '';
+    //Klick och tangenttryckning för tillgänglighet
+    btn.addEventListener('click', () => goToChallengePage(type));
+    // Gör knapparna åtkomliga via tangentbordet
+    btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); //Förhindra scrollning vid mellanslag
+            goToChallengePage(type);
+        }
+    });
+});
 export {};
-//# sourceMappingURL=index.mjs.map

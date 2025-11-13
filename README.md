@@ -57,3 +57,12 @@ _Det betyder för denna uppgift, utöver kraven för godkänt:_
 Väl strukturerad, semantiskt korrekt HTML och CSS  
 Mycket god likhet avseende färger, typsnitt, avstånd m.m. mellan inlämnad produkt och designspecifikation  
 Väl underbyggda val av teknik och struktur  
+
+## Challenges-sidan
+- lag till 'challenges.html' med egen layout för our challenges. 
+- Återanvänt header, footer, grundstyling för main.scss
+- Lagt till grid-layout för korts, med: 
+- kolumn på mobil, 2 kolumner på tablet, 3 kolumner på desktop. 
+- har skapat två exempel kort för data-type = online och data-type = on-site som kan användas som mall när API:t kopplas
+- lagt till filter Challenges knapp
+- tagit bort hacker bilden så den matchar mallen från whimsical. 
