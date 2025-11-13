@@ -292,38 +292,6 @@ input[type=checkbox] {
   border: none;
 }
 
-.secondary-nav__btn--filter {
-  margin: 0;
-  font-family: "Roboto";
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  width: 19.2rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  margin: 0;
-  font-family: "Roboto";
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  width: 19.2rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  color: #8acfe5;
-  background: none;
-  border: 0.15rem solid #8acfe5;
-  margin-top: 2rem;
-  border: 0.15rem solid #8acfe5;
-  color: #8acfe5;
-}
-@media screen and (min-width: 44rem) {
-  .secondary-nav__btn--filter {
-    margin-top: 3rem;
-  }
-}
-
 .reviews {
   margin: 0 0 6.5rem;
   display: flex;
@@ -657,6 +625,38 @@ input[type=checkbox] {
   color: #ffffff;
 }
 
+.secondary-nav__btn--filter {
+  margin: 0;
+  font-family: "Roboto";
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  width: 19.2rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: "Roboto";
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  width: 19.2rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  color: #8acfe5;
+  background: none;
+  border: 0.15rem solid #8acfe5;
+  margin-top: 0;
+  border: 0.15rem solid #8acfe5;
+  color: #8acfe5;
+}
+@media screen and (min-width: 44rem) {
+  .secondary-nav__btn--filter {
+    margin-top: 3rem;
+  }
+}
+
 .challenges__headline {
   margin-top: 2.5rem;
   margin-bottom: 0rem;
@@ -665,7 +665,7 @@ input[type=checkbox] {
 .challenges__filter {
   display: flex;
   justify-content: center;
-  margin: 1.5rem 0 3rem;
+  margin: 0rem 0 3rem;
 }
 
 .cards-grid {
