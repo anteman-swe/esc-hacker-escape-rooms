@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 // Colors used
@@ -47,10 +49,10 @@ $main-font: "Roboto";
 }
 
 @mixin button-size($btn-size) {
-  $size-map: map-get($button-sizes, $btn-size);
-  width: map-get($size-map, "width");
-  height: map-get($size-map, "height");
-  font-size: map-get($size-map, "fontsize");
+  $size-map: map.get($button-sizes, $btn-size);
+  width: map.get($size-map, "width");
+  height: map.get($size-map, "height");
+  font-size: map.get($size-map, "fontsize");
 }
 
 @mixin primary($btn-size) {
@@ -87,6 +89,15 @@ $main-font: "Roboto";
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+@keyframes tone-bg-in {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
 
 * {
@@ -163,11 +174,9 @@ $main-font: "Roboto";
 }
 
 .hamburger-button {
-  background-color: $color-dark-blue;
-  border: none;
   position: absolute;
   right: 1.5rem;
-  top: 2rem;
+  top: 2.5rem;
   z-index: 20;
   cursor: pointer;
   // user-select: none;
@@ -180,31 +189,73 @@ $main-font: "Roboto";
     $h-multiplier: 2.5;
     height: $line-height;
     width: $line-width;
-    margin-bottom: calc($line-height + 0.2rem);
     border-radius: calc($line-height/2);
     background-color: white;
     position: relative;
     display: block;
     transition: all 0.2s ease-in-out;
+    &:before {
+      top: -(calc($line-height * $h-multiplier));
+      // visibility: visible;
+    }
+    &:after {
+      top: calc($line-height * $h-multiplier);
+    }
+    &:before,
+    &:after {
+      height: $line-height;
+      width: $line-width;
+      border-radius: calc($line-height/2);
+      background-color: white;
+      position: absolute;
+      content: "";
+      transition: all 0.2s ease-in-out;
+    }
   }
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
+  $cross-offset: 0.53rem;
   display: none;
-  // &:checked ~.hamburger-button {
-  //   position: fixed;
-  // }
-}
 
+  &:checked ~ .navigation {
+    opacity: 1;
+    scale: 100%;
+    visibility: visible;
+  }
+
+  &:checked ~ .navigation-dimmer {
+    visibility: visible;
+    opacity: 0.5;
+  }
+
+  &:checked ~ .hamburger-button {
+    position: fixed;
+    padding: 1rem 1rem 0 0;
+    &:hover span,
+    span {
+      background: transparent;
+    }
+    span {
+      &:before {
+        transform: rotate(45deg) translate($cross-offset, $cross-offset);
+        opacity: 1;
+      }
+      &:after {
+        transform: rotate(-45deg) translate($cross-offset, -($cross-offset));
+      }
+    }
+  }
+}
 .navigation-dimmer {
   visibility: hidden;
   opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  bottom: 0;
+  right: 0;
+  z-index: 9;
   background-color: $color-white;
   transition: opacity 0.3s;
 }
@@ -297,6 +348,7 @@ input[type=checkbox] {
     }
   }
 }
+
 .main-content {
   // background-color: beige;
   display: flex;
@@ -452,7 +504,7 @@ input[type=checkbox] {
   max-width: 22.7rem;
   width: 76vw;
   min-width: 17.9rem;
-  height: 27.9rem;
+  min-height: 27.9rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 0.6rem rgba($color: black, $alpha: 0.2);
   display: flex;
@@ -466,6 +518,9 @@ input[type=checkbox] {
 
   &__title {
     margin: 0.75rem 0 0 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: $main-font;
     font-size: 1.8rem;
     font-weight: 400;
