@@ -8,4 +8,4 @@
 Projektet går ut på att skapa en hemsida för ett fiktivt företag som låter grupper utföra problem-lösning i ett flertal utmaningar, "Rooms"  
   
   
-<center><img src="github_presentation_assets/esc_site_example.png"></center>
+<p style="align: center"><img src="github_presentation_assets/esc_site_example.png" /></p>
