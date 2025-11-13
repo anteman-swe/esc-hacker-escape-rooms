@@ -3,9 +3,40 @@ const maxFetchIntervall = 30000;
 let challengeArray;
 let topRatedChalls = new Array(3).fill({});
 // DOM-pointers
-const overAllElement = document.querySelector("main");
+const navigation = document.querySelector(".navigation");
+const mainSection = document.querySelector("main");
 const card_section = document.querySelector(".card-container");
-overAllElement.addEventListener("click", (event) => {
+navigation.addEventListener("click", (event) => {
+    event.preventDefault();
+    const target = event.target;
+    console.log(target.tagName);
+    if (target.tagName === "A") {
+        const action = target.dataset.action;
+        const targetId = target.dataset.id;
+        /* switch(action) {
+            case 'online':
+                window.open('challenges.html?filter=online', "challengesTab");
+                break;
+    
+            case 'onsite':
+                window.open('challenges.html?filter=onsite', "challengesTab");
+                break;
+            
+            case 'story':
+                window.open('storypage.html', "ESCStoryTab");
+                break;
+    
+            case 'contact':
+                code for opening modal with contact form
+                break;
+            
+            default:
+              console.log('Nothing to see here!');
+        } */
+        console.log(action, " - ", targetId);
+    }
+});
+mainSection.addEventListener("click", (event) => {
     event.preventDefault();
     const target = event.target;
     console.log(target.tagName);
@@ -32,6 +63,9 @@ overAllElement.addEventListener("click", (event) => {
             case 'booking':
                 bookRoonModal(targetId);
                 break;
+    
+            default:
+              console.log('Nothing to see here!');
         } */
         console.log(action, " - ", targetId);
     }
@@ -147,10 +181,10 @@ const putTopRatedInDOM = () => {
         const card_button = document.createElement("button");
         card_button.setAttribute("class", "card__button");
         card_button.setAttribute("data-action", "booking");
-        card_button.setAttribute("data-id", '' + element.id);
+        card_button.setAttribute("data-id", "" + element.id);
         card_button.innerText = "Book this room";
         const card = document.createElement("article");
-        card.setAttribute("id", '' + element.id);
+        card.setAttribute("id", "" + element.id);
         card.setAttribute("class", "card");
         card.appendChild(cardImg);
         card.appendChild(card_title);
