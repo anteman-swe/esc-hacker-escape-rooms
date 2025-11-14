@@ -1,24 +1,28 @@
+@use "vars";
+
 .secondary-nav__btn--filter{
-    @include button-common;
-    @include button-size(large);
-    @include primary-on-dark(large);
+    @include vars.button-common;
+    @include vars.button-size(medium);
+    @include vars.primary-on-dark(medium);
     margin-top: 0;
-    border: 0.15rem solid $color-light-blue;
-    color: $color-light-blue;
-    @include breakpoint($small-to-large) {
+    border: 0.15rem solid vars.$color-light-blue;
+    color: vars.$color-light-blue;
+    @include vars.breakpoint(vars.$small-to-large) {
       margin-top: 3rem;
     }
   }
-  .challenges__headline{
-    margin-top: 2.5rem;
-    margin-bottom: 0rem;
+  .challenges {
+    &__headline{
+      margin-top: 2.5rem;
+      margin-bottom: 0rem;
+    }
+
+    &__filter{
+      display: flex;
+      justify-content: center;
+      margin: 0rem 0 3rem;
+    }
   }
-  
-  .challenges__filter{
-    display: flex;
-    justify-content: center;
-    margin: 0rem 0 3rem;
-   }
   //mobile-first
   .cards-grid{
     display: grid;
@@ -26,23 +30,32 @@
     gap: 1rem;
     padding: 0 1.25rem 2rem;
   
-    @include breakpoint($small-to-large){
+    @include vars.breakpoint(vars.$small-to-large){
         grid-template-columns: repeat(2, 1fr);
         gap: 1.25rem;
         padding: 0 2rem 3rem;
     }
-    @include breakpoint($large-screen-limit){
+    @include vars.breakpoint(vars.$large-screen-limit){
         grid-template-columns: repeat(3,minmax(0,1fr));
-        max-width: $large-screen-max;
+        max-width: vars.$large-screen-max;
         margin: 0 auto 4rem;
     }
     .card{
+      position: relative;
         width: 100%;
         max-width: none;
         min-width: 0;
         height: auto;
         display: flex;
         flex-direction: column;
+
+        &__type {
+          width: 2rem;
+          position:absolute;
+          top: 1rem;
+          right: 1rem;
+          opacity: 0.8;
+        }
   
         &__image{
             width: 100%;
@@ -64,9 +77,9 @@
   .body-container--challenges .header{
     height: auto;
     background-image: none;
-    background-color: $color-white;
+    background-color: vars.$color-white;
   
-    @include breakpoint($small-to-large){
+    @include vars.breakpoint(vars.$small-to-large){
         height: auto;
     }
   }

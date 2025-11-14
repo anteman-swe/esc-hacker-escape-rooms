@@ -109,6 +109,7 @@
 }
 .hamburger-button span:before {
   top: -0.75rem;
+  visibility: visible;
 }
 .hamburger-button span:after {
   top: 0.75rem;
@@ -441,6 +442,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
 }
 
 .card {
+  position: relative;
   flex-shrink: 0;
   background-size: 100%;
   background-position: top;
@@ -454,6 +456,13 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.card__type {
+  width: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0.8;
 }
 .card__image {
   width: 100%;
@@ -670,102 +679,4 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
 .site-map__item--link {
   text-decoration: none;
   color: #ffffff;
-}
-
-.secondary-nav__btn--filter {
-  margin: 0;
-  font-family: "Roboto";
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  width: 19.2rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  margin: 0;
-  font-family: "Roboto";
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  width: 19.2rem;
-  height: 4rem;
-  font-size: 1.5rem;
-  color: #8acfe5;
-  background: none;
-  border: 0.15rem solid #8acfe5;
-  margin-top: 0;
-  border: 0.15rem solid #8acfe5;
-  color: #8acfe5;
-}
-@media screen and (min-width: 44rem) {
-  .secondary-nav__btn--filter {
-    margin-top: 3rem;
-  }
-}
-
-.challenges__headline {
-  margin-top: 2.5rem;
-  margin-bottom: 0rem;
-}
-
-.challenges__filter {
-  display: flex;
-  justify-content: center;
-  margin: 0rem 0 3rem;
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 0 1.25rem 2rem;
-}
-@media screen and (min-width: 44rem) {
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    padding: 0 2rem 3rem;
-  }
-}
-@media screen and (min-width: 80rem) {
-  .cards-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 100rem;
-    margin: 0 auto 4rem;
-  }
-}
-.cards-grid .card {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-.cards-grid .card__image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-.cards-grid .card__description {
-  margin: 1rem 1rem 0;
-}
-.cards-grid .card__button {
-  margin: 1rem;
-}
-.cards-grid .rating-container {
-  margin: 0.5rem 1rem 0;
-}
-
-.body-container--challenges .header {
-  height: auto;
-  background-image: none;
-  background-color: #ffffff;
-}
-@media screen and (min-width: 44rem) {
-  .body-container--challenges .header {
-    height: auto;
-  }
 }
