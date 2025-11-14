@@ -220,6 +220,28 @@ const putTopRatedInDOM = (): void => {
   });
 };
 
+} 
+//Navigering till challenge sidan med förfiltrering
+function goToChallengePage(type: string) {
+    window.location.assign(`./challenges.html?type=${encodeURIComponent(type)}`);
+}
+//Hämtar alla knappar för navigering till challenge sidan
+const challengeNavButtons = document.querySelectorAll<HTMLButtonElement>('.js-challenge-nav');
+
+//Lägger till event listeners för varje knapp
+challengeNavButtons.forEach(btn => {const type = btn.dataset.type || ''; 
+
+    //Klick och tangenttryckning för tillgänglighet
+    btn.addEventListener('click', () => goToChallengePage(type));
+
+    // Gör knapparna åtkomliga via tangentbordet
+    btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); //Förhindra scrollning vid mellanslag
+            goToChallengePage(type);
+        }
+    });
+});
 challengeArray = await getChallengeList();
 sortOutTopRated(challengeArray);
 putTopRatedInDOM();

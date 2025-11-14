@@ -369,7 +369,7 @@ input[type="checkbox"] {
       margin: 0 0 4.7rem;
     }
   }
-
+ 
   &:nth-last-child(3) {
     margin: 2.275rem 0 3.5rem;
     @include breakpoint($small-to-large) {
@@ -397,6 +397,7 @@ input[type="checkbox"] {
     }
   }
 }
+
 
 .reviews {
   // background-color: darkorange;
@@ -709,3 +710,4 @@ input[type="checkbox"] {
     }
   }
 }
+@import "./challenges";

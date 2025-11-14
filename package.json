@@ -41,6 +41,7 @@
     "to-regex-range": "^5.0.1"
   },
   "devDependencies": {
-    "sass": "^1.93.2"
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3"
   }
 }
