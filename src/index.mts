@@ -207,7 +207,7 @@ export const putCardsInDOM = (cardArray: Array<oneChallenge>, container: HTMLEle
     card_button.setAttribute("class", "card__button");
     card_button.setAttribute("data-action", "booking");
     card_button.setAttribute("data-id", "" + element.id);
-    card_button.innerText = "Book this room";
+    card_button.innerText = element.type === 'online' ? "Take challenge online" : "Book this room";
 
     const card: HTMLElement = document.createElement("article");
     card.setAttribute("id", "" + element.id);
