@@ -79,14 +79,37 @@
           <button class="filter-header_close" aria-label="Close filter">X</button>
         </header>
 
-        
+        <div class="filter-body">
+          <!--By type-->
+          <section class="filter-group">
+            <h3 class="filter-group__title">By type</h3>
+            <label class="filter-checkbox">
+              <input type="checkbox" id="f-online" checked>
+              <span>Include online challenges</span>
+            </label>
+
+            <label class="filter-checkbox">
+              <input type="checkbox" id="f-onsite" checked>
+              <span>Include on-site challenges</span>
+            </label>
+
+            
 
 
+
+
+
+          </section>
+
+
+        </div>
 
 
       </div>
     </section>
-      <div id="cards" class="cards-grid">
+     
+   
+    <!-- <div id="cards" class="cards-grid">
         <article class="card" data-type="online">
           <img
             src="resources/hacker-image.png"
@@ -191,7 +214,7 @@
           </li>
         </ul>
       </section>
-    </footer>
+    </footer> -->
     <script type="module" src="scripts/index.mjs"></script>
 </body>
 </html>
