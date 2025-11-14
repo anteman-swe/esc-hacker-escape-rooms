@@ -1,8 +1,9 @@
-# esc-hacker-escape-rooms
+## Repo: esc-hacker-escape-rooms
+# ESC - Hacker Escape Rooms  
 ### Min publicerade sida når du här: <a href="https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/">https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/</a>
 
-**-------------------------------------------------------------------------------------------------------**
-## Inlämningsuppgift 2 SJPI25 A2
+---
+## Projekt i Lernia YH utbildning SJPI25 A2 + A3 med flera del-inlämningar  
 
 Inlämningsuppgift 3 fil(er)
 Med denna uppgift inleds utbildningens andra projekt, som kommer att fortgå under nio veckor och bestå av flera delinlämningar.
@@ -66,3 +67,7 @@ Väl underbyggda val av teknik och struktur
 - har skapat två exempel kort för data-type = online och data-type = on-site som kan användas som mall när API:t kopplas
 - lagt till filter Challenges knapp
 - tagit bort hacker bilden så den matchar mallen från whimsical. 
+Projektet går ut på att skapa en hemsida för ett fiktivt företag som låter grupper utföra problem-lösning i ett flertal utmaningar, "Rooms"  
+  
+  
+<p style="text-align: center"><img src="github_presentation_assets/esc_site_example.png" /></p>

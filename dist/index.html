@@ -49,19 +49,18 @@
         />
         <h1 class="header__headline">Hacker Escape Rooms</h1>
       </div>
-      <button class="hamburger-button">
+      <input type="checkbox" id="overlay-input" />
+      <label for="overlay-input" class="hamburger-button">
         <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      </label>
       <div class="navigation-dimmer"></div>
       <nav class="navigation">
-        <ul class="navigation__list">
-          <li class="navigation__item"><a href="#">Play online</a></li>
-          <li class="navigation__item"><a href="#">Play on-site</a></li>
-          <li class="navigation__item"><a href="#">The story</a></li>
-          <li class="navigation__item"><a href="#">Contact us</a></li>
-        </ul>
+          <ul class="navigation__list">
+          <li class="navigation__item"><a href="challenges.html?filter=online" target="challengesTab" data-action="online">Play online</a></li>
+          <li class="navigation__item"><a href="challenges.html?filter=onsite" target="challengesTab" data-action="onsite">Play on-site</a></li>
+          <li class="navigation__item"><a href="storypage.html" target="ESCStoryTab" data-action="story">The story</a></li>
+          <li class="navigation__item"><a href="contact.html" target="_self" data-action="contact">Contact us</a></li>
+          </ul>
       </nav>
     </header>
     <main class="main-content">
@@ -104,87 +103,7 @@
       <section class="challenges">
         <h2 class="challenges__headline">Popular challenges right now</h2>
         <div class="card-container">
-          <article class="card">
-            <img
-              src="resources/hacker-image.png"
-              alt="A hacker at his computer from behind"
-              class="card__image"
-            />
-            <h4 class="card__title">Title of room (on-site)</h4>
-            <div class="rating-container">
-              <span class="rating">
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img
-                  src="resources/Star 3 hollow.svg"
-                  alt=""
-                  class="rating__star--empty"
-                />
-              </span>
-              <span class="card__room-participants">2-6 participants</span>
-            </div>
-            <div class="card__description">
-              Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-              nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-            </div>
-            <button class="card__button">Book this room</button>
-          </article>
-          <article class="card">
-            <img
-              src="resources/hacker-image.png"
-              alt="A hacker at his computer from behind"
-              class="card__image"
-            />
-            <h4 class="card__title">Title of room (on-site)</h4>
-            <div class="rating-container">
-              <span class="rating">
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img
-                  src="resources/Star 3 hollow.svg"
-                  alt=""
-                  class="rating__star--empty"
-                />
-              </span>
-              <span class="card__room-participants">2-6 participants</span>
-            </div>
-            <div class="card__description">
-              Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-              nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-            </div>
-            <button class="card__button">Book this room</button>
-          </article>
-          <article class="card">
-            <img
-              src="resources/hacker-image.png"
-              alt="A hacker at his computer from behind"
-              class="card__image"
-            />
-            <h4 class="card__title">Title of room (on-site)</h4>
-            <div class="rating-container">
-              <span class="rating">
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img src="resources/Star 3.svg" alt="" class="rating__star" />
-                <img
-                  src="resources/Star 3 hollow.svg"
-                  alt=""
-                  class="rating__star--empty"
-                />
-              </span>
-              <span class="card__room-participants">2-6 participants</span>
-            </div>
-            <div class="card__description">
-              Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-              nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-            </div>
-            <button class="card__button">Book this room</button>
-          </article>
+        <!-- Cards gets inserted here from script-->  
         </div>
       </section>
       <section class="secondary-nav">
@@ -200,9 +119,7 @@
             quidem haec eo spectant haec quoque vos omnino desit illud quo solo
             felicitatis libertatisque perficiuntur.
           </p>
-          <button class="information__btn--primary-on-dark">
-            Read the full story
-          </button>
+          <button data-action="story" class="information__btn--primary-on-dark">Read the full story</button>
         </article>
       </section>
       <section class="booking-container">
@@ -220,7 +137,7 @@
               Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
               nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
             </p>
-            <button class="booking__btn">Book on-site today</button>
+            <button data-action="onsite" class="booking__btn">Book on-site today</button>
           </div>
         </article>
         <article class="booking">
@@ -237,7 +154,7 @@
               Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
               nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
             </p>
-            <button class="booking__btn">See all challenges</button>
+            <button data-action="see_all" class="booking__btn">See all challenges</button>
           </div>
         </article>
       </section>
@@ -267,10 +184,10 @@
           </ul>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play online</a>
+              <a href="challenges.html?filter=online" class="site-map__item--link">Play online</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play on-site</a>
+              <a href="challenges.html?filter=onsite" class="site-map__item--link">Play on-site</a>
             </li>
           </ul>
         </div>
