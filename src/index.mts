@@ -36,8 +36,6 @@ mainSection.addEventListener('keydown', (event) => {
     }
 });
 
-
-
 function gotoOtherPage(event: Event) {
   event.preventDefault();
   const target: HTMLElement = event.target as HTMLElement;
@@ -46,6 +44,7 @@ function gotoOtherPage(event: Event) {
     const targetId: string = target.dataset.id as string;
 
     console.log(action, " ", targetId);
+    console.log('Target: ', target);
 
     switch(action) {
         case 'online':
@@ -211,7 +210,7 @@ export const putCardsInDOM = (cardArray: Array<oneChallenge>, container: HTMLEle
 
     const card_button: HTMLButtonElement = document.createElement("button");
     card_button.setAttribute("class", "card__button");
-    card_button.setAttribute("data-action", "booking");
+    card_button.setAttribute("data-type", "booking");
     card_button.setAttribute("data-id", "" + element.id);
     card_button.innerText = element.type === 'online' ? "Take challenge online" : "Book this room";
 

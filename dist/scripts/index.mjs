@@ -35,6 +35,7 @@ function gotoOtherPage(event) {
         const action = target.dataset.type;
         const targetId = target.dataset.id;
         console.log(action, " ", targetId);
+        console.log('Target: ', target);
         switch (action) {
             case 'online':
                 window.location.assign(`./challenges.html?type=online`);
@@ -178,7 +179,7 @@ export const putCardsInDOM = (cardArray, container) => {
         card_description.innerText = element.description;
         const card_button = document.createElement("button");
         card_button.setAttribute("class", "card__button");
-        card_button.setAttribute("data-action", "booking");
+        card_button.setAttribute("data-type", "booking");
         card_button.setAttribute("data-id", "" + element.id);
         card_button.innerText = element.type === 'online' ? "Take challenge online" : "Book this room";
         const card = document.createElement("article");
