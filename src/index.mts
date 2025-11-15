@@ -43,7 +43,8 @@ function gotoOtherPage(event: Event) {
 
     switch(action) {
         case 'online':
-          window.open('challenges.html?type=online', "challengesTab");
+          // window.open('challenges.html?type=online', "challengesTab");
+          window.location.assign(`./challenges.html?type=online`);
           break;
 
         case 'on-site':
