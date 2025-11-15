@@ -48,7 +48,8 @@ function gotoOtherPage(event: Event) {
           break;
 
         case 'on-site':
-          window.open('challenges.html?type=onsite', "challengesTab");
+          // window.open('challenges.html?type=onsite', "challengesTab");
+          window.location.assign(`./challenges.html?type=onsite`);
           break;
         
         case 'see_all':

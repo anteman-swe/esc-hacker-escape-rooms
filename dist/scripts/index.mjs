@@ -29,10 +29,12 @@ function gotoOtherPage(event) {
         console.log(action, " ", targetId);
         switch (action) {
             case 'online':
-                window.open('challenges.html?type=online', "challengesTab");
+                // window.open('challenges.html?type=online', "challengesTab");
+                window.location.assign(`./challenges.html?type=online`);
                 break;
             case 'on-site':
-                window.open('challenges.html?type=onsite', "challengesTab");
+                // window.open('challenges.html?type=onsite', "challengesTab");
+                window.location.assign(`./challenges.html?type=onsite`);
                 break;
             case 'see_all':
                 window.open('challenges.html?type=none', "challengesTab");
