@@ -70,6 +70,7 @@
 }
 .header__logo {
   height: 5rem;
+  cursor: pointer;
 }
 .header__headline {
   max-width: 5rem;

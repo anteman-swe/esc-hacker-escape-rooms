@@ -6,29 +6,35 @@ export let challengeArray: Array<oneChallenge>;
 let topRatedChalls: Array<oneChallenge> = new Array(3).fill({});
 
 // DOM-pointers
-const navigation: HTMLElement = document.querySelector(
-  ".navigation"
-) as HTMLElement;
+const home: HTMLImageElement = document.querySelector('.header__logo') as HTMLImageElement;
+const navigation: HTMLElement = document.querySelector(".navigation") as HTMLElement;
 const mainSection: HTMLElement = document.querySelector("main") as HTMLElement;
-const card_section: HTMLElement = document.querySelector(
-  ".card-container"
-) as HTMLElement;
+const card_section: HTMLElement = document.querySelector(".card-container") as HTMLElement;
+
+home.addEventListener("click", () => {window.location.assign(`./index.html?`);});
+home.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      window.location.assign(`./index.html`);
+  }
+});
+
 
 navigation.addEventListener("click", (event) => {gotoOtherPage(event);});
 navigation.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            gotoOtherPage(event);
-        }
-    });
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        gotoOtherPage(event);
+    }
+});
 
 mainSection.addEventListener("click", (event) => {gotoOtherPage(event);});
 mainSection.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            gotoOtherPage(event);
-        }
-    });
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        gotoOtherPage(event);
+    }
+});
 
 
 
@@ -43,25 +49,23 @@ function gotoOtherPage(event: Event) {
 
     switch(action) {
         case 'online':
-          // window.open('challenges.html?type=online', "challengesTab");
           window.location.assign(`./challenges.html?type=online`);
           break;
 
         case 'on-site':
-          // window.open('challenges.html?type=onsite', "challengesTab");
           window.location.assign(`./challenges.html?type=onsite`);
           break;
         
         case 'see_all':
-          window.open('challenges.html?type=none', "challengesTab");
+          window.location.assign(`./challenges.html?type=none`);
           break;
 
         case 'story':
-          window.open('storypage.html', "ESCStoryTab");
+          window.location.assign(`./storypage.html`);
           break;
 
         case 'contact':
-          window.open('contact.html', "contactTab"); // Maybe contact should be just a modal?
+          window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
           break;  
 
         /* case 'filter':

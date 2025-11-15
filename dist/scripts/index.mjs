@@ -3,9 +3,17 @@ const maxFetchIntervall = 30000;
 export let challengeArray;
 let topRatedChalls = new Array(3).fill({});
 // DOM-pointers
+const home = document.querySelector('.header__logo');
 const navigation = document.querySelector(".navigation");
 const mainSection = document.querySelector("main");
 const card_section = document.querySelector(".card-container");
+home.addEventListener("click", () => { window.location.assign(`./index.html?`); });
+home.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        window.location.assign(`./index.html`);
+    }
+});
 navigation.addEventListener("click", (event) => { gotoOtherPage(event); });
 navigation.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -29,21 +37,19 @@ function gotoOtherPage(event) {
         console.log(action, " ", targetId);
         switch (action) {
             case 'online':
-                // window.open('challenges.html?type=online', "challengesTab");
                 window.location.assign(`./challenges.html?type=online`);
                 break;
             case 'on-site':
-                // window.open('challenges.html?type=onsite', "challengesTab");
                 window.location.assign(`./challenges.html?type=onsite`);
                 break;
             case 'see_all':
-                window.open('challenges.html?type=none', "challengesTab");
+                window.location.assign(`./challenges.html?type=none`);
                 break;
             case 'story':
-                window.open('storypage.html', "ESCStoryTab");
+                window.location.assign(`./storypage.html`);
                 break;
             case 'contact':
-                window.open('contact.html', "contactTab"); // Maybe contact should be just a modal?
+                window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
                 break;
             /* case 'filter':
               code for opening modal with filter form
