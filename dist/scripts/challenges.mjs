@@ -7,7 +7,7 @@ const cards_container = document.querySelector('.cards-grid');
 
 let challengeCards = await getChallengeList();
 
-document.addEventListener('DOMContentLoaded', ()  => {
+document.addEventListener('DOMContentLoaded', ()  => { // Working because script is synchronous
     if (cards_container) {
         putCardsInDOM(challengeCards, cards_container);
     }
