@@ -2,7 +2,7 @@ import { getChallengeList, putCardsInDOM } from "./index.mjs";
 
 const informationString = window.location.search;
 const infoParameters = new URLSearchParams(informationString);
-const filterValue = infoParameters.get('filter');
+const filterValue = infoParameters.get('type');
 const cards_container = document.querySelector('.cards-grid');
 
 let challengeCards = await getChallengeList();
