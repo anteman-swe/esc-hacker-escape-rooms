@@ -33,3 +33,19 @@
   color: #484a4d;
 }
 
+/*Body: type | rating | tags*/
+.filter-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .filter-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
