@@ -119,3 +119,20 @@
   background: #5c6787;
   color: #fff;
 }
+
+/*Footer/search*/
+
+.filter-footer{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-search {
+  width: 100%;
+  max-width: 350px;
+  padding: .45rem .6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
