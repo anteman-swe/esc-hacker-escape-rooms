@@ -1,3 +1,4 @@
+/*Panel*/
 #filters[hidden] {
   display: none;
 }
@@ -9,3 +10,26 @@
   max-width: 1400px;
   margin: 1rem auto;
 }
+
+/*Header*/
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter-header__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.filter-header__close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #484a4d;
+}
+
