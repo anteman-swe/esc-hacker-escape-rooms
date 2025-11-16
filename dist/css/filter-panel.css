@@ -55,6 +55,7 @@
   color: #1d1c1c;
 }
 
+/*Checkboxes*/
 .filter-checkbox {
   display: flex;
   align-items: center;
@@ -66,6 +67,29 @@
 #filters input[type="checkbox"] {
   all: revert;
   accent-color: #1406e1;
+}
+
+/*Rating*/
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+ .rating-widget {
+  display: flex;
+  gap: 0.25rem;
+ }
+
+ .star {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #cbd0d7;
+ }
+
+ .star.is-active {
+  color: #3366ff;
 }
 
 
