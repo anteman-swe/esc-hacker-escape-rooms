@@ -80,56 +80,55 @@
            <h2 class="filter-header__title">Filter challenges</h2>
           <button class="filter-header__close" type="button" aria-label="Close filter">X</button>
         </header>
-
-        <div class="filter-body">
-          <!--By type-->
-          <section class="filter-group">
-            <h3 class="filter-group__title">By type</h3>
-            <label class="filter-checkbox">
-              <input type="checkbox" id="f-online" checked>
-              <span>Include online challenges</span>
-            </label>
-
-            <label class="filter-checkbox">
-              <input type="checkbox" id="f-onsite" checked>
-              <span>Include on-site challenges</span>
-            </label>
-          <!-- By rating -->
-           <section class="filter-group"></section>
-             <h3 class="filter-group__title">By rating</h3>
-                <div class="rating-row">
-                    <!-- Min rating -->
-                    <div class="rating-widget" data-role="min">
-                        <button class="star" type="button" data-value="1">★</button>
-                        <button class="star" type="button" data-value="2">★</button>
-                        <button class="star" type="button" data-value="3">★</button>
-                        <button class="star" type="button" data-value="4">★</button>
-                        <button class="star" type="button" data-value="5">★</button>
-                    </div>
-             <span class="rating-row__to">to</span>
-                    <!-- Max rating -->
-                    <div class="rating-widget" data-role="max">
-                        <button class="star" type="button" data-value="1">★</button>
-                        <button class="star" type="button" data-value="2">★</button>
-                        <button class="star" type="button" data-value="3">★</button>
-                        <button class="star" type="button" data-value="4">★</button>
-                        <button class="star" type="button" data-value="5">★</button>
-                    </div>
-                </div>
-            </section>
-           <!-- By tags -->
-            <section class="filter-group">
-              <h3 class="filter-group__title">By tags</h3>
-              <div class="tag-list">
-                <button class="tag-pill" type="button">Web</button>
-                <button class="tag-pill" type="button">Linux</button>
-                <button class="tag-pill" type="button">Cryptography</button>
-                <button class="tag-pill" type="button">Coding</button>
-                <button class="tag-pill" type="button">Beginner</button>
-                <button class="tag-pill" type="button">Advanced</button>
-              </div>
-            </section>
-        </div>
+    <div class="filter-body">
+      <!--By type-->
+    <section class="filter-group filter-group--type">
+        <h3 class="filter-group__title">By type</h3>
+        <label class="filter-checkbox">
+        <input type="checkbox" id="f-online" checked>
+        <span>Include online challenges</span>
+        </label>
+        <label class="filter-checkbox">
+        <input type="checkbox" id="f-onsite" checked>
+        <span>Include on-site challenges</span>
+        </label>
+    </section>
+   <!--By rating-->
+   <section class="filter-group filter-group--rating">
+      <h3 class="filter-group__title">By rating</h3>
+      <div class="rating-row">
+        <!--Min Rating-->
+         <div class="rating-widget" data-role="min">
+            <button class="star" data-value="1">★</button>
+            <button class="star" data-value="2">★</button>
+            <button class="star" data-value="3">★</button>
+            <button class="star" data-value="4">★</button>
+            <button class="star" data-value="5">★</button>
+         </div>
+         <span class="rating-row__to">to</span>
+         <!--Max Rating-->
+         <div class="rating-widget" data-role="max">
+            <button class="star" data-value="1">★</button>
+            <button class="star" data-value="2">★</button>
+            <button class="star" data-value="3">★</button>
+            <button class="star" data-value="4">★</button>
+            <button class="star" data-value="5">★</button>
+         </div>
+    </div>
+   </section>
+   <!--By tags-->
+   <section class="filter-group filter-group--tags">
+      <h3 class="filter-group__title">By tags</h3>
+      <div class="tag-list">
+         <button class="tag-pill">Web</button>
+         <button class="tag-pill">Linux</button>
+         <button class="tag-pill">Cryptography</button>
+         <button class="tag-pill">Coding</button>
+         <button class="tag-pill">Beginner</button>
+         <button class="tag-pill">Advanced</button>
+      </div>
+   </section>
+</div>
         <!--Search field-->
         <footer class="filter-footer">
            <h3 class="filter-group__title">Or type to search for keyword</h3>
