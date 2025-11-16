@@ -55,4 +55,18 @@
   color: #1d1c1c;
 }
 
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-bottom: .3rem;
+  font-size: .85rem;
+}
+
+#filters input[type="checkbox"] {
+  all: revert;
+  accent-color: #1406e1;
+}
+
+
 
