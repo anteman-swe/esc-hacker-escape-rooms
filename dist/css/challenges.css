@@ -69,13 +69,14 @@
   }
 }
 .cards-grid .card {
-  position: relative;
+  position: sticky;
   width: 100%;
   max-width: none;
   min-width: 0;
   height: auto;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 .cards-grid .card__type {
   width: 2rem;
