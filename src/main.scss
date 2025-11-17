@@ -117,6 +117,7 @@
   }
 }
 
+input[type="checkbox"],
 .hamburgerbox {
   $cross-offset: 0.53rem;
   display: none;
@@ -622,3 +623,4 @@
   }
 }
 // @import "./challenges";
+@import "./booking";

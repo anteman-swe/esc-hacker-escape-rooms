@@ -1,3 +1,4 @@
+import { openBookingModal } from './booking.js';
 // Constant and variables for handling lists of challenges
 const maxFetchIntervall = 30000;
 export let challengeArray;
@@ -55,6 +56,7 @@ function gotoOtherPage(event) {
                 window.location.assign(`./challenges.html?type=online`);
                 break;
             case "on-site":
+            case "onsite":
                 window.location.assign(`./challenges.html?type=onsite`);
                 break;
             case "see_all":
@@ -74,8 +76,7 @@ function gotoOtherPage(event) {
                 console.log("Filter is clicked! Should filter something!");
                 break;
             case "booking":
-                // code for opening modal with booking form should be here
-                console.log(`Booking is clicked for challenge no ${targetId}! Should do something!`);
+                openBookingModal(targetId);
                 break;
             default:
                 console.log("Going nowhere!");
