@@ -35,6 +35,15 @@ mainSection.addEventListener("keydown", (event) => {
         gotoOtherPage(event);
     }
 });
+footer.addEventListener("click", (event) => {
+    gotoOtherPage(event);
+});
+footer.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        gotoOtherPage(event);
+    }
+});
 function gotoOtherPage(event) {
     event.preventDefault();
     const target = event.target;
@@ -56,6 +65,9 @@ function gotoOtherPage(event) {
                 break;
             case "contact":
                 window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
+                break;
+            case "legal":
+                window.location.assign(`./legal.html`);
                 break;
             case "filter":
                 // code for opening modal with filter form should be here
