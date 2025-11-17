@@ -23,7 +23,7 @@
       sizes="192x192"
       href="resources/esc-favicon-192x192.png"
     />
-    <link
+    <link 
       rel="icon"
       type="image/png"
       sizes="512x512"
@@ -36,8 +36,7 @@
     />
     <!-- Styling -->
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/challenges.css">
-
+    <link rel="stylesheet" href="css/filter-panel.css">
     <title>[Esc] Hacker Escape Rooms</title>
 </head>
 <body class="body-container body-container--challenges">
@@ -69,9 +68,127 @@
       <h2 class="challenges__headline">Our Challenges</h2>
       <div class="challenges__filter">
         <button class="secondary-nav__btn--filter" id="filterToggle" type="button" data-type="filter">Filter challenges</button>
+      </div>    
+      <!--Filter Panel-->
+    <section id="filters" hidden>
+      <div class="filter-panel">
+        <header class="filter-header">
+           <h2 class="filter-header__title">Filter challenges</h2>
+          <button class="filter-header__close" type="button" aria-label="Close filter">X</button>
+        </header>
+    <div class="filter-body">
+      <!--By type-->
+    <section class="filter-group filter-group--type">
+        <h3 class="filter-group__title">By type</h3>
+        <label class="filter-checkbox">
+        <input type="checkbox" id="f-online" checked>
+        <span>Include online challenges</span>
+        </label>
+        <label class="filter-checkbox">
+        <input type="checkbox" id="f-onsite" checked>
+        <span>Include on-site challenges</span>
+        </label>
+    </section>
+   <!--By rating-->
+   <section class="filter-group filter-group--rating">
+      <h3 class="filter-group__title">By rating</h3>
+      <div class="rating-row">
+        <!--Min Rating-->
+         <div class="rating-widget" data-role="min">
+            <button class="star" data-value="1">★</button>
+            <button class="star" data-value="2">★</button>
+            <button class="star" data-value="3">★</button>
+            <button class="star" data-value="4">★</button>
+            <button class="star" data-value="5">★</button>
+         </div>
+         <span class="rating-row__to">to</span>
+         <!--Max Rating-->
+         <div class="rating-widget" data-role="max">
+            <button class="star" data-value="1">★</button>
+            <button class="star" data-value="2">★</button>
+            <button class="star" data-value="3">★</button>
+            <button class="star" data-value="4">★</button>
+            <button class="star" data-value="5">★</button>
+         </div>
+    </div>
+   </section>
+   <!--By tags-->
+    <section class="filter-group filter-group--tags">
+      <h3 class="filter-group__title">By tags</h3>
+      <div class="tag-list">
+         <button class="tag-pill">Web</button>
+         <button class="tag-pill">Linux</button>
+         <button class="tag-pill">Cryptography</button>
+         <button class="tag-pill">Coding</button>
+         <button class="tag-pill">Beginner</button>
+         <button class="tag-pill">Advanced</button>
       </div>
-      <div id="cards" class="cards-grid">
-        <!-- Cards get injected here from script-->
+    </section>
+   </div>
+        <!--Search field-->
+        <footer class="filter-footer">
+          <div class="filter-search-wrap">
+           <h3 class="filter-group__title">Or type to search for keyword</h3>
+           <input id="f-query" class="filter-search" type="text" placeholder="Start typing to filter">
+           </div>
+        </footer>
+      </div>
+    </section>
+    <div id="cards" class="cards-grid">
+        <article class="card" data-type="online">
+          <img
+            src="resources/hacker-image.png"
+            alt="A hacker at his computer from behind"
+            class="card__image"
+          />
+          <h4 class="card__title">Title of Challenge</h4>
+          <div class="rating-container">
+            <span class="rating">
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img
+                src="resources/Star 3 hollow.svg"
+                alt=""
+                class="rating__star--empty"
+              />
+            </span>
+            <span class="card__room-participants">2 participants (networked)</span>
+          </div>
+          <div class="card__description">
+            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
+            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
+          </div>
+          <button class="card__button">Take challenge online</button>
+        </article>
+        <article class="card" data-type="on-site">
+          <img
+            src="resources/hacker-image.png"
+            alt="A hacker at his computer from behind"
+            class="card__image"
+          />
+          <h4 class="card__title">Title of room (on-site)</h4>
+          <div class="rating-container">
+            <span class="rating">
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img src="resources/Star 3.svg" alt="" class="rating__star" />
+              <img
+                src="resources/Star 3 hollow.svg"
+                alt=""
+                class="rating__star--empty"
+              />
+            </span>
+            <span class="card__room-participants">2-6 participants</span>
+          </div>
+          <div class="card__description">
+            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
+            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
+          </div>
+          <button class="card__button">Book this room</button>
+        </article>
       </div>
     </section>
     </main>
@@ -123,7 +240,7 @@
         </ul>
       </section>
     </footer>
-    <!-- <script type="module" src="scripts/index.mjs"></script> -->
-    <script type="module" src="scripts/challenges.mjs"></script>
+    <script type="module" src="scripts/index.mjs"></script>
+    <script type="module" src="scripts/filter-panel.mjs"></script>
 </body>
 </html>
