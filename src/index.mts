@@ -107,6 +107,51 @@ function gotoOtherPage(event: Event) {
   }
 }
 
+function gotoOtherPage(event: Event) {
+  event.preventDefault();
+  const target: HTMLElement = event.target as HTMLElement;
+  if (target.tagName === "A" || target.tagName === "BUTTON") {
+    const action: string = target.dataset.type as string;
+    const targetId: string = target.dataset.id as string;
+    switch (action) {
+      case "online":
+        window.location.assign(`./challenges.html?type=online`);
+        break;
+
+      case "on-site":
+        window.location.assign(`./challenges.html?type=onsite`);
+        break;
+
+      case "see_all":
+        window.location.assign(`./challenges.html?type=none`);
+        break;
+
+      case "story":
+        window.location.assign(`./storypage.html`);
+        break;
+
+      case "contact":
+        window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
+        break;
+
+      case "filter":
+        // code for opening modal with filter form should be here
+        console.log("Filter is clicked! Should filter something!");
+        break;
+
+      case "booking":
+        // code for opening modal with booking form should be here
+        console.log(
+          `Booking is clicked for challenge no ${targetId}! Should do something!`
+        );
+        break;
+
+      default:
+        console.log("Going nowhere!");
+    }
+  }
+}
+
 async function fetchChallengesAndSaveToLocal() {
   try {
     const url: string =
