@@ -37,8 +37,6 @@
     <!-- Styling -->
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" href="css/filter-panel.css">
-
-
     <title>[Esc] Hacker Escape Rooms</title>
 </head>
 <body class="body-container body-container--challenges">
@@ -51,28 +49,26 @@
       />
       <h1 class="header__headline">Hacker Escape Rooms</h1>
     </div>
-    <button class="hamburger-button">
+    <input type="checkbox" id="overlay-input" class="hamburgerbox"/>
+    <label for="overlay-input" class="hamburger-button">
       <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    </label>
     <div class="navigation-dimmer"></div>
     <nav class="navigation">
-      <ul class="navigation__list">
-        <li class="navigation__item"><a href="#">Play online</a></li>
-        <li class="navigation__item"><a href="#">Play on-site</a></li>
-        <li class="navigation__item"><a href="#">The story</a></li>
-        <li class="navigation__item"><a href="#">Contact us</a></li>
-      </ul>
+        <ul class="navigation__list">
+        <li class="navigation__item"><a href="challenges.html?filter=online" target="_self" data-type="online">Play online</a></li>
+        <li class="navigation__item"><a href="challenges.html?filter=onsite" target="_self" data-type="on-site">Play on-site</a></li>
+        <li class="navigation__item"><a href="storypage.html" target="_self" data-type="story">The story</a></li>
+        <li class="navigation__item"><a href="contact.html" target="_self" data-type="contact">Contact us</a></li>
+        </ul>
     </nav>
   </header>
   <main class="main-content">
     <section class="challenges">
       <h2 class="challenges__headline">Our Challenges</h2>
       <div class="challenges__filter">
-        <button class="secondary-nav__btn--filter" id="filterToggle" type="button">Filter challenges</button>
-      </div>
-    
+        <button class="secondary-nav__btn--filter" id="filterToggle" type="button" data-type="filter">Filter challenges</button>
+      </div>    
       <!--Filter Panel-->
     <section id="filters" hidden>
       <div class="filter-panel">
@@ -138,8 +134,6 @@
         </footer>
       </div>
     </section>
-     
-   
     <div id="cards" class="cards-grid">
         <article class="card" data-type="online">
           <img

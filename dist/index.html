@@ -45,7 +45,7 @@
         <img
           src="resources/esc-header-icon.png"
           alt="ESC"
-          class="header__logo"
+          class="header__logo" data-type="home"
         />
         <h1 class="header__headline">Hacker Escape Rooms</h1>
       </div>
@@ -56,10 +56,10 @@
       <div class="navigation-dimmer"></div>
       <nav class="navigation">
           <ul class="navigation__list">
-          <li class="navigation__item"><a href="challenges.html?filter=online" target="challengesTab" data-action="online">Play online</a></li>
-          <li class="navigation__item"><a href="challenges.html?filter=onsite" target="challengesTab" data-action="onsite">Play on-site</a></li>
-          <li class="navigation__item"><a href="storypage.html" target="ESCStoryTab" data-action="story">The story</a></li>
-          <li class="navigation__item"><a href="contact.html" target="_self" data-action="contact">Contact us</a></li>
+          <li class="navigation__item"><a href="challenges.html?filter=online" target="_self" data-type="online">Play online</a></li>
+          <li class="navigation__item"><a href="challenges.html?filter=onsite" target="_self" data-type="on-site">Play on-site</a></li>
+          <li class="navigation__item"><a href="storypage.html" target="_self" data-type="story">The story</a></li>
+          <li class="navigation__item"><a href="contact.html" target="_self" data-type="contact">Contact us</a></li>
           </ul>
       </nav>
     </header>
@@ -119,7 +119,7 @@
             quidem haec eo spectant haec quoque vos omnino desit illud quo solo
             felicitatis libertatisque perficiuntur.
           </p>
-          <button data-action="story" class="information__btn--primary-on-dark">Read the full story</button>
+          <button data-type="story" class="information__btn--primary-on-dark">Read the full story</button>
         </article>
       </section>
       <section class="booking-container">
@@ -137,7 +137,7 @@
               Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
               nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
             </p>
-            <button data-action="onsite" class="booking__btn">Book on-site today</button>
+            <button data-type="onsite" class="booking__btn">Book on-site today</button>
           </div>
         </article>
         <article class="booking">
@@ -154,7 +154,7 @@
               Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
               nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
             </p>
-            <button data-action="see_all" class="booking__btn">See all challenges</button>
+            <button data-type="see_all" class="booking__btn">See all challenges</button>
           </div>
         </article>
       </section>
@@ -173,21 +173,21 @@
         <div>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">The Story</a>
+              <a href="#" class="site-map__item--link" data-type="story">The Story</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Contact us</a>
+              <a href="#" class="site-map__item--link" data-type="contact">Contact us</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Legal</a>
+              <a href="legal.html" class="site-map__item--link" data-type="legal">Legal</a>
             </li>
           </ul>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="challenges.html?filter=online" class="site-map__item--link">Play online</a>
+              <a href="challenges.html?filter=online" class="site-map__item--link" data-type="online">Play online</a>
             </li>
             <li class="site-map__item">
-              <a href="challenges.html?filter=onsite" class="site-map__item--link">Play on-site</a>
+              <a href="challenges.html?filter=onsite" class="site-map__item--link" data-type="on-site">Play on-site</a>
             </li>
           </ul>
         </div>

@@ -1,0 +1,98 @@
+@use "sass:map";
+
+$color-red: #e3170a;
+$color-dark-blue: #011827;
+$color-gray: #b6bdb5;
+$color-medium-blue: #36769d;
+$color-light-blue: #8acfe5;
+$color-white: #ffffff;
+
+$button-sizes: (
+  "large": (
+    width: 19.2rem,
+    height: 4rem,
+    fontsize: 1.5rem,
+  ),
+  "medium": (
+    width: 11.3rem,
+    height: 2.7rem,
+    fontsize: 1rem,
+  ),
+);
+
+// Responsive breakpoint
+$small-to-large: 44rem;
+
+$large-screen-limit: 80rem;
+
+$large-screen-max: 100rem;
+
+// Font used in all DOM
+$main-font: "Roboto";
+
+@mixin breakpoint($min-width) {
+  @media screen and (min-width: $min-width) {
+    @content;
+  }
+}
+
+@mixin button-common {
+  margin: 0;
+  font-family: $main-font;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+@mixin button-size($btn-size) {
+  $size-map: map.get($button-sizes, $btn-size);
+  width: map.get($size-map, "width");
+  height: map.get($size-map, "height");
+  font-size: map.get($size-map, "fontsize");
+}
+
+@mixin primary($btn-size) {
+  @include button-common;
+  @include button-size($btn-size);
+  color: $color-white;
+  background-color: $color-red;
+  border: none;
+}
+
+@mixin primary-on-dark($btn-size) {
+  @include button-common;
+  @include button-size($btn-size);
+  color: $color-light-blue;
+  background: none;
+  border: 0.15rem solid $color-light-blue;
+}
+
+@mixin secondary($btn-size) {
+  @include button-common;
+  @include button-size($btn-size);
+  color: $color-dark-blue;
+  background-color: $color-light-blue;
+  border: none;
+}
+
+@mixin link-version($btn-size) {
+  @include button-common;
+  @include button-size($btn-size);
+  border: none;
+  background: none;
+  text-decoration-line: underline;
+  color: $color-medium-blue;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@keyframes tone-bg-in {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
