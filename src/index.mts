@@ -6,34 +6,48 @@ export let challengeArray: Array<oneChallenge>;
 let topRatedChalls: Array<oneChallenge> = new Array(3).fill({});
 
 // DOM-pointers
-const home: HTMLImageElement = document.querySelector('.header__logo') as HTMLImageElement;
-const navigation: HTMLElement = document.querySelector(".navigation") as HTMLElement;
-const mainSection: HTMLElement = document.querySelector("main") as HTMLElement;
-const card_section: HTMLElement = document.querySelector(".card-container") as HTMLElement;
+const home: HTMLImageElement = document.querySelector(
+  ".header__logo"
+) as HTMLImageElement;
+const navigation: HTMLElement = document.querySelector(
+  ".navigation"
+) as HTMLElement;
+const mainSection: HTMLElement = document.querySelector(
+  ".main-content"
+) as HTMLElement;
+const card_section: HTMLElement = document.querySelector(
+  ".card-container"
+) as HTMLElement;
+const footer: HTMLElement = document.querySelector(".footer") as HTMLElement;
 
-home.addEventListener("click", () => {window.location.assign(`./index.html?`);});
-home.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      window.location.assign(`./index.html`);
+home.addEventListener("click", () => {
+  window.location.assign(`./index.html?`);
+});
+home.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    window.location.assign(`./index.html`);
   }
 });
 
-
-navigation.addEventListener("click", (event) => {gotoOtherPage(event);});
-navigation.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        gotoOtherPage(event);
-    }
+navigation.addEventListener("click", (event) => {
+  gotoOtherPage(event);
+});
+navigation.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    gotoOtherPage(event);
+  }
 });
 
-mainSection.addEventListener("click", (event) => {gotoOtherPage(event);});
-mainSection.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        gotoOtherPage(event);
-    }
+mainSection.addEventListener("click", (event) => {
+  gotoOtherPage(event);
+});
+mainSection.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    gotoOtherPage(event);
+  }
 });
 
 function gotoOtherPage(event: Event) {
@@ -42,41 +56,41 @@ function gotoOtherPage(event: Event) {
   if (target.tagName === "A" || target.tagName === "BUTTON") {
     const action: string = target.dataset.type as string;
     const targetId: string = target.dataset.id as string;
+    switch (action) {
+      case "online":
+        window.location.assign(`./challenges.html?type=online`);
+        break;
 
-    console.log(action, " ", targetId);
-    console.log('Target: ', target);
+      case "on-site":
+        window.location.assign(`./challenges.html?type=onsite`);
+        break;
 
-    switch(action) {
-        case 'online':
-          window.location.assign(`./challenges.html?type=online`);
-          break;
+      case "see_all":
+        window.location.assign(`./challenges.html?type=none`);
+        break;
 
-        case 'on-site':
-          window.location.assign(`./challenges.html?type=onsite`);
-          break;
-        
-        case 'see_all':
-          window.location.assign(`./challenges.html?type=none`);
-          break;
+      case "story":
+        window.location.assign(`./storypage.html`);
+        break;
 
-        case 'story':
-          window.location.assign(`./storypage.html`);
-          break;
+      case "contact":
+        window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
+        break;
 
-        case 'contact':
-          window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
-          break;  
+      case "filter":
+        // code for opening modal with filter form should be here
+        console.log("Filter is clicked! Should filter something!");
+        break;
 
-        /* case 'filter':
-          code for opening modal with filter form
-          break; */
+      case "booking":
+        // code for opening modal with booking form should be here
+        console.log(
+          `Booking is clicked for challenge no ${targetId}! Should do something!`
+        );
+        break;
 
-        /* case 'booking':
-          code for opening modal with booking form
-          break; */
-
-        default:
-          console.log('Going nowhere!');
+      default:
+        console.log("Going nowhere!");
     }
   }
 }
@@ -151,7 +165,10 @@ function sortOutTopRated(inputArray: Array<oneChallenge>): void {
 }
 
 // Function that inserts top three challenge-cards in the startpage
-export const putCardsInDOM = (cardArray: Array<oneChallenge>, container: HTMLElement): void => {
+export const putCardsInDOM = (
+  cardArray: Array<oneChallenge>,
+  container: HTMLElement
+): void => {
   cardArray.forEach((element) => {
     const cardImg: HTMLImageElement = document.createElement("img");
     cardImg.setAttribute("src", element.image);
@@ -159,11 +176,15 @@ export const putCardsInDOM = (cardArray: Array<oneChallenge>, container: HTMLEle
 
     const cardType: HTMLImageElement = document.createElement("img");
     cardType.setAttribute(
-      'src', element.type === 'online' ? 'resources/online.png' 
-      : element.type === 'onsite' ? 'resources/onsite.png'
-      : '');
-    cardType.setAttribute('alt', element.type);
-    cardType.setAttribute('class', 'card__type');
+      "src",
+      element.type === "online"
+        ? "resources/online.png"
+        : element.type === "onsite"
+        ? "resources/onsite.png"
+        : ""
+    );
+    cardType.setAttribute("alt", element.type);
+    cardType.setAttribute("class", "card__type");
 
     const card_title: HTMLElement = document.createElement("h4");
     card_title.setAttribute("class", "card__title");
@@ -212,7 +233,8 @@ export const putCardsInDOM = (cardArray: Array<oneChallenge>, container: HTMLEle
     card_button.setAttribute("class", "card__button");
     card_button.setAttribute("data-type", "booking");
     card_button.setAttribute("data-id", "" + element.id);
-    card_button.innerText = element.type === 'online' ? "Take challenge online" : "Book this room";
+    card_button.innerText =
+      element.type === "online" ? "Take challenge online" : "Book this room";
 
     const card: HTMLElement = document.createElement("article");
     card.setAttribute("id", "" + element.id);
@@ -237,23 +259,22 @@ export const putCardsInDOM = (cardArray: Array<oneChallenge>, container: HTMLEle
 // const challengeNavButtons = document.querySelectorAll<HTMLButtonElement>('.js-challenge-nav');
 
 // //Lägger till event listeners för varje knapp
-// challengeNavButtons.forEach(btn => {const type = btn.dataset.type || ''; 
+// challengeNavButtons.forEach(btn => {const type = btn.dataset.type || '';
 
 //     //Klick och tangenttryckning för tillgänglighet
 //     btn.addEventListener('click', () => goToChallengePage(type));
 
-    // Gör knapparna åtkomliga via tangentbordet
-    // btn.addEventListener('keydown', (e) => {
-    //     if (e.key === 'Enter' || e.key === ' ') {
-    //         e.preventDefault(); //Förhindra scrollning vid mellanslag
-    //         goToChallengePage(type);
-    //     }
-    // });
+// Gör knapparna åtkomliga via tangentbordet
+// btn.addEventListener('keydown', (e) => {
+//     if (e.key === 'Enter' || e.key === ' ') {
+//         e.preventDefault(); //Förhindra scrollning vid mellanslag
+//         goToChallengePage(type);
+//     }
+// });
 // });
 
 challengeArray = await getChallengeList();
 sortOutTopRated(challengeArray);
-if(card_section){
-  putCardsInDOM(topRatedChalls, card_section); 
+if (card_section) {
+  putCardsInDOM(topRatedChalls, card_section);
 }
-

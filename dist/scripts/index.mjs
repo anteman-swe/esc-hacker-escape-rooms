@@ -3,27 +3,34 @@ const maxFetchIntervall = 30000;
 export let challengeArray;
 let topRatedChalls = new Array(3).fill({});
 // DOM-pointers
-const home = document.querySelector('.header__logo');
+const home = document.querySelector(".header__logo");
 const navigation = document.querySelector(".navigation");
-const mainSection = document.querySelector("main");
+const mainSection = document.querySelector(".main-content");
 const card_section = document.querySelector(".card-container");
-home.addEventListener("click", () => { window.location.assign(`./index.html?`); });
-home.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+const footer = document.querySelector(".footer");
+home.addEventListener("click", () => {
+    window.location.assign(`./index.html?`);
+});
+home.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         window.location.assign(`./index.html`);
     }
 });
-navigation.addEventListener("click", (event) => { gotoOtherPage(event); });
-navigation.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+navigation.addEventListener("click", (event) => {
+    gotoOtherPage(event);
+});
+navigation.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         gotoOtherPage(event);
     }
 });
-mainSection.addEventListener("click", (event) => { gotoOtherPage(event); });
-mainSection.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
+mainSection.addEventListener("click", (event) => {
+    gotoOtherPage(event);
+});
+mainSection.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
         gotoOtherPage(event);
     }
@@ -34,32 +41,32 @@ function gotoOtherPage(event) {
     if (target.tagName === "A" || target.tagName === "BUTTON") {
         const action = target.dataset.type;
         const targetId = target.dataset.id;
-        console.log(action, " ", targetId);
-        console.log('Target: ', target);
         switch (action) {
-            case 'online':
+            case "online":
                 window.location.assign(`./challenges.html?type=online`);
                 break;
-            case 'on-site':
+            case "on-site":
                 window.location.assign(`./challenges.html?type=onsite`);
                 break;
-            case 'see_all':
+            case "see_all":
                 window.location.assign(`./challenges.html?type=none`);
                 break;
-            case 'story':
+            case "story":
                 window.location.assign(`./storypage.html`);
                 break;
-            case 'contact':
+            case "contact":
                 window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
                 break;
-            /* case 'filter':
-              code for opening modal with filter form
-              break; */
-            /* case 'booking':
-              code for opening modal with booking form
-              break; */
+            case "filter":
+                // code for opening modal with filter form should be here
+                console.log("Filter is clicked! Should filter something!");
+                break;
+            case "booking":
+                // code for opening modal with booking form should be here
+                console.log(`Booking is clicked for challenge no ${targetId}! Should do something!`);
+                break;
             default:
-                console.log('Going nowhere!');
+                console.log("Going nowhere!");
         }
     }
 }
@@ -131,11 +138,13 @@ export const putCardsInDOM = (cardArray, container) => {
         cardImg.setAttribute("src", element.image);
         cardImg.setAttribute("class", "card__image");
         const cardType = document.createElement("img");
-        cardType.setAttribute('src', element.type === 'online' ? 'resources/online.png'
-            : element.type === 'onsite' ? 'resources/onsite.png'
-                : '');
-        cardType.setAttribute('alt', element.type);
-        cardType.setAttribute('class', 'card__type');
+        cardType.setAttribute("src", element.type === "online"
+            ? "resources/online.png"
+            : element.type === "onsite"
+                ? "resources/onsite.png"
+                : "");
+        cardType.setAttribute("alt", element.type);
+        cardType.setAttribute("class", "card__type");
         const card_title = document.createElement("h4");
         card_title.setAttribute("class", "card__title");
         card_title.innerText = element.title;
@@ -181,7 +190,8 @@ export const putCardsInDOM = (cardArray, container) => {
         card_button.setAttribute("class", "card__button");
         card_button.setAttribute("data-type", "booking");
         card_button.setAttribute("data-id", "" + element.id);
-        card_button.innerText = element.type === 'online' ? "Take challenge online" : "Book this room";
+        card_button.innerText =
+            element.type === "online" ? "Take challenge online" : "Book this room";
         const card = document.createElement("article");
         card.setAttribute("id", "" + element.id);
         card.setAttribute("class", "card");
@@ -202,7 +212,7 @@ export const putCardsInDOM = (cardArray, container) => {
 // //Hämtar alla knappar för navigering till challenge sidan
 // const challengeNavButtons = document.querySelectorAll<HTMLButtonElement>('.js-challenge-nav');
 // //Lägger till event listeners för varje knapp
-// challengeNavButtons.forEach(btn => {const type = btn.dataset.type || ''; 
+// challengeNavButtons.forEach(btn => {const type = btn.dataset.type || '';
 //     //Klick och tangenttryckning för tillgänglighet
 //     btn.addEventListener('click', () => goToChallengePage(type));
 // Gör knapparna åtkomliga via tangentbordet
