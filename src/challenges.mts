@@ -1,8 +1,21 @@
+import { getChallengeList, putCardsInDOM } from "./index.mjs";
+import type { oneChallenge } from "./interfaces.mjs";
+
+let challengeCards: Array<oneChallenge>;
 const informationString: string = window.location.search;
 const infoParameters: URLSearchParams = new URLSearchParams(informationString);
-const filterValue = infoParameters.get('filter');
+const filterValue = infoParameters.get('type');
 
-const headline3: HTMLElement = document.querySelector('h3') as HTMLElement;
+const cards_container: HTMLElement = document.querySelector('.cards-grid') as HTMLElement;
 
-headline3.innerText = filterValue as string;
+challengeCards = await getChallengeList();
+if(cards_container) {
+    let tempChallenges: Array<oneChallenge>;
+    if (filterValue !== 'none') {
+        tempChallenges = challengeCards.filter((element) => element.type === filterValue);
+    } else {
+        tempChallenges = challengeCards;
+    }
+    putCardsInDOM(tempChallenges, cards_container);
+}
 console.log(filterValue);

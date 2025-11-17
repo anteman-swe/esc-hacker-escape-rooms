@@ -1,75 +1,75 @@
 // Constant and variables for handling lists of challenges
 const maxFetchIntervall = 30000;
-let challengeArray;
+export let challengeArray;
 let topRatedChalls = new Array(3).fill({});
 // DOM-pointers
+const home = document.querySelector(".header__logo");
 const navigation = document.querySelector(".navigation");
-const mainSection = document.querySelector("main");
+const mainSection = document.querySelector(".main-content");
 const card_section = document.querySelector(".card-container");
+const footer = document.querySelector(".footer");
+home.addEventListener("click", () => {
+    window.location.assign(`./index.html?`);
+});
+home.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.assign(`./index.html`);
+    }
+});
 navigation.addEventListener("click", (event) => {
-    event.preventDefault();
-    const target = event.target;
-    console.log(target.tagName);
-    if (target.tagName === "A") {
-        const action = target.dataset.action;
-        const targetId = target.dataset.id;
-        /* switch(action) {
-            case 'online':
-                window.open('challenges.html?filter=online', "challengesTab");
-                break;
-    
-            case 'onsite':
-                window.open('challenges.html?filter=onsite', "challengesTab");
-                break;
-            
-            case 'story':
-                window.open('storypage.html', "ESCStoryTab");
-                break;
-    
-            case 'contact':
-                code for opening modal with contact form
-                break;
-            
-            default:
-              console.log('Nothing to see here!');
-        } */
-        console.log('Action from clicked: ', action);
+    gotoOtherPage(event);
+});
+navigation.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        gotoOtherPage(event);
     }
 });
 mainSection.addEventListener("click", (event) => {
-    event.preventDefault();
-    const target = event.target;
-    console.log(target.tagName);
-    if (target.tagName === "BUTTON") {
-        const action = target.dataset.action;
-        const targetId = target.dataset.id;
-        /* switch(action) {
-            case 'online':
-                window.open('challenges.html?filter=online', "challengesTab");
-                break;
-    
-            case 'onsite':
-                window.open('challenges.html?filter=onsite', "challengesTab");
-                break;
-            
-            case 'story':
-                window.open('storypage.html', "ESCStoryTab");
-                break;
-    
-            case 'see_all':
-                window.open('challenges.html?filter=none', "challengesTab");
-                break;
-    
-            case 'booking':
-                bookRoonModal(targetId);
-                break;
-    
-            default:
-              console.log('Nothing to see here!');
-        } */
-        console.log('Action from clicked: ', action, " - ID if it exist: ", targetId);
+    gotoOtherPage(event);
+});
+mainSection.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        gotoOtherPage(event);
     }
 });
+function gotoOtherPage(event) {
+    event.preventDefault();
+    const target = event.target;
+    if (target.tagName === "A" || target.tagName === "BUTTON") {
+        const action = target.dataset.type;
+        const targetId = target.dataset.id;
+        switch (action) {
+            case "online":
+                window.location.assign(`./challenges.html?type=online`);
+                break;
+            case "on-site":
+                window.location.assign(`./challenges.html?type=onsite`);
+                break;
+            case "see_all":
+                window.location.assign(`./challenges.html?type=none`);
+                break;
+            case "story":
+                window.location.assign(`./storypage.html`);
+                break;
+            case "contact":
+                window.location.assign(`./contact.html`); // Maybe contact should be just a modal?
+                break;
+            case "filter":
+                // code for opening modal with filter form should be here
+                console.log("Filter is clicked! Should filter something!");
+                break;
+            case "booking":
+                // code for opening modal with booking form should be here
+                console.log(`Booking is clicked for challenge no ${targetId}! Should do something!`);
+                break;
+            default:
+                console.log("Going nowhere!");
+        }
+    }
+}
 async function fetchChallengesAndSaveToLocal() {
     try {
         const url = "https://lernia-sjj-assignments.vercel.app/api/challenges";
@@ -88,7 +88,7 @@ async function fetchChallengesAndSaveToLocal() {
         console.error(error.message);
     }
 }
-function getChallengeList() {
+export function getChallengeList() {
     let tempChallengeArray;
     if (localStorage.getItem("savedChallenges") && checkIntervall()) {
         const tempStorage = localStorage.getItem("savedChallenges");
@@ -131,31 +131,20 @@ function sortOutTopRated(inputArray) {
         localStorage.setItem("savedTopThree", JSON.stringify(newTopThree));
     }
 }
-//Navigering till challenge sidan med förfiltrering
-function goToChallengePage(type) {
-    window.location.assign(`./challenges.html?type=${encodeURIComponent(type)}`);
-}
-//Hämtar alla knappar för navigering till challenge sidan
-const challengeNavButtons = document.querySelectorAll('.js-challenge-nav');
-//Lägger till event listeners för varje knapp
-challengeNavButtons.forEach(btn => {
-    const type = btn.dataset.type || '';
-    //Klick och tangenttryckning för tillgänglighet
-    btn.addEventListener('click', () => goToChallengePage(type));
-    // Gör knapparna åtkomliga via tangentbordet
-    btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault(); //Förhindra scrollning vid mellanslag
-            goToChallengePage(type);
-        }
-    });
-});
 // Function that inserts top three challenge-cards in the startpage
-const putTopRatedInDOM = () => {
-    topRatedChalls.forEach((element) => {
+export const putCardsInDOM = (cardArray, container) => {
+    cardArray.forEach((element) => {
         const cardImg = document.createElement("img");
         cardImg.setAttribute("src", element.image);
         cardImg.setAttribute("class", "card__image");
+        const cardType = document.createElement("img");
+        cardType.setAttribute("src", element.type === "online"
+            ? "resources/online.png"
+            : element.type === "onsite"
+                ? "resources/onsite.png"
+                : "");
+        cardType.setAttribute("alt", element.type);
+        cardType.setAttribute("class", "card__type");
         const card_title = document.createElement("h4");
         card_title.setAttribute("class", "card__title");
         card_title.innerText = element.title;
@@ -199,21 +188,43 @@ const putTopRatedInDOM = () => {
         card_description.innerText = element.description;
         const card_button = document.createElement("button");
         card_button.setAttribute("class", "card__button");
-        card_button.setAttribute("data-action", "booking");
+        card_button.setAttribute("data-type", "booking");
         card_button.setAttribute("data-id", "" + element.id);
-        card_button.innerText = "Book this room";
+        card_button.innerText =
+            element.type === "online" ? "Take challenge online" : "Book this room";
         const card = document.createElement("article");
         card.setAttribute("id", "" + element.id);
         card.setAttribute("class", "card");
+        card.setAttribute("data-type", element.type);
         card.appendChild(cardImg);
+        card.appendChild(cardType);
         card.appendChild(card_title);
         card.appendChild(rating_container);
         card.appendChild(card_description);
         card.appendChild(card_button);
-        card_section.appendChild(card);
+        container.appendChild(card);
     });
 };
+// //Navigering till challenge sidan med förfiltrering
+// function goToChallengePage(type: string) {
+//     window.location.assign(`./challenges.html?type=${encodeURIComponent(type)}`);
+// }
+// //Hämtar alla knappar för navigering till challenge sidan
+// const challengeNavButtons = document.querySelectorAll<HTMLButtonElement>('.js-challenge-nav');
+// //Lägger till event listeners för varje knapp
+// challengeNavButtons.forEach(btn => {const type = btn.dataset.type || '';
+//     //Klick och tangenttryckning för tillgänglighet
+//     btn.addEventListener('click', () => goToChallengePage(type));
+// Gör knapparna åtkomliga via tangentbordet
+// btn.addEventListener('keydown', (e) => {
+//     if (e.key === 'Enter' || e.key === ' ') {
+//         e.preventDefault(); //Förhindra scrollning vid mellanslag
+//         goToChallengePage(type);
+//     }
+// });
+// });
 challengeArray = await getChallengeList();
 sortOutTopRated(challengeArray);
-putTopRatedInDOM();
-export {};
+if (card_section) {
+    putCardsInDOM(topRatedChalls, card_section);
+}
