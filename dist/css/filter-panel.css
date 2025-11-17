@@ -136,3 +136,14 @@
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+
+.filter-search-wrap {
+  max-width: 350px;
+  width: 100%;
+}
+
+
+.filter-search-wrap .filter-group__title {
+  margin-bottom: 0.4rem;
+  text-align: left;  
+}
