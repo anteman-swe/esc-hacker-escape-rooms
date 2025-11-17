@@ -125,31 +125,31 @@
   transition: all 0.2s ease-in-out;
 }
 
-input[type=checkbox] {
+.hamburger {
   display: none;
 }
-input[type=checkbox]:checked ~ .navigation {
+.hamburger:checked ~ .navigation {
   opacity: 1;
   scale: 100%;
   visibility: visible;
 }
-input[type=checkbox]:checked ~ .navigation-dimmer {
+.hamburger:checked ~ .navigation-dimmer {
   visibility: visible;
   opacity: 0.5;
 }
-input[type=checkbox]:checked ~ .hamburger-button {
+.hamburger:checked ~ .hamburger-button {
   position: fixed;
   padding: 1rem 1rem 0 0;
 }
-input[type=checkbox]:checked ~ .hamburger-button:hover span,
-input[type=checkbox]:checked ~ .hamburger-button span {
+.hamburger:checked ~ .hamburger-button:hover span,
+.hamburger:checked ~ .hamburger-button span {
   background: transparent;
 }
-input[type=checkbox]:checked ~ .hamburger-button span:before {
+.hamburger:checked ~ .hamburger-button span:before {
   transform: rotate(45deg) translate(0.53rem, 0.53rem);
   opacity: 1;
 }
-input[type=checkbox]:checked ~ .hamburger-button span:after {
+.hamburger:checked ~ .hamburger-button span:after {
   transform: rotate(-45deg) translate(0.53rem, -0.53rem);
 }
 
@@ -161,9 +161,9 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 9;
   background-color: #ffffff;
   transition: opacity 0.3s;
+  z-index: 9;
 }
 
 .navigation {
@@ -174,11 +174,11 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   width: calc(100vw - 3rem);
   background: #011827;
   box-shadow: 0 0 8rem #8acfe5;
-  z-index: 10;
   position: fixed;
   top: 1.5rem;
   left: 1.5rem;
   transition: all 0.2s ease-in 0.1s;
+  z-index: 10;
 }
 @media screen and (min-width: 44rem) {
   .navigation {
@@ -443,7 +443,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
 }
 
 .card {
-  position: relative;
+  position: sticky;
   flex-shrink: 0;
   background-size: 100%;
   background-position: top;
@@ -457,6 +457,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: -1;
 }
 .card__type {
   width: 2rem;
