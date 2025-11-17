@@ -36,7 +36,8 @@
     />
     <!-- Styling -->
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" href="css/filter-panel.css">
+    <link rel="stylesheet" type="text/css" href="css/challenges.css" />
+    <link rel="stylesheet" type="text/css" href="css/filter-panel.css">
     <title>[Esc] Hacker Escape Rooms</title>
 </head>
 <body class="body-container body-container--challenges">
@@ -135,61 +136,8 @@
       </div>
     </section>
     <div id="cards" class="cards-grid">
-        <article class="card" data-type="online">
-          <img
-            src="resources/hacker-image.png"
-            alt="A hacker at his computer from behind"
-            class="card__image"
-          />
-          <h4 class="card__title">Title of Challenge</h4>
-          <div class="rating-container">
-            <span class="rating">
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img
-                src="resources/Star 3 hollow.svg"
-                alt=""
-                class="rating__star--empty"
-              />
-            </span>
-            <span class="card__room-participants">2 participants (networked)</span>
-          </div>
-          <div class="card__description">
-            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-          </div>
-          <button class="card__button">Take challenge online</button>
-        </article>
-        <article class="card" data-type="on-site">
-          <img
-            src="resources/hacker-image.png"
-            alt="A hacker at his computer from behind"
-            class="card__image"
-          />
-          <h4 class="card__title">Title of room (on-site)</h4>
-          <div class="rating-container">
-            <span class="rating">
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img src="resources/Star 3.svg" alt="" class="rating__star" />
-              <img
-                src="resources/Star 3 hollow.svg"
-                alt=""
-                class="rating__star--empty"
-              />
-            </span>
-            <span class="card__room-participants">2-6 participants</span>
-          </div>
-          <div class="card__description">
-            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-          </div>
-          <button class="card__button">Book this room</button>
-        </article>
-      </div>
+    <!-- Cards get injected here by the script-->    
+    </div>
     </section>
     </main>
     <footer class="footer">
@@ -206,21 +154,21 @@
         <div>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">The Story</a>
+              <a href="storypage.html" class="site-map__item--link" data-type="story">The Story</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Contact us</a>
+              <a href="contact.html" class="site-map__item--link" data-type="contact">Contact us</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Legal</a>
+              <a href="legal.html" class="site-map__item--link" data-type="legal">Legal</a>
             </li>
           </ul>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play online</a>
+              <a href="challenges.html?type=online" class="site-map__item--link" data-type="online">Play online</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play on-site</a>
+              <a href="challenges.html?type=onsite" class="site-map__item--link" data-type="on-site">Play on-site</a>
             </li>
           </ul>
         </div>
@@ -240,7 +188,8 @@
         </ul>
       </section>
     </footer>
-    <script type="module" src="scripts/index.mjs"></script>
+    <!-- <script type="module" src="scripts/index.mjs"></script> -->
+    <script type="module" src="scripts/challenges.mjs"></script>
     <script type="module" src="scripts/filter-panel.mjs"></script>
 </body>
 </html>
