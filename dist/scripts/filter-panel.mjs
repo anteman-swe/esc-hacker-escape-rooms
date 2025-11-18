@@ -62,3 +62,30 @@ filterCheckboxLabels.forEach((label) => {
   });
 });
 
+async function initFilters() {
+  try {
+    const list = await getChallengeList();
+    allChallenges = Array.isArray(list) ? list : [];
+
+    if (initialTypeParam && initialTypeParam !== "none") {
+      baseChallenges = allChallenges.filter((ch) => ch.type === initialTypeParam);
+
+      if (initialTypeParam === "online") {
+        onlineCheckbox.checked = true;
+        onsiteCheckbox.checked = false;
+      } else if (initialTypeParam === "onsite") {
+        onlineCheckbox.checked = false;
+        onsiteCheckbox.checked = true;
+      }
+    } else {
+      baseChallenges = [...allChallenges];
+    }
+
+    setupFilterEvents();
+    applyFilters();
+  } catch {
+    cardsContainer.innerHTML = "<p>Could not load challenges</p>";
+  }
+}
+
+
