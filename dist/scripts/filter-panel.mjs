@@ -88,4 +88,43 @@ async function initFilters() {
   }
 }
 
+function setupFilterEvents() {
+  onlineCheckbox?.addEventListener("change", applyFilters);
+  onsiteCheckbox?.addEventListener("change", applyFilters);
+
+  ratingWidgets.forEach((widget) => {
+    widget.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!target.classList.contains("star")) return;
+
+      const val = Number(target.dataset.value);
+      const role = widget.dataset.role;
+
+      if (role === "min") minRating = val;
+      if (role === "max") maxRating = val;
+
+      updateStarUI(widget, val);
+      applyFilters();
+    });
+  });
+
+  tagButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tag = btn.textContent.trim().toLowerCase();
+
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag);
+        btn.classList.remove("is-active");
+      } else {
+        activeTags.add(tag);
+        btn.classList.add("is-active");
+      }
+
+      applyFilters();
+    });
+  });
+
+  searchInput?.addEventListener("input", applyFilters);
+}
+
 
