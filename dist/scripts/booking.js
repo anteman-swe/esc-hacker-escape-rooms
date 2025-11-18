@@ -257,6 +257,7 @@ function showThankYou(modalEl, overlay) {
     link.href = "./challenges.html";
     link.innerText = "Back to challenges";
     link.className = "booking-thanks__back";
+    link.addEventListener('click', (e) => {e.preventDefault(); closeBookingModal(overlay)});
     wrap.appendChild(heading);
     wrap.appendChild(link);
     modalEl.appendChild(wrap);
