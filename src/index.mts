@@ -1,4 +1,5 @@
 import type { multipleChallenges, oneChallenge } from "./interfaces.mts";
+import { openBookingModal } from "./booking.mts";
 
 // Constant and variables for handling lists of challenges
 const maxFetchIntervall: number = 30000;
@@ -70,6 +71,7 @@ function gotoOtherPage(event: Event) {
         break;
 
       case "on-site":
+      case "onsite":
         window.location.assign(`./challenges.html?type=onsite`);
         break;
 
@@ -95,10 +97,7 @@ function gotoOtherPage(event: Event) {
         break;
 
       case "booking":
-        // code for opening modal with booking form should be here
-        console.log(
-          `Booking is clicked for challenge no ${targetId}! Should do something!`
-        );
+        openBookingModal(targetId);
         break;
 
       default:
