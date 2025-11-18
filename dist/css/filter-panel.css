@@ -1,0 +1,149 @@
+/*Panel*/
+#filters[hidden] {
+  display: none;
+}
+
+.filter-panel{
+  border: 1px solid;
+  /*background: white;*/
+  padding: 1.5rem 1.75rem;
+  max-width: 1400px;
+  margin: 1rem auto;
+}
+
+/*Header*/
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter-header__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.filter-header__close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #484a4d;
+}
+
+/*Body: type | rating | tags*/
+.filter-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .filter-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Titles + Groups */
+.filter-group__title {
+  font-size: 0.8rem;
+  margin-bottom: .5rem;
+  font-weight: 600;
+  color: #1d1c1c;
+}
+
+/*Checkboxes*/
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-bottom: .3rem;
+  font-size: .85rem;
+}
+
+#filters input[type="checkbox"] {
+  all: revert;
+  accent-color: #1406e1;
+}
+
+/*Rating*/
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+ .rating-widget {
+  display: flex;
+  gap: 0.25rem;
+ }
+
+ .star {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #cbd0d7;
+ }
+
+ .star.is-active {
+  color: #3366ff;
+}
+
+/*Tags*/
+
+.tag-list {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .tag-list {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+.tag-pill {
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  background: #e7e9ed;
+  border: none;
+  cursor: pointer;
+}
+
+.tag-pill.is-active {
+  background: #5c6787;
+  color: #fff;
+}
+
+/*Footer/search*/
+
+.filter-footer{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-search {
+  width: 100%;
+  max-width: 350px;
+  padding: .45rem .6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.filter-search-wrap {
+  max-width: 350px;
+  width: 100%;
+}
+
+
+.filter-search-wrap .filter-group__title {
+  margin-bottom: 0.4rem;
+  text-align: left;  
+}

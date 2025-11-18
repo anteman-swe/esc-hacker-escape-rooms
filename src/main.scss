@@ -22,7 +22,6 @@
 }
 
 .header {
-  position: sticky;
   width: 100%;
   max-width: 38rem;
   height: 26.2rem;
@@ -80,7 +79,7 @@
   position: absolute;
   right: 1.5rem;
   top: 2.5rem;
-  z-index: 20;
+  z-index: 2000;
   cursor: pointer;
   // user-select: none;
   @include vars.breakpoint(vars.$small-to-large) {
@@ -151,6 +150,7 @@ input[type="checkbox"],
     }
   }
 }
+
 .navigation-dimmer {
   visibility: hidden;
   opacity: 0;
@@ -159,7 +159,7 @@ input[type="checkbox"],
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 9;
+  z-index: 19;
   background-color: vars.$color-white;
   transition: opacity 0.3s;
 }
@@ -172,7 +172,7 @@ input[type="checkbox"],
   width: calc(100vw - 3rem);
   background: vars.$color-dark-blue;
   box-shadow: 0 0 8rem vars.$color-light-blue;
-  z-index: 10;
+  z-index: 20;
   position: fixed;
   top: 1.5rem;
   left: 1.5rem;
@@ -416,6 +416,7 @@ input[type="checkbox"],
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  // z-index: 1;
 
   &__type {
     width:2rem;

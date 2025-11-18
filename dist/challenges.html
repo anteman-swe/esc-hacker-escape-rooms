@@ -23,7 +23,7 @@
       sizes="192x192"
       href="resources/esc-favicon-192x192.png"
     />
-    <link
+    <link 
       rel="icon"
       type="image/png"
       sizes="512x512"
@@ -36,8 +36,8 @@
     />
     <!-- Styling -->
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/challenges.css">
-
+    <link rel="stylesheet" type="text/css" href="css/challenges.css" />
+    <link rel="stylesheet" type="text/css" href="css/filter-panel.css">
     <title>[Esc] Hacker Escape Rooms</title>
 </head>
 <body class="body-container body-container--challenges">
@@ -69,10 +69,75 @@
       <h2 class="challenges__headline">Our Challenges</h2>
       <div class="challenges__filter">
         <button class="secondary-nav__btn--filter" id="filterToggle" type="button" data-type="filter">Filter challenges</button>
+      </div>    
+      <!--Filter Panel-->
+    <section id="filters" hidden>
+      <div class="filter-panel">
+        <header class="filter-header">
+           <h2 class="filter-header__title">Filter challenges</h2>
+          <button class="filter-header__close" type="button" aria-label="Close filter">X</button>
+        </header>
+    <div class="filter-body">
+      <!--By type-->
+    <section class="filter-group filter-group--type">
+        <h3 class="filter-group__title">By type</h3>
+        <label class="filter-checkbox">
+        <input type="checkbox" id="f-online" checked>
+        <span>Include online challenges</span>
+        </label>
+        <label class="filter-checkbox">
+        <input type="checkbox" id="f-onsite" checked>
+        <span>Include on-site challenges</span>
+        </label>
+    </section>
+   <!--By rating-->
+   <section class="filter-group filter-group--rating">
+      <h3 class="filter-group__title">By rating</h3>
+      <div class="rating-row">
+        <!--Min Rating-->
+         <div class="rating-widget" data-role="min">
+            <button class="star" data-value="1">★</button>
+            <button class="star" data-value="2">★</button>
+            <button class="star" data-value="3">★</button>
+            <button class="star" data-value="4">★</button>
+            <button class="star" data-value="5">★</button>
+         </div>
+         <span class="rating-row__to">to</span>
+         <!--Max Rating-->
+         <div class="rating-widget" data-role="max">
+            <button class="star" data-value="1">★</button>
+            <button class="star" data-value="2">★</button>
+            <button class="star" data-value="3">★</button>
+            <button class="star" data-value="4">★</button>
+            <button class="star" data-value="5">★</button>
+         </div>
+    </div>
+   </section>
+   <!--By tags-->
+    <section class="filter-group filter-group--tags">
+      <h3 class="filter-group__title">By tags</h3>
+      <div class="tag-list">
+         <button class="tag-pill">Web</button>
+         <button class="tag-pill">Linux</button>
+         <button class="tag-pill">Cryptography</button>
+         <button class="tag-pill">Coding</button>
+         <button class="tag-pill">Beginner</button>
+         <button class="tag-pill">Advanced</button>
       </div>
-      <div id="cards" class="cards-grid">
-        <!-- Cards get injected here from script-->
+    </section>
+   </div>
+        <!--Search field-->
+        <footer class="filter-footer">
+          <div class="filter-search-wrap">
+           <h3 class="filter-group__title">Or type to search for keyword</h3>
+           <input id="f-query" class="filter-search" type="text" placeholder="Start typing to filter">
+           </div>
+        </footer>
       </div>
+    </section>
+    <div id="cards" class="cards-grid">
+    <!-- Cards get injected here by the script-->    
+    </div>
     </section>
     </main>
     <footer class="footer">
@@ -89,21 +154,21 @@
         <div>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">The Story</a>
+              <a href="storypage.html" class="site-map__item--link" data-type="story">The Story</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Contact us</a>
+              <a href="contact.html" class="site-map__item--link" data-type="contact">Contact us</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Legal</a>
+              <a href="legal.html" class="site-map__item--link" data-type="legal">Legal</a>
             </li>
           </ul>
           <ul class="site-map__list">
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play online</a>
+              <a href="challenges.html?type=online" class="site-map__item--link" data-type="online">Play online</a>
             </li>
             <li class="site-map__item">
-              <a href="#" class="site-map__item--link">Play on-site</a>
+              <a href="challenges.html?type=onsite" class="site-map__item--link" data-type="on-site">Play on-site</a>
             </li>
           </ul>
         </div>
@@ -125,5 +190,6 @@
     </footer>
     <!-- <script type="module" src="scripts/index.mjs"></script> -->
     <script type="module" src="scripts/challenges.mjs"></script>
+    <script type="module" src="scripts/filter-panel.mjs"></script>
 </body>
 </html>
