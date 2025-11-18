@@ -171,3 +171,22 @@ function applyTextFilter(list) {
       ch.description.toLowerCase().includes(q)
   );
 }
+
+function applyFilters() {
+  let filtered = [...baseChallenges];
+
+  filtered = applyTypeFilter(filtered);
+  filtered = applyRatingFilter(filtered);
+  filtered = applyTagFilter(filtered);
+  filtered = applyTextFilter(filtered);
+
+  if (!filtered.length) {
+    cardsContainer.innerHTML = '<p class="no-matches">No matching challenges</p>';
+    return;
+  }
+
+  cardsContainer.innerHTML = "";
+  putCardsInDOM(filtered, cardsContainer);
+}
+
+initFilters();
