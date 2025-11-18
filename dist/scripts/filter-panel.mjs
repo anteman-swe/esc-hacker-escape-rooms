@@ -127,4 +127,27 @@ function setupFilterEvents() {
   searchInput?.addEventListener("input", applyFilters);
 }
 
+function applyTypeFilter(list) {
+  const showOnline = onlineCheckbox.checked;
+  const showOnsite = onsiteCheckbox.checked;
+
+  if (!showOnline && !showOnsite) return [];
+
+  return list.filter(
+    (ch) =>
+      (showOnline && ch.type === "online") ||
+      (showOnsite && (ch.type === "onsite" || ch.type === "on-site"))
+  );
+}
+
+function updateStarUI(widget, value) {
+  widget.querySelectorAll(".star").forEach((star) => {
+    const v = Number(star.dataset.value);
+    star.classList.toggle("is-active", v <= value);
+  });
+}
+
+function applyRatingFilter(list) {
+  return list.filter((ch) => ch.rating >= minRating && ch.rating <= maxRating);
+}
 
