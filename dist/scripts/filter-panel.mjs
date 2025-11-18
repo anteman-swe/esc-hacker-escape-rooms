@@ -1,23 +1,23 @@
 import { getChallengeList, putCardsInDOM } from "./index.mjs";
 
+// Knapp för att öppna/stänga filterpanelen
 const filterToggle = document.querySelector("#filterToggle");
 const filterPanel = document.querySelector("#filters");
 const filterClose = document.querySelector(".filter-header__close");
 
+// Öppna och stäng filter-panelen
 if (filterToggle && filterPanel && filterClose) {
-  // Open panel
   filterToggle.addEventListener("click", () => {
     filterPanel.hidden = false;
     filterToggle.hidden = true;
   });
 
-  // Close panel 
   filterClose.addEventListener("click", () => {
     filterPanel.hidden = true;
     filterToggle.hidden = false;
   });
 
-  // ESC key closes panel
+  // Stäng med ESC
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !filterPanel.hidden) {
       filterPanel.hidden = true;
@@ -26,7 +26,7 @@ if (filterToggle && filterPanel && filterClose) {
   });
 }
 
-// Base data + URL parameters
+// Hämta parametrar från URL (?type=online osv.)
 const cardsContainer = document.querySelector(".cards-grid");
 const urlParams = new URLSearchParams(window.location.search);
 const initialTypeParam = urlParams.get("type") || urlParams.get("filter");
@@ -34,7 +34,7 @@ const initialTypeParam = urlParams.get("type") || urlParams.get("filter");
 let allChallenges = [];
 let baseChallenges = [];
 
-// Filter UI elements
+// Filter-element
 const onlineCheckbox = document.querySelector("#f-online");
 const onsiteCheckbox = document.querySelector("#f-onsite");
 
@@ -43,17 +43,20 @@ const ratingWidgets = document.querySelectorAll(".rating-widget");
 const tagButtons = document.querySelectorAll(".tag-pill");
 const searchInput = document.querySelector("#f-query");
 
+// Filter-state
 let activeTags = new Set();
 let minRating = 0;
 let maxRating = 5;
 
-// Sync visual state of custom type-checkbox labels
+
+// Synka visuellt för custom checkbox
 filterCheckboxLabels.forEach((label) => {
   const input = label.querySelector(".filter-checkbox__input");
   if (!input) return;
 
   label.classList.toggle("is-checked", input.checked);
 
+  // Klick på label togglar checkboxen
   label.addEventListener("click", (e) => {
     e.preventDefault();
     input.checked = !input.checked;
@@ -62,19 +65,21 @@ filterCheckboxLabels.forEach((label) => {
   });
 });
 
+
 async function initFilters() {
   try {
+    // Hämta challenge-listan från API
     const list = await getChallengeList();
     allChallenges = Array.isArray(list) ? list : [];
 
+    // Om användaren kom in med ?type=online m.m.
     if (initialTypeParam && initialTypeParam !== "none") {
       baseChallenges = allChallenges.filter((ch) => ch.type === initialTypeParam);
 
+      // Sätt rätt checkbox
       if (initialTypeParam === "online") {
         onlineCheckbox.checked = true;
-        onsiteCheckbox.checked = false;
       } else if (initialTypeParam === "onsite") {
-        onlineCheckbox.checked = false;
         onsiteCheckbox.checked = true;
       }
     } else {
@@ -83,22 +88,26 @@ async function initFilters() {
 
     setupFilterEvents();
     applyFilters();
+
   } catch {
     cardsContainer.innerHTML = "<p>Could not load challenges</p>";
   }
 }
 
+
 function setupFilterEvents() {
+  // Typ-filter
   onlineCheckbox?.addEventListener("change", applyFilters);
   onsiteCheckbox?.addEventListener("change", applyFilters);
 
+  // Rating-filter (stjärnor)
   ratingWidgets.forEach((widget) => {
     widget.addEventListener("click", (e) => {
       const target = e.target;
       if (!target.classList.contains("star")) return;
 
       const val = Number(target.dataset.value);
-      const role = widget.dataset.role;
+      const role = widget.dataset.role; // min eller max
 
       if (role === "min") minRating = val;
       if (role === "max") maxRating = val;
@@ -108,6 +117,7 @@ function setupFilterEvents() {
     });
   });
 
+  // Taggar
   tagButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const tag = btn.textContent.trim().toLowerCase();
@@ -124,13 +134,18 @@ function setupFilterEvents() {
     });
   });
 
+  // Text-sökning
   searchInput?.addEventListener("input", applyFilters);
 }
+
+
+// FILTRERING ------------------------------------
 
 function applyTypeFilter(list) {
   const showOnline = onlineCheckbox.checked;
   const showOnsite = onsiteCheckbox.checked;
 
+  // Om båda är av, visa inget
   if (!showOnline && !showOnsite) return [];
 
   return list.filter(
@@ -141,6 +156,7 @@ function applyTypeFilter(list) {
 }
 
 function updateStarUI(widget, value) {
+  // Markera stjärnor upp till vald rating
   widget.querySelectorAll(".star").forEach((star) => {
     const v = Number(star.dataset.value);
     star.classList.toggle("is-active", v <= value);
@@ -165,6 +181,7 @@ function applyTextFilter(list) {
   const q = searchInput.value.toLowerCase().trim();
   if (!q) return list;
 
+  // Sök i title + description
   return list.filter(
     (ch) =>
       ch.title.toLowerCase().includes(q) ||
@@ -172,6 +189,8 @@ function applyTextFilter(list) {
   );
 }
 
+
+// Kör alla filter
 function applyFilters() {
   let filtered = [...baseChallenges];
 
@@ -180,11 +199,13 @@ function applyFilters() {
   filtered = applyTagFilter(filtered);
   filtered = applyTextFilter(filtered);
 
+  // Om inga matchningar
   if (!filtered.length) {
     cardsContainer.innerHTML = '<p class="no-matches">No matching challenges</p>';
     return;
   }
 
+  // Visa kort
   cardsContainer.innerHTML = "";
   putCardsInDOM(filtered, cardsContainer);
 }
