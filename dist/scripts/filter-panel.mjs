@@ -151,3 +151,23 @@ function applyRatingFilter(list) {
   return list.filter((ch) => ch.rating >= minRating && ch.rating <= maxRating);
 }
 
+function applyTagFilter(list) {
+  if (activeTags.size === 0) return list;
+
+  return list.filter((ch) => {
+    if (!Array.isArray(ch.labels)) return false;
+    const labels = ch.labels.map((l) => String(l).toLowerCase());
+    return [...activeTags].every((t) => labels.includes(t));
+  });
+}
+
+function applyTextFilter(list) {
+  const q = searchInput.value.toLowerCase().trim();
+  if (!q) return list;
+
+  return list.filter(
+    (ch) =>
+      ch.title.toLowerCase().includes(q) ||
+      ch.description.toLowerCase().includes(q)
+  );
+}
