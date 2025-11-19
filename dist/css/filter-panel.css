@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 /*Panel*/
 #filters[hidden] {
   display: none;
@@ -5,7 +7,7 @@
 
 .filter-panel{
   border: 1px solid;
-  /*background: white;*/
+  background: white;
   padding: 1.5rem 1.75rem;
   max-width: 1400px;
   margin: 1rem auto;
@@ -23,6 +25,7 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+  font-weight:"Roboto";
 }
 
 .filter-header__close {
@@ -165,4 +168,8 @@
 .filter-search-wrap .filter-group__title {
   margin-bottom: 0.4rem;
   text-align: left;  
+}
+
+body{
+  font-family: "Roboto";
 }
