@@ -1,4 +1,4 @@
-import type { oneChallenge } from "./interfaces.mts";
+import type { oneChallenge } from "./interfaces.mjs";
 
 function getChallengeTitleById(id: string): string {
   try {

@@ -124,30 +124,38 @@
   transition: all 0.2s ease-in-out;
 }
 
+input[type=checkbox],
 .hamburgerbox {
   display: none;
 }
+input[type=checkbox]:checked ~ .navigation,
 .hamburgerbox:checked ~ .navigation {
   opacity: 1;
   scale: 100%;
   visibility: visible;
 }
+input[type=checkbox]:checked ~ .navigation-dimmer,
 .hamburgerbox:checked ~ .navigation-dimmer {
   visibility: visible;
   opacity: 0.5;
 }
+input[type=checkbox]:checked ~ .hamburger-button,
 .hamburgerbox:checked ~ .hamburger-button {
   position: fixed;
   padding: 1rem 1rem 0 0;
 }
+input[type=checkbox]:checked ~ .hamburger-button:hover span,
+input[type=checkbox]:checked ~ .hamburger-button span,
 .hamburgerbox:checked ~ .hamburger-button:hover span,
 .hamburgerbox:checked ~ .hamburger-button span {
   background: transparent;
 }
+input[type=checkbox]:checked ~ .hamburger-button span:before,
 .hamburgerbox:checked ~ .hamburger-button span:before {
   transform: rotate(45deg) translate(0.53rem, 0.53rem);
   opacity: 1;
 }
+input[type=checkbox]:checked ~ .hamburger-button span:after,
 .hamburgerbox:checked ~ .hamburger-button span:after {
   transform: rotate(-45deg) translate(0.53rem, -0.53rem);
 }
@@ -870,4 +878,3 @@
   text-decoration: underline;
   font-weight: 600;
 }
-

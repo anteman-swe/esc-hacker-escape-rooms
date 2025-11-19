@@ -218,9 +218,9 @@ function buildBookingForm(container, slots, date, challengeId, overlay, onSucces
         submitBtn.disabled = true;
         status.innerText = "Submitting booking...";
         try {
-            const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const res = await fetch("https://lernia-sjj-assignments.vercel.app/api/booking/reservations", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     challenge: Number(challengeId),
                     name: nameInput.value,
@@ -234,10 +234,17 @@ function buildBookingForm(container, slots, date, challengeId, overlay, onSucces
                 throw new Error(`Booking failed: ${res.status}`);
             }
             const data = await res.json();
-            console.log('Booking response:', data);
+            console.log("Booking response:", data);
             status.innerText = "Booking confirmed.";
-            if (typeof onSuccess === 'function')
-                onSuccess({ challengeId, date, time: timeSelect.value, name: nameInput.value, email: emailInput.value, participants: participantsInput.value });
+            if (typeof onSuccess === "function")
+                onSuccess({
+                    challengeId,
+                    date,
+                    time: timeSelect.value,
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    participants: participantsInput.value,
+                });
         }
         catch (err) {
             console.error(err);
@@ -257,7 +264,6 @@ function showThankYou(modalEl, overlay) {
     link.href = "./challenges.html";
     link.innerText = "Back to challenges";
     link.className = "booking-thanks__back";
-    link.addEventListener('click', (e) => {e.preventDefault(); closeBookingModal(overlay)});
     wrap.appendChild(heading);
     wrap.appendChild(link);
     modalEl.appendChild(wrap);
