@@ -1,3 +1,4 @@
+import { openBookingModal } from "./booking.mjs";
 // Constant and variables for handling lists of challenges
 const maxFetchIntervall = 30000;
 export let challengeArray;
@@ -5,11 +6,11 @@ let topRatedChalls = new Array(3).fill({});
 // DOM-pointers
 const home = document.querySelector(".header__logo");
 const navigation = document.querySelector(".navigation");
-const mainSection = document.querySelector(".main-content");
+const allButtons = document.querySelectorAll("button");
 const card_section = document.querySelector(".card-container");
 const footer = document.querySelector(".footer");
 home.addEventListener("click", () => {
-    window.location.assign(`./index.html?`);
+    window.location.assign(`./index.html`);
 });
 home.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -18,33 +19,35 @@ home.addEventListener("keydown", (event) => {
     }
 });
 navigation.addEventListener("click", (event) => {
-    gotoOtherPage(event);
+    takeAction(event);
 });
 navigation.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        gotoOtherPage(event);
+        takeAction(event);
     }
 });
-mainSection.addEventListener("click", (event) => {
-    gotoOtherPage(event);
-});
-mainSection.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        gotoOtherPage(event);
-    }
+allButtons.forEach((node) => {
+    node.addEventListener("click", (event) => {
+        takeAction(event);
+    });
+    node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            takeAction(event);
+        }
+    });
 });
 footer.addEventListener("click", (event) => {
-    gotoOtherPage(event);
+    takeAction(event);
 });
 footer.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        gotoOtherPage(event);
+        takeAction(event);
     }
 });
-function gotoOtherPage(event) {
+function takeAction(event) {
     event.preventDefault();
     const target = event.target;
     if (target.tagName === "A" || target.tagName === "BUTTON") {
@@ -55,6 +58,7 @@ function gotoOtherPage(event) {
                 window.location.assign(`./challenges.html?type=online`);
                 break;
             case "on-site":
+            case "onsite":
                 window.location.assign(`./challenges.html?type=onsite`);
                 break;
             case "see_all":
@@ -74,8 +78,7 @@ function gotoOtherPage(event) {
                 console.log("Filter is clicked! Should filter something!");
                 break;
             case "booking":
-                // code for opening modal with booking form should be here
-                console.log(`Booking is clicked for challenge no ${targetId}! Should do something!`);
+                openBookingModal(targetId);
                 break;
             default:
                 console.log("Going nowhere!");
@@ -204,6 +207,15 @@ export const putCardsInDOM = (cardArray, container) => {
         card_button.setAttribute("data-id", "" + element.id);
         card_button.innerText =
             element.type === "online" ? "Take challenge online" : "Book this room";
+        card_button.addEventListener("click", (event) => {
+            takeAction(event);
+        });
+        card_button.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                takeAction(event);
+            }
+        });
         const card = document.createElement("article");
         card.setAttribute("id", "" + element.id);
         card.setAttribute("class", "card");
