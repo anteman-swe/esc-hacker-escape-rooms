@@ -97,6 +97,13 @@ async function initFilters() {
     onlineLabel?.classList.toggle("is-checked", onlineCheckbox.checked);
     onsiteLabel?.classList.toggle("is-checked", onsiteCheckbox.checked);
 
+    // sätt initialt utseende för rating widgets
+    ratingWidgets.forEach((widget) => {
+      const role = widget.dataset.role;
+      const value = role === "min" ? minRating : maxRating;
+      updateStarUI(widget, value);
+    });
+
     setupFilterEvents();
     applyFilters();
 
@@ -118,20 +125,44 @@ function setupFilterEvents() {
     applyFilters();
   });
 
-  // Rating-filter (stjärnor)
+    // Rating-filter (stjärnor)
   ratingWidgets.forEach((widget) => {
     widget.addEventListener("click", (e) => {
       const target = e.target;
       if (!target.classList.contains("star")) return;
 
       const val = Number(target.dataset.value);
-      const role = widget.dataset.role; // min eller max
+      const role = widget.dataset.role; // "min" eller "max"
 
-      if (role === "min") minRating = val;
-      if (role === "max") maxRating = val;
-
-      updateStarUI(widget, val);
+      if (role === "min") {
+        minRating = (minRating === val) ? 0 : val;
+        updateStarUI(widget, minRating);
+      } else if (role === "max") {
+        maxRating = (maxRating === val) ? 5 : val;
+        updateStarUI(widget, maxRating);
+      }
+      
       applyFilters();
+    });
+
+    // hover: förhandsvisa rating
+    const stars = widget.querySelectorAll(".star");
+
+    stars.forEach((star) => {
+      star.addEventListener("mouseenter", () => {
+        const hoverVal = Number(star.dataset.value);
+
+        stars.forEach((s) => {
+          const v = Number(s.dataset.value);
+          s.classList.toggle("is-active", v <= hoverVal);
+        });
+      });
+
+      star.addEventListener("mouseleave", () => {
+        const role = widget.dataset.role;
+        const value = role === "min" ? minRating : maxRating;
+        updateStarUI(widget, value);
+      });
     });
   });
 
@@ -164,9 +195,7 @@ function setupFilterEvents() {
     minRating = 0;
     maxRating = 5;
     ratingWidgets.forEach((widget) => {
-      widget.querySelectorAll(".star").forEach((star) => {
-        star.classList.remove("is-active");
-      });
+      updateStarUI(widget, widget.dataset.role === "min" ? minRating : maxRating);
     });
 
     activeTags.clear();
@@ -198,7 +227,6 @@ function applyTypeFilter(list) {
 }
 
 function updateStarUI(widget, value) {
-  // Markera stjärnor upp till vald rating
   widget.querySelectorAll(".star").forEach((star) => {
     const v = Number(star.dataset.value);
     star.classList.toggle("is-active", v <= value);
@@ -247,7 +275,6 @@ function applyFilters() {
     return;
   }
 
-  // Visa kort
   cardsContainer.innerHTML = "";
   putCardsInDOM(filtered, cardsContainer);
 }

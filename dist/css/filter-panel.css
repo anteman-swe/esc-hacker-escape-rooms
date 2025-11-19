@@ -108,6 +108,7 @@
   font-size: 1.2rem;
   cursor: pointer;
   color: #cbd0d7;
+  transition: color 0.5s ease;
  }
 
  .star.is-active {
@@ -136,6 +137,11 @@
   cursor: pointer;
 }
 
+.tag-pill:hover
+{
+  background: #5c6787;
+}
+
 .tag-pill.is-active {
   background: #5c6787;
   color: #fff;
@@ -150,8 +156,7 @@
 
 .filter-footer__inner {
   display: flex;
-  align-items: flex-end;
-  gap: 1.5rem;         
+  align-items: flex-end;         
   width: 100%;
   max-width: none;     
   gap: 7rem;
