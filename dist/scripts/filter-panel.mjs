@@ -43,6 +43,7 @@ const filterCheckboxLabels = document.querySelectorAll("#filters .filter-checkbo
 const ratingWidgets = document.querySelectorAll(".rating-widget");
 const tagButtons = document.querySelectorAll(".tag-pill");
 const searchInput = document.querySelector("#f-query");
+const resetBtn = document.querySelector("#filterReset");
 
 // Labels för custom-style
 const onlineLabel = onlineCheckbox?.closest(".filter-checkbox");
@@ -153,10 +154,34 @@ function setupFilterEvents() {
 
   // Text-sökning
   searchInput?.addEventListener("input", applyFilters);
+
+  resetBtn?.addEventListener("click", () => {
+    onlineCheckbox.checked = true;
+    onsiteCheckbox.checked = true;
+    onlineLabel?.classList.add("is-checked");
+    onsiteLabel?.classList.add("is-checked");
+
+    minRating = 0;
+    maxRating = 5;
+    ratingWidgets.forEach((widget) => {
+      widget.querySelectorAll(".star").forEach((star) => {
+        star.classList.remove("is-active");
+      });
+    });
+
+    activeTags.clear();
+    tagButtons.forEach((btn) => btn.classList.remove("is-active"));
+
+    if (searchInput) {
+      searchInput.value = "";
+    }
+
+    applyFilters();
+  });
 }
 
 
-// FILTRERING ------------------------------------
+// FILTRERING 
 
 function applyTypeFilter(list) {
   const showOnline = onlineCheckbox.checked;
@@ -209,7 +234,6 @@ function applyTextFilter(list) {
 
 // Kör alla filter
 function applyFilters() {
-  // utgå alltid från alla challenges (baseChallenges == allChallenges)
   let filtered = [...baseChallenges];
 
   filtered = applyTypeFilter(filtered);

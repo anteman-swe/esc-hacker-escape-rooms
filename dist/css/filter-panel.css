@@ -8,8 +8,8 @@
 .filter-panel{
   border: 1px solid;
   background: white;
-  padding: 1.5rem 1.75rem;
-  max-width: 1400px;
+  padding: 1rem 1.5em;
+  max-width: 1000px;
   margin: 1rem auto;
 }
 
@@ -115,7 +115,6 @@
 }
 
 /*Tags*/
-
 .tag-list {
   display: grid;
   grid-template-columns: repeat(4, auto);
@@ -143,33 +142,69 @@
 }
 
 /*Footer/search*/
-
-.filter-footer{
-  margin-top: 1rem;
+.filter-footer {
+  margin-top: 2rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;  
+}
+
+.filter-footer__inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;         
+  width: 100%;
+  max-width: none;     
+  gap: 7rem;
+}
+
+/* RESET BUTTON */
+.filter-reset-btn {
+  padding: 0.35rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+  white-space: nowrap; margin-left: 2.5rem;
+  
+}
+
+.filter-reset-btn:hover {
+  background: #e5e5e5;
+}
+
+.filter-reset-btn:active {
+  background: #dcdcdc;
+}
+
+/* SÖKFÄLT */
+.filter-search-wrap {
+  flex: 0 1 470px;               
 }
 
 .filter-search {
   width: 100%;
-  max-width: 350px;
-  padding: .45rem .6rem;
+  padding: 0.45rem 0.6rem;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
-.filter-search-wrap {
-  max-width: 350px;
-  width: 100%;
-}
+@media (max-width: 600px) {
+  .filter-footer__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-
-.filter-search-wrap .filter-group__title {
-  margin-bottom: 0.4rem;
-  text-align: left;  
+  .filter-reset-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 body{
   font-family: "Roboto";
 }
+
+
