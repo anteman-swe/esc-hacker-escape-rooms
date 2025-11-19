@@ -29,7 +29,8 @@ if (filterToggle && filterPanel && filterClose) {
 // Hämta parametrar från URL (?type=online osv.)
 const cardsContainer = document.querySelector(".cards-grid");
 const urlParams = new URLSearchParams(window.location.search);
-const initialTypeParam = urlParams.get("type") || urlParams.get("filter");
+const rawTypeParam = urlParams.get("type") || urlParams.get("filter");
+const initialTypeParam = rawTypeParam === "on-site" ? "onsite" : rawTypeParam;
 
 let allChallenges = [];
 let baseChallenges = [];
@@ -42,6 +43,10 @@ const filterCheckboxLabels = document.querySelectorAll("#filters .filter-checkbo
 const ratingWidgets = document.querySelectorAll(".rating-widget");
 const tagButtons = document.querySelectorAll(".tag-pill");
 const searchInput = document.querySelector("#f-query");
+
+// Labels för custom-style
+const onlineLabel = onlineCheckbox?.closest(".filter-checkbox");
+const onsiteLabel = onsiteCheckbox?.closest(".filter-checkbox");
 
 // Filter-state
 let activeTags = new Set();
@@ -71,20 +76,25 @@ async function initFilters() {
     // Hämta challenge-listan från API
     const list = await getChallengeList();
     allChallenges = Array.isArray(list) ? list : [];
+    baseChallenges = [...allChallenges];
+
+    // default: båda på
+    onlineCheckbox.checked = true;
+    onsiteCheckbox.checked = true;
 
     // Om användaren kom in med ?type=online m.m.
     if (initialTypeParam && initialTypeParam !== "none") {
-      baseChallenges = allChallenges.filter((ch) => ch.type === initialTypeParam);
-
-      // Sätt rätt checkbox
       if (initialTypeParam === "online") {
         onlineCheckbox.checked = true;
+        onsiteCheckbox.checked = false;
       } else if (initialTypeParam === "onsite") {
+        onlineCheckbox.checked = false;
         onsiteCheckbox.checked = true;
       }
-    } else {
-      baseChallenges = [...allChallenges];
     }
+
+    onlineLabel?.classList.toggle("is-checked", onlineCheckbox.checked);
+    onsiteLabel?.classList.toggle("is-checked", onsiteCheckbox.checked);
 
     setupFilterEvents();
     applyFilters();
@@ -97,8 +107,15 @@ async function initFilters() {
 
 function setupFilterEvents() {
   // Typ-filter
-  onlineCheckbox?.addEventListener("change", applyFilters);
-  onsiteCheckbox?.addEventListener("change", applyFilters);
+  onlineCheckbox?.addEventListener("change", () => {
+    onlineLabel?.classList.toggle("is-checked", onlineCheckbox.checked);
+    applyFilters();
+  });
+
+  onsiteCheckbox?.addEventListener("change", () => {
+    onsiteLabel?.classList.toggle("is-checked", onsiteCheckbox.checked);
+    applyFilters();
+  });
 
   // Rating-filter (stjärnor)
   ratingWidgets.forEach((widget) => {
@@ -192,6 +209,7 @@ function applyTextFilter(list) {
 
 // Kör alla filter
 function applyFilters() {
+  // utgå alltid från alla challenges (baseChallenges == allChallenges)
   let filtered = [...baseChallenges];
 
   filtered = applyTypeFilter(filtered);
