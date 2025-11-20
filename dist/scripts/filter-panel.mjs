@@ -29,7 +29,8 @@ if (filterToggle && filterPanel && filterClose) {
 // Hämta parametrar från URL (?type=online osv.)
 const cardsContainer = document.querySelector(".cards-grid");
 const urlParams = new URLSearchParams(window.location.search);
-const initialTypeParam = urlParams.get("type") || urlParams.get("filter");
+const rawTypeParam = urlParams.get("type") || urlParams.get("filter");
+const initialTypeParam = rawTypeParam === "on-site" ? "onsite" : rawTypeParam;
 
 let allChallenges = [];
 let baseChallenges = [];
@@ -42,6 +43,11 @@ const filterCheckboxLabels = document.querySelectorAll("#filters .filter-checkbo
 const ratingWidgets = document.querySelectorAll(".rating-widget");
 const tagButtons = document.querySelectorAll(".tag-pill");
 const searchInput = document.querySelector("#f-query");
+const resetBtn = document.querySelector("#filterReset");
+
+// Labels för custom-style
+const onlineLabel = onlineCheckbox?.closest(".filter-checkbox");
+const onsiteLabel = onsiteCheckbox?.closest(".filter-checkbox");
 
 // Filter-state
 let activeTags = new Set();
@@ -71,20 +77,32 @@ async function initFilters() {
     // Hämta challenge-listan från API
     const list = await getChallengeList();
     allChallenges = Array.isArray(list) ? list : [];
+    baseChallenges = [...allChallenges];
+
+    // default: båda på
+    onlineCheckbox.checked = true;
+    onsiteCheckbox.checked = true;
 
     // Om användaren kom in med ?type=online m.m.
     if (initialTypeParam && initialTypeParam !== "none") {
-      baseChallenges = allChallenges.filter((ch) => ch.type === initialTypeParam);
-
-      // Sätt rätt checkbox
       if (initialTypeParam === "online") {
         onlineCheckbox.checked = true;
+        onsiteCheckbox.checked = false;
       } else if (initialTypeParam === "onsite") {
+        onlineCheckbox.checked = false;
         onsiteCheckbox.checked = true;
       }
-    } else {
-      baseChallenges = [...allChallenges];
     }
+
+    onlineLabel?.classList.toggle("is-checked", onlineCheckbox.checked);
+    onsiteLabel?.classList.toggle("is-checked", onsiteCheckbox.checked);
+
+    // sätt initialt utseende för rating widgets
+    ratingWidgets.forEach((widget) => {
+      const role = widget.dataset.role;
+      const value = role === "min" ? minRating : maxRating;
+      updateStarUI(widget, value);
+    });
 
     setupFilterEvents();
     applyFilters();
@@ -97,23 +115,54 @@ async function initFilters() {
 
 function setupFilterEvents() {
   // Typ-filter
-  onlineCheckbox?.addEventListener("change", applyFilters);
-  onsiteCheckbox?.addEventListener("change", applyFilters);
+  onlineCheckbox?.addEventListener("change", () => {
+    onlineLabel?.classList.toggle("is-checked", onlineCheckbox.checked);
+    applyFilters();
+  });
 
-  // Rating-filter (stjärnor)
+  onsiteCheckbox?.addEventListener("change", () => {
+    onsiteLabel?.classList.toggle("is-checked", onsiteCheckbox.checked);
+    applyFilters();
+  });
+
+    // Rating-filter (stjärnor)
   ratingWidgets.forEach((widget) => {
     widget.addEventListener("click", (e) => {
       const target = e.target;
       if (!target.classList.contains("star")) return;
 
       const val = Number(target.dataset.value);
-      const role = widget.dataset.role; // min eller max
+      const role = widget.dataset.role; // "min" eller "max"
 
-      if (role === "min") minRating = val;
-      if (role === "max") maxRating = val;
-
-      updateStarUI(widget, val);
+      if (role === "min") {
+        minRating = (minRating === val) ? 0 : val;
+        updateStarUI(widget, minRating);
+      } else if (role === "max") {
+        maxRating = (maxRating === val) ? 5 : val;
+        updateStarUI(widget, maxRating);
+      }
+      
       applyFilters();
+    });
+
+    // hover: förhandsvisa rating
+    const stars = widget.querySelectorAll(".star");
+
+    stars.forEach((star) => {
+      star.addEventListener("mouseenter", () => {
+        const hoverVal = Number(star.dataset.value);
+
+        stars.forEach((s) => {
+          const v = Number(s.dataset.value);
+          s.classList.toggle("is-active", v <= hoverVal);
+        });
+      });
+
+      star.addEventListener("mouseleave", () => {
+        const role = widget.dataset.role;
+        const value = role === "min" ? minRating : maxRating;
+        updateStarUI(widget, value);
+      });
     });
   });
 
@@ -136,10 +185,32 @@ function setupFilterEvents() {
 
   // Text-sökning
   searchInput?.addEventListener("input", applyFilters);
+
+  resetBtn?.addEventListener("click", () => {
+    onlineCheckbox.checked = true;
+    onsiteCheckbox.checked = true;
+    onlineLabel?.classList.add("is-checked");
+    onsiteLabel?.classList.add("is-checked");
+
+    minRating = 0;
+    maxRating = 5;
+    ratingWidgets.forEach((widget) => {
+      updateStarUI(widget, widget.dataset.role === "min" ? minRating : maxRating);
+    });
+
+    activeTags.clear();
+    tagButtons.forEach((btn) => btn.classList.remove("is-active"));
+
+    if (searchInput) {
+      searchInput.value = "";
+    }
+
+    applyFilters();
+  });
 }
 
 
-// FILTRERING ------------------------------------
+// FILTRERING 
 
 function applyTypeFilter(list) {
   const showOnline = onlineCheckbox.checked;
@@ -156,7 +227,6 @@ function applyTypeFilter(list) {
 }
 
 function updateStarUI(widget, value) {
-  // Markera stjärnor upp till vald rating
   widget.querySelectorAll(".star").forEach((star) => {
     const v = Number(star.dataset.value);
     star.classList.toggle("is-active", v <= value);
@@ -205,7 +275,6 @@ function applyFilters() {
     return;
   }
 
-  // Visa kort
   cardsContainer.innerHTML = "";
   putCardsInDOM(filtered, cardsContainer);
 }

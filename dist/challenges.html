@@ -82,12 +82,12 @@
       <section class="filter-group filter-group--type">
       <h3 class="filter-group__title">By type</h3>
       <label class="filter-checkbox">
-        <input type="checkbox" id="f-online" class="filter-checkbox__input" checked hidden>
+        <input type="checkbox" id="f-online" class="filter-checkbox__input" hidden>
         <span class="filter-checkbox__box" aria-hidden="true"></span>
         <span class="filter-checkbox__label">Include online challenges</span>
       </label>
       <label class="filter-checkbox">
-        <input type="checkbox" id="f-onsite" class="filter-checkbox__input" checked hidden>
+        <input type="checkbox" id="f-onsite" class="filter-checkbox__input" hidden>
         <span class="filter-checkbox__box" aria-hidden="true"></span>
         <span class="filter-checkbox__label">Include on-site challenges</span>
       </label>
@@ -120,21 +120,29 @@
       <h3 class="filter-group__title">By tags</h3>
       <div class="tag-list">
          <button class="tag-pill">Web</button>
-         <button class="tag-pill">Linux</button>
-         <button class="tag-pill">Cryptography</button>
          <button class="tag-pill">Coding</button>
-         <button class="tag-pill">Beginner</button>
-         <button class="tag-pill">Advanced</button>
+         <button class="tag-pill">Linux</button>
+         <button class="tag-pill">Electronics</button>
+         <button class="tag-pill">SSH</button>
+         <button class="tag-pill">CTF</button>
+         <button class="tag-pill">Phreaking</button>
+         <button class="tag-pill">JavaScript</button>
+         <button class="tag-pill">Hacking</button>
+         <button class="tag-pill">Bash</button>
       </div>
     </section>
    </div>
-        <!--Search field-->
-        <footer class="filter-footer">
+    <!--Search field-->
+      <footer class="filter-footer">
+        <div class="filter-footer__inner">
+            <button id="filterReset" class="filter-reset-btn" type="button">↺ Reset filters</button>
           <div class="filter-search-wrap">
-           <h3 class="filter-group__title">Or type to search for keyword</h3>
-           <input id="f-query" class="filter-search" type="text" placeholder="Start typing to filter">
-           </div>
-        </footer>
+            <h3 class="filter-group__title">Or type to search for keyword</h3>
+            <input id="f-query" class="filter-search" type="text" placeholder="Start typing to filter">
+          </div>
+        </div>
+      </footer>
+
       </div>
     </section>
     <div id="cards" class="cards-grid">
