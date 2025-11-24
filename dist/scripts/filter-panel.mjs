@@ -41,9 +41,9 @@ const onsiteCheckbox = document.querySelector("#f-onsite");
 
 const filterCheckboxLabels = document.querySelectorAll("#filters .filter-checkbox");
 const ratingWidgets = document.querySelectorAll(".rating-widget");
-const tagButtons = document.querySelectorAll(".tag-pill");
 const searchInput = document.querySelector("#f-query");
 const resetBtn = document.querySelector("#filterReset");
+const tagList = document.querySelector(".tag-list");
 
 // Labels för custom-style
 const onlineLabel = onlineCheckbox?.closest(".filter-checkbox");
@@ -70,6 +70,32 @@ filterCheckboxLabels.forEach((label) => {
     input.dispatchEvent(new Event("change", { bubbles: true }));
   });
 });
+
+// Bygg taggar från labels i allChallenges
+function buildTagButtons() {
+  if (!tagList) return;
+
+  const tagSet = new Set();
+
+  allChallenges.forEach((ch) => {
+    if (!Array.isArray(ch.labels)) return;
+    ch.labels.forEach((label) => {
+      const trimmed = String(label).trim();
+      if (trimmed) tagSet.add(trimmed);
+    });
+  });
+
+  tagList.innerHTML = "";
+
+  [...tagSet]
+    .sort((a, b) => a.localeCompare(b))
+    .forEach((tag) => {
+      const btn = document.createElement("button");
+      btn.className = "tag-pill";
+      btn.textContent = tag;
+      tagList.appendChild(btn);
+    });
+}
 
 
 async function initFilters() {
@@ -104,6 +130,9 @@ async function initFilters() {
       updateStarUI(widget, value);
     });
 
+    // bygg taggar efter att data är hämtad
+    buildTagButtons();
+
     setupFilterEvents();
     applyFilters();
 
@@ -125,7 +154,7 @@ function setupFilterEvents() {
     applyFilters();
   });
 
-    // Rating-filter (stjärnor)
+  // Rating-filter (stjärnor)
   ratingWidgets.forEach((widget) => {
     widget.addEventListener("click", (e) => {
       const target = e.target;
@@ -166,7 +195,9 @@ function setupFilterEvents() {
     });
   });
 
-  // Taggar
+  // Taggar 
+  const tagButtons = document.querySelectorAll(".tag-pill");
+
   tagButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const tag = btn.textContent.trim().toLowerCase();
@@ -199,7 +230,9 @@ function setupFilterEvents() {
     });
 
     activeTags.clear();
-    tagButtons.forEach((btn) => btn.classList.remove("is-active"));
+    document.querySelectorAll(".tag-pill").forEach((btn) => {
+      btn.classList.remove("is-active");
+    });
 
     if (searchInput) {
       searchInput.value = "";
