@@ -4,7 +4,7 @@
     @include vars.button-common;
     @include vars.button-size(medium);
     @include vars.primary-on-dark(medium);
-    margin-top: 0;
+    margin-top: 1rem;
     border: 0.15rem solid vars.$color-light-blue;
     color: vars.$color-light-blue;
     @include vars.breakpoint(vars.$small-to-large) {

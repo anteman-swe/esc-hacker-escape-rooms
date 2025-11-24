@@ -1,10 +1,6 @@
 import { openBookingModal } from "./booking.mjs";
-import type { multipleChallenges, oneChallenge } from "./interfaces.mjs";
-
-// Constant and variables for handling lists of challenges
-const maxFetchIntervall: number = 30000;
-export let challengeArray: Array<oneChallenge>;
-let topRatedChalls: Array<oneChallenge> = new Array(3).fill({});
+import { getChallengeList, sortOutTopRated } from "./listHandling.mjs";
+import { putCardsInDOM } from "./domManipulation.mjs";
 
 // DOM-pointers
 const home: HTMLImageElement = document.querySelector(
@@ -62,7 +58,8 @@ footer.addEventListener("keydown", (event) => {
     takeAction(event);
   }
 });
-function takeAction(event: Event) {
+
+export function takeAction(event: Event): void {
   event.preventDefault();
   const target: HTMLElement = event.target as HTMLElement;
   if (target.tagName === "A" || target.tagName === "BUTTON") {
@@ -109,170 +106,9 @@ function takeAction(event: Event) {
   }
 }
 
-async function fetchChallengesAndSaveToLocal() {
-  try {
-    const url: string =
-      "https://lernia-sjj-assignments.vercel.app/api/challenges";
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-    const data: multipleChallenges = await response.json();
-    const challengesList: Array<oneChallenge> = data.challenges;
-    localStorage.clear();
-    localStorage.setItem("savedChallenges", JSON.stringify(challengesList));
-    localStorage.setItem("lastFetch", JSON.stringify(Date.now()));
-
-    return challengesList;
-  } catch (error: any) {
-    console.error(error.message);
-  }
-}
-
-export function getChallengeList(): Array<oneChallenge> {
-  let tempChallengeArray: Array<oneChallenge>;
-  if (localStorage.getItem("savedChallenges") && checkIntervall()) {
-    const tempStorage: string | null = localStorage.getItem("savedChallenges");
-    if (tempStorage) {
-      tempChallengeArray = JSON.parse(tempStorage);
-    } else {
-      throw new Error(
-        "Problem has arised with challenges saved in localStorage."
-      );
-    }
-  } else {
-    const tempArray: unknown = fetchChallengesAndSaveToLocal();
-    tempChallengeArray = tempArray as Array<oneChallenge>;
-  }
-  return tempChallengeArray;
-}
-
-const checkIntervall = (): boolean => {
-  let lastFetchString: string | null = localStorage.getItem("lastFetch");
-  let lastFetchTime: number = 0;
-  if (lastFetchString) {
-    lastFetchTime = +lastFetchString;
-  }
-  const timeNow: number = Date.now();
-
-  return timeNow - lastFetchTime < maxFetchIntervall;
-};
-
-function sortOutTopRated(inputArray: Array<oneChallenge>): void {
-  if (localStorage.getItem("savedTopThree") && checkIntervall()) {
-    const tempTopThree: string | null = localStorage.getItem("savedTopThree");
-    if (tempTopThree) {
-      topRatedChalls = JSON.parse(tempTopThree);
-    } else {
-      throw new Error(
-        "Problem has arised with top three list saved in localStorage"
-      );
-    }
-  } else {
-    const sortedArray: Array<oneChallenge> = [...inputArray].sort(
-      (a, b) => b.rating - a.rating
-    );
-    const newTopThree: Array<oneChallenge> = sortedArray.slice(0, 3);
-    topRatedChalls = newTopThree;
-    localStorage.setItem("savedTopThree", JSON.stringify(newTopThree));
-  }
-}
 
 // Function that inserts top three challenge-cards in the startpage
-export const putCardsInDOM = (
-  cardArray: Array<oneChallenge>,
-  container: HTMLElement
-): void => {
-  cardArray.forEach((element) => {
-    const cardImg: HTMLImageElement = document.createElement("img");
-    cardImg.setAttribute("src", element.image);
-    cardImg.setAttribute("class", "card__image");
 
-    const cardType: HTMLImageElement = document.createElement("img");
-    cardType.setAttribute(
-      "src",
-      element.type === "online"
-        ? "resources/online.png"
-        : element.type === "onsite"
-        ? "resources/onsite.png"
-        : ""
-    );
-    cardType.setAttribute("alt", element.type);
-    cardType.setAttribute("class", "card__type");
-
-    const card_title: HTMLElement = document.createElement("h4");
-    card_title.setAttribute("class", "card__title");
-    card_title.innerText = element.title;
-
-    const rating_container: HTMLElement = document.createElement("div");
-    const rating: HTMLElement = document.createElement("span");
-    const rating_real: number = element.rating;
-    const rating_rounded: number = Math.ceil(element.rating);
-    for (let index = 1; index <= rating_rounded; index++) {
-      const rating_star: HTMLImageElement = document.createElement("img");
-      if (0 < index - rating_real && index - rating_real < 1) {
-        rating_star.setAttribute("src", "resources/Star 3 half.svg");
-        rating_star.setAttribute("class", "rating__star--half");
-        rating.appendChild(rating_star);
-      } else {
-        rating_star.setAttribute("src", "resources/Star 3.svg");
-        rating_star.setAttribute("class", "rating__star");
-        rating.appendChild(rating_star);
-      }
-    }
-    if (5 - rating_rounded > 0) {
-      for (let index = 0; index < 5 - rating_rounded; index++) {
-        const rating_star: HTMLImageElement = document.createElement("img");
-        rating_star.setAttribute("src", "resources/Star 3 hollow.svg");
-        rating_star.setAttribute("class", "rating__star--empty");
-        rating.appendChild(rating_star);
-      }
-    }
-    rating_container.appendChild(rating);
-    rating_container.setAttribute("class", "rating-container");
-    const room_participants: HTMLElement = document.createElement("span");
-    room_participants.innerText =
-      element.minParticipants +
-      " - " +
-      element.maxParticipants +
-      " participants";
-    room_participants.setAttribute("class", "card__room-participants");
-    rating_container.appendChild(room_participants);
-
-    const card_description: HTMLElement = document.createElement("div");
-    card_description.setAttribute("class", "card__description");
-    card_description.innerText = element.description;
-
-    const card_button: HTMLButtonElement = document.createElement("button");
-    card_button.setAttribute("class", "card__button");
-    card_button.setAttribute("data-type", "booking");
-    card_button.setAttribute("data-id", "" + element.id);
-    card_button.innerText =
-      element.type === "online" ? "Take challenge online" : "Book this room";
-    card_button.addEventListener("click", (event) => {
-      takeAction(event);
-    });
-    card_button.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        takeAction(event);
-      }
-    });
-
-    const card: HTMLElement = document.createElement("article");
-    card.setAttribute("id", "" + element.id);
-    card.setAttribute("class", "card");
-    card.setAttribute("data-type", element.type);
-    card.appendChild(cardImg);
-    card.appendChild(cardType);
-    card.appendChild(card_title);
-    card.appendChild(rating_container);
-    card.appendChild(card_description);
-    card.appendChild(card_button);
-
-    container.appendChild(card);
-  });
-};
 
 // //Navigering till challenge sidan med förfiltrering
 // function goToChallengePage(type: string) {
@@ -296,8 +132,8 @@ export const putCardsInDOM = (
 // });
 // });
 
-challengeArray = await getChallengeList();
-sortOutTopRated(challengeArray);
+let challengeArray = await getChallengeList();
+let topRatedChalls = sortOutTopRated(challengeArray);
 if (card_section) {
   putCardsInDOM(topRatedChalls, card_section);
 }
