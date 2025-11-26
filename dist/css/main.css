@@ -233,29 +233,12 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   padding: 1rem;
   white-space: nowrap;
 }
-.navigation__item:hover {
-  border: 1px solid #36769d;
-  border-radius: 0.8rem 0.4rem 0.8rem 0;
-}
 .navigation__item a {
   text-decoration: none;
   color: #ffffff;
 }
 .navigation__item a:hover {
-  color: #36769d;
-}
-@media screen and (min-width: 44rem) {
-  .navigation__item:last-child:hover {
-    border: 1px solid #ffffff;
-    border-radius: 0.8rem 0.4rem 0.8rem 0;
-  }
-  .navigation__item:last-child a {
-    text-decoration: none;
-    color: #8acfe5;
-  }
-  .navigation__item:last-child a:hover {
-    color: #ffffff;
-  }
+  color: #8acfe5;
 }
 
 .main-content {

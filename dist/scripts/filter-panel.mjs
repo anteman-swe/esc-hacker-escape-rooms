@@ -1,4 +1,5 @@
-import { getChallengeList, putCardsInDOM } from "./index.mjs";
+import { getChallengeList } from "./listHandling.mjs";
+import { putCardsInDOM } from "./domManipulation.mjs";
 
 // Knapp för att öppna/stänga filterpanelen
 const filterToggle = document.querySelector("#filterToggle");
@@ -271,11 +272,13 @@ function applyFilters() {
 
   // Om inga matchningar
   if (!filtered.length) {
+    cardsContainer.removeAttribute('class');
     cardsContainer.innerHTML = '<p class="no-matches">No matching challenges</p>';
     return;
   }
 
   cardsContainer.innerHTML = "";
+  cardsContainer.setAttribute('class', 'cards-grid');
   putCardsInDOM(filtered, cardsContainer);
 }
 
