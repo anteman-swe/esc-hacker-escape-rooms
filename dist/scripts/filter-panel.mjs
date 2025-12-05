@@ -250,7 +250,8 @@ function applyTagFilter(list) {
 
 function applyTextFilter(list) {
   const q = searchInput.value.toLowerCase().trim();
-  if (!q) return list;
+  if (!q || q.length < 3) return list;
+
 
   // Sök i title + description
   return list.filter(
