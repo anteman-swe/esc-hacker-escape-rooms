@@ -62,8 +62,29 @@ export const putCardsInDOM = (
     rating_container.appendChild(room_participants);
 
     const card_description: HTMLElement = document.createElement("div");
+    const descriptionLimit: number = 50;
     card_description.setAttribute("class", "card__description");
-    card_description.innerText = element.description;
+    let descriptionToUse: string = element.description;
+    let arrayOfWords: Array<string> = [];
+    let numberOfWords: number = 0;
+    if (element.description.length > descriptionLimit) {
+      let tempDescription: string = descriptionToUse.trim();
+      arrayOfWords = tempDescription.split(' ');
+      let descLength: number = 0;
+      let wordCount: number = 0;
+      arrayOfWords.forEach((word) => {
+        descLength += (word.length + 1);
+        if (descLength < descriptionLimit) {
+          wordCount++;
+        }
+      });
+      numberOfWords = arrayOfWords.length;
+      descriptionToUse = (arrayOfWords.splice(0, wordCount).join(' '));
+      if (numberOfWords > wordCount) {
+        descriptionToUse += "...";
+      }
+    }
+    card_description.innerText = descriptionToUse;
 
     const card_button: HTMLButtonElement = document.createElement("button");
     card_button.setAttribute("class", "card__button");
