@@ -79,6 +79,8 @@ export function openBookingModal(challengeId) {
             });
             step1.classList.add("is-hidden");
             step2.classList.remove("is-hidden");
+            step2.classList.add("booking-step--spin-in");
+            step2.addEventListener("animationend", () => step2.classList.remove("booking-step--spin-in"), { once: true });
             heading.innerText = `Book room “${roomTitle}” (step 2)`;
             status.innerText = "";
             btnRow.innerHTML = "";
