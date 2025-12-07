@@ -73,7 +73,6 @@ export function takeAction(event) {
                 break;
             case "filter":
                 // code for opening modal with filter form should be here
-                console.log("Filter is clicked! Should filter something!");
                 break;
             case "booking":
                 openBookingModal(targetId);
