@@ -32,7 +32,7 @@
   width: 100%;
   max-width: 38rem;
   height: 26.2rem;
-  background-color: #011827;
+  background-color: #021928;
   background-image: url("../resources/hacker-image.png");
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -54,7 +54,7 @@
   }
 }
 .header__logo-head-cont {
-  background-color: #011827;
+  background-color: #021928;
   display: flex;
   column-gap: 0.8rem;
   min-height: 8.5rem;
@@ -179,7 +179,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   scale: 90%;
   height: calc(100vh - 3rem);
   width: calc(100vw - 3rem);
-  background: #011827;
+  background: #021928;
   box-shadow: 0 0 8rem #8acfe5;
   z-index: 20;
   position: fixed;
@@ -198,7 +198,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
     scale: 100%;
     width: 100%;
     height: 4rem;
-    background-color: #011827;
+    background-color: #021928;
   }
 }
 .navigation.active {
@@ -323,7 +323,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   width: 19.2rem;
   height: 4rem;
   font-size: 1.5rem;
-  color: #011827;
+  color: #021928;
   background-color: #8acfe5;
   border: none;
 }
@@ -514,7 +514,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
 .information__story {
   width: 100%;
   height: fit-content;
-  background-color: #011827;
+  background-color: #021928;
   padding: 6rem 1.3rem;
   text-align: center;
 }
@@ -608,7 +608,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
 }
 
 .footer {
-  background-color: #011827;
+  background-color: #021928;
   margin-top: 2rem;
   gap: 2rem;
   padding: 4rem 1.3rem;
