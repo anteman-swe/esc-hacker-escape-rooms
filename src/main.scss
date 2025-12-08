@@ -453,6 +453,21 @@ input[type="checkbox"],
   letter-spacing: 0.5rem;
 }
 
+.load-indicator {
+  width: 100%;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  &__spinner {
+    border: 20px solid vars.$color-dark-blue;
+    border-radius: 50%;
+    border-top: 20px solid transparent;
+    width: 60px;
+    height: 60px;
+    animation: rotation 1s linear infinite;
+  }
+}
+
 .information {
   // background-color: greenyellow;
   width: 100%;

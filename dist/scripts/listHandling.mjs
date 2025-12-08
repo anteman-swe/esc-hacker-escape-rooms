@@ -1,6 +1,7 @@
 let topRatedChalls = new Array(3).fill({});
-async function fetchChallengesAndSaveToLocal() {
+async function fetchChallengesAndSaveToLocal(loadIndicator) {
     try {
+        loadIndicator.style.display = 'flex';
         const url = "https://lernia-sjj-assignments.vercel.app/api/challenges";
         const response = await fetch(url);
         if (!response.ok) {
@@ -11,6 +12,7 @@ async function fetchChallengesAndSaveToLocal() {
         localStorage.clear();
         localStorage.setItem("savedChallenges", JSON.stringify(challengesList));
         localStorage.setItem("lastFetch", JSON.stringify(Date.now()));
+        loadIndicator.style.display = 'none';
         return challengesList;
     }
     catch (error) {
@@ -26,7 +28,7 @@ const checkIntervall = () => {
     const timeNow = Date.now();
     return timeNow - lastFetchTime < 30000;
 };
-export function getChallengeList() {
+export function getChallengeList(loadIndicator) {
     let tempChallengeArray = [];
     if (localStorage.getItem("savedChallenges") && checkIntervall()) {
         const tempStorage = localStorage.getItem("savedChallenges");
@@ -38,7 +40,7 @@ export function getChallengeList() {
         }
     }
     else {
-        const tempArray = fetchChallengesAndSaveToLocal();
+        const tempArray = fetchChallengesAndSaveToLocal(loadIndicator);
         tempChallengeArray = tempArray;
     }
     return tempChallengeArray;
