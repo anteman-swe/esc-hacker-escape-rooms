@@ -83,7 +83,9 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+}
+.cards-grid .card:hover {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 .cards-grid .card__type {
   width: 2rem;
