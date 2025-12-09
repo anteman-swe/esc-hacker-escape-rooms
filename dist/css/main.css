@@ -414,6 +414,13 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   }
 }
 
+.loading-fail {
+  font-family: "Roboto";
+  font-size: 1.5rem;
+  color: red;
+  margin-bottom: 3rem;
+}
+
 .card-container {
   display: flex;
   overflow-x: scroll;
@@ -925,5 +932,3 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   text-decoration: underline;
   font-weight: 600;
 }
-
-/*# sourceMappingURL=main.css.map */
