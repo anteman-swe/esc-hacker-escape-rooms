@@ -68,6 +68,13 @@
     margin: 0 auto 4rem;
   }
 }
+@media screen and (min-width: 120rem) {
+  .cards-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 100rem;
+    margin: 0 auto 4rem;
+  }
+}
 .cards-grid .card {
   position: sticky;
   width: 100%;
