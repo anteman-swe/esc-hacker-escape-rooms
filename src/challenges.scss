@@ -48,7 +48,10 @@
         height: auto;
         display: flex;
         flex-direction: column;
-        z-index: 1;
+        // z-index: 1;
+        &:hover {
+          box-shadow: 0 0 1rem rgba($color: black, $alpha: 0.5);
+        }
 
         &__type {
           width: 2rem;
