@@ -675,6 +675,46 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   color: #ffffff;
 }
 
+@media screen and (min-width: 44rem) {
+  .secondary-nav__btn--primary,
+  .card__button,
+  .booking__btn {
+    transform: translateY(0);
+    box-shadow: 0 0 0.75rem 0.1rem transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .secondary-nav__btn--primary:hover, .secondary-nav__btn--primary:focus-visible,
+  .card__button:hover,
+  .card__button:focus-visible,
+  .booking__btn:hover,
+  .booking__btn:focus-visible {
+    box-shadow: 0 0.25rem 0.1em rgba(15, 15, 15, 0.384);
+    transform: translateY(-0.2em);
+  }
+  .secondary-nav__btn--primary:active,
+  .card__button:active,
+  .booking__btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0.25em 0.35em -0.25em rgba(15, 15, 15, 0.384);
+  }
+  .secondary-nav__btn--secondary,
+  .information__btn--primary-on-dark {
+    transform: translateY(0);
+    box-shadow: 0 0 0.75rem 0.1rem transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .secondary-nav__btn--secondary:hover, .secondary-nav__btn--secondary:focus-visible,
+  .information__btn--primary-on-dark:hover,
+  .information__btn--primary-on-dark:focus-visible {
+    box-shadow: 0 0.25rem 0.1em rgba(15, 15, 15, 0.384);
+    transform: translateY(-0.2em);
+  }
+  .secondary-nav__btn--secondary:active,
+  .information__btn--primary-on-dark:active {
+    transform: translateY(0);
+    box-shadow: 0 0.25em 0.35em -0.25em rgba(15, 15, 15, 0.384);
+  }
+}
 @keyframes tone-bg-in {
   0% {
     opacity: 1;
