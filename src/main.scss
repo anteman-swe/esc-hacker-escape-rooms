@@ -612,5 +612,17 @@ input[type="checkbox"],
     max-width: vars.$extra-large-screen;
   }
 }
+@include vars.breakpoint(vars.$small-to-large) {
+  .secondary-nav__btn--primary,
+  .card__button,
+  .booking__btn {
+    @include vars.button-raise();
+  }
+
+  .secondary-nav__btn--secondary,
+  .information__btn--primary-on-dark {
+    @include vars.button-raise();
+  }
+}
 // @import "./challenges";
 @import "./booking";
