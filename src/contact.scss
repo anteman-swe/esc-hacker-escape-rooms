@@ -5,4 +5,35 @@
   padding: 4rem 1.5rem 6rem;
   font-family: vars.$main-font;
   text-align: center;
+
+  &__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0.5rem;
+  }
+  &__subtitle {
+    font-size: 1.5rem;
+    color: black;
+    margin-bottom: 2.5rem;
+  }
+  &__form {
+    max-width: 28rem;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 2.5rem;
+    background-color: vars.$color-white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.178);
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  &__field {
+    text-align: left;
+    font-size: 0.75rem;
+  }
+  &__label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: 500;
+  }
 }

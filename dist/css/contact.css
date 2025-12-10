@@ -1005,3 +1005,33 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   font-family: "Roboto";
   text-align: center;
 }
+.contact__title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0.5rem;
+}
+.contact__subtitle {
+  font-size: 1.5rem;
+  color: black;
+  margin-bottom: 2.5rem;
+}
+.contact__form {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 2rem 2.5rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.178);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.contact__field {
+  text-align: left;
+  font-size: 0.75rem;
+}
+.contact__label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: 500;
+}
