@@ -1035,3 +1035,15 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   margin-bottom: 0.25rem;
   font-family: 500;
 }
+.contact__input, .contact__textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #b6bdb5;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.contact__textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
