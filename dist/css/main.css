@@ -7,6 +7,14 @@
     opacity: 0.6;
   }
 }
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -511,6 +519,21 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   letter-spacing: 0.5rem;
 }
 
+.load-indicator {
+  width: 100%;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.load-indicator__spinner {
+  border: 20px solid #021928;
+  border-radius: 50%;
+  border-top: 20px solid transparent;
+  width: 60px;
+  height: 60px;
+  animation: rotation 1s linear infinite;
+}
+
 .information {
   width: 100%;
 }
@@ -721,6 +744,14 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   }
   100% {
     opacity: 0.6;
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 .booking {

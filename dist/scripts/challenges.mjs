@@ -8,7 +8,8 @@ const filterValue = infoParameters.get('type');
 // DOM Pointers
 const cards_container = document.querySelector('.cards-grid');
 const tags_container = document.querySelector('.tag-list');
-challengeCards = await getChallengeList();
+const loadIndicator = document.querySelector('.load-indicator');
+challengeCards = await getChallengeList(loadIndicator);
 filterTags = tagsList(challengeCards);
 if (cards_container) {
     let tempChallenges;
