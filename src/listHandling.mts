@@ -2,8 +2,10 @@ import type { oneChallenge, multipleChallenges } from "./interfaces.mjs";
 
 let topRatedChalls: Array<oneChallenge> = new Array(3).fill({});
 
-async function fetchChallengesAndSaveToLocal() {
+async function fetchChallengesAndSaveToLocal(loadIndicator: HTMLElement) {
+  
   try {
+    loadIndicator.style.display =  'flex';
     const url: string =
       "https://lernia-sjj-assignments.vercel.app/api/challenges";
     const response = await fetch(url);
@@ -16,6 +18,7 @@ async function fetchChallengesAndSaveToLocal() {
     localStorage.setItem("savedChallenges", JSON.stringify(challengesList));
     localStorage.setItem("lastFetch", JSON.stringify(Date.now()));
 
+    loadIndicator.style.display = 'none';
     return challengesList;
   } catch (error: any) {
     console.error(error.message);
@@ -33,7 +36,7 @@ const checkIntervall = (): boolean => {
   return timeNow - lastFetchTime < 30000;
 };
 
-export function getChallengeList(): Array<oneChallenge> {
+export function getChallengeList(loadIndicator: HTMLElement): Array<oneChallenge> {
   let tempChallengeArray: Array<oneChallenge> = [];
   if (localStorage.getItem("savedChallenges") && checkIntervall()) {
     const tempStorage: string | null = localStorage.getItem("savedChallenges");
@@ -45,7 +48,7 @@ export function getChallengeList(): Array<oneChallenge> {
       );
     }
   } else {
-    const tempArray: unknown = fetchChallengesAndSaveToLocal();
+    const tempArray: unknown = fetchChallengesAndSaveToLocal(loadIndicator);
     tempChallengeArray = tempArray as Array<oneChallenge>;
   }
   return tempChallengeArray;

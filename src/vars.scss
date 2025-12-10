@@ -1,7 +1,8 @@
 @use "sass:map";
 
 $color-red: #e3170a;
-$color-dark-blue: #011827;
+// $color-dark-blue: #011827; Detta är den gamla färgen
+$color-dark-blue: #021928;
 $color-gray: #b6bdb5;
 $color-medium-blue: #36769d;
 $color-light-blue: #8acfe5;
@@ -88,11 +89,37 @@ $main-font: "Roboto";
   cursor: pointer;
 }
 
+@mixin button-raise($shadow-color: rgba(15, 15, 15, 0.384)) {
+  transform: translateY(0);
+  box-shadow: 0 0 0.75rem 0.1rem transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 0.25rem 0.5em - 0.4em $shadow-color;
+    transform: translateY(-0.2em);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 0.25em 0.35em -0.25em $shadow-color;
+  }
+}
+
 @keyframes tone-bg-in {
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0.6;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

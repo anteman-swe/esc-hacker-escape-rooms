@@ -1,4 +1,4 @@
-import type { oneChallenge } from "./interfaces.mjs";
+import type { oneChallenge } from "./interfaces.mts";
 
 function getChallengeTitleById(id: string): string {
   try {
@@ -93,6 +93,14 @@ export function openBookingModal(challengeId: string): void {
       });
       step1.classList.add("is-hidden");
       step2.classList.remove("is-hidden");
+     
+      step2.classList.add("booking-step--spin-in");
+      step2.addEventListener(
+        "animationend",
+        () => step2.classList.remove("booking-step--spin-in"),
+        { once: true }
+      );
+      
       heading.innerText = `Book room “${roomTitle}” (step 2)`;
       status.innerText = "";
       btnRow.innerHTML = "";
@@ -277,15 +285,18 @@ function buildBookingForm(
       const data = await res.json();
       console.log("Booking response:", data);
       status.innerText = "Booking confirmed.";
-      if (typeof onSuccess === "function")
-        onSuccess({
+      if (typeof onSuccess === "function") {
+        const payload = {
           challengeId,
           date,
           time: timeSelect.value,
           name: nameInput.value,
           email: emailInput.value,
           participants: participantsInput.value,
-        });
+        };
+        (overlay as any)._bookingPayload = payload;
+        onSuccess(payload);
+      }
     } catch (err) {
       console.error(err);
       status.innerText = "Failed to submit booking.";
@@ -301,16 +312,65 @@ function showThankYou(modalEl: HTMLElement, overlay: HTMLElement): void {
   const wrap = document.createElement("div");
   wrap.className = "booking-thanks";
 
-  const heading = document.createElement("h3");
-  heading.innerText = "Thank you!";
+  const payload = (overlay as any)._bookingPayload || {};
+  const errs: string[] = [];
+  const emailOk = typeof payload.email === "string" && /.+@.+\..+/.test(payload.email);
+  if (!payload.name || String(payload.name).trim().length < 1) errs.push("Name is required");
+  if (!emailOk) errs.push("Valid email is required");
+  if (!payload.date) errs.push("Date is missing");
+  if (!payload.time) errs.push("Time is missing");
+  const pNum = Number(payload.participants);
+  if (!pNum || pNum < 1) errs.push("Participants must be at least 1");
 
-  const link = document.createElement("a");
-  link.href = "./challenges.html";
-  link.innerText = "Back to challenges";
-  link.className = "booking-thanks__back";
+  const heading = document.createElement("h3");
+  heading.innerText = errs.length ? "Review booking details" : "Thank you!";
+
+  const summary = document.createElement("div");
+  summary.className = "booking-thanks__summary";
+  summary.innerHTML = `
+    <p><strong>Room:</strong> ${getChallengeTitleById(String(payload.challengeId || ""))}</p>
+    <p><strong>Date:</strong> ${payload.date || "-"}</p>
+    <p><strong>Time:</strong> ${payload.time || "-"}</p>
+    <p><strong>Name:</strong> ${payload.name || "-"}</p>
+    <p><strong>Email:</strong> ${payload.email || "-"}</p>
+    <p><strong>Participants:</strong> ${payload.participants || "-"}</p>
+  `;
 
   wrap.appendChild(heading);
-  wrap.appendChild(link);
+  wrap.appendChild(summary);
+
+  if (errs.length) {
+    const errBox = document.createElement("div");
+    errBox.className = "booking-thanks__errors";
+    const ul = document.createElement("ul");
+    errs.forEach((m) => {
+      const li = document.createElement("li");
+      li.innerText = m;
+      ul.appendChild(li);
+    });
+    errBox.appendChild(ul);
+    const backBtn = document.createElement("button");
+    backBtn.type = "button";
+    backBtn.className = "card__button";
+    backBtn.innerText = "Back to form";
+    backBtn.addEventListener("click", () => {
+      const step1 = document.getElementById("booking-step-1");
+      const step2 = document.getElementById("booking-step-2");
+      if (step1 && step2) {
+        step1.classList.remove("is-hidden");
+        step2.classList.add("is-hidden");
+      }
+    });
+    wrap.appendChild(errBox);
+    wrap.appendChild(backBtn);
+  } else {
+    const link = document.createElement("a");
+    link.href = "./challenges.html";
+    link.innerText = "Back to challenges";
+    link.className = "booking-thanks__back";
+    wrap.appendChild(link);
+  }
+
   modalEl.appendChild(wrap);
 }
 
