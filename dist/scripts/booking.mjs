@@ -150,6 +150,14 @@ function buildBookingForm(container, slots, date, challengeId, overlay, onSucces
     emailInput.name = "email";
     emailInput.type = "email";
     emailInput.required = true;
+    const phoneLabel = document.createElement("label");
+    phoneLabel.htmlFor = "booking-phone";
+    phoneLabel.innerText = "Phone number";
+    const phoneInput = document.createElement("input");
+    phoneInput.id = "booking-phone";
+    phoneInput.name = "phone";
+    phoneInput.type = "tel";
+    phoneInput.required = true;
     const timeLabel = document.createElement("label");
     timeLabel.htmlFor = "booking-time";
     timeLabel.innerText = "What time?";
@@ -209,6 +217,8 @@ function buildBookingForm(container, slots, date, challengeId, overlay, onSucces
     form.appendChild(nameInput);
     form.appendChild(emailLabel);
     form.appendChild(emailInput);
+    form.appendChild(phoneLabel);
+    form.appendChild(phoneInput);
     form.appendChild(timeLabel);
     form.appendChild(timeSelect);
     form.appendChild(participantsLabel);
@@ -245,6 +255,7 @@ function buildBookingForm(container, slots, date, challengeId, overlay, onSucces
                     time: timeSelect.value,
                     name: nameInput.value,
                     email: emailInput.value,
+                    phone: phoneInput.value,
                     participants: participantsInput.value,
                 };
                 overlay._bookingPayload = payload;
@@ -266,10 +277,14 @@ function showThankYou(modalEl, overlay) {
     const payload = overlay._bookingPayload || {};
     const errs = [];
     const emailOk = typeof payload.email === "string" && /.+@.+\..+/.test(payload.email);
+    const phoneDigits = String(payload.phone || "").replace(/\D+/g, "");
+    const phoneOk = phoneDigits.length >= 7;
     if (!payload.name || String(payload.name).trim().length < 1)
         errs.push("Name is required");
     if (!emailOk)
         errs.push("Valid email is required");
+    if (!phoneOk)
+        errs.push("Valid phone number is required");
     if (!payload.date)
         errs.push("Date is missing");
     if (!payload.time)
@@ -287,6 +302,7 @@ function showThankYou(modalEl, overlay) {
     <p><strong>Time:</strong> ${payload.time || "-"}</p>
     <p><strong>Name:</strong> ${payload.name || "-"}</p>
     <p><strong>Email:</strong> ${payload.email || "-"}</p>
+        <p><strong>Phone:</strong> ${payload.phone || "-"}</p>
     <p><strong>Participants:</strong> ${payload.participants || "-"}</p>
   `;
     wrap.appendChild(heading);

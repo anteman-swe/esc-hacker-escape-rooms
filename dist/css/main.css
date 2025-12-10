@@ -801,6 +801,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   padding: 1.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   font-family: "Roboto";
+  position: relative;
   transform-origin: center top;
   will-change: transform, opacity;
   transform: translateY(16px) scale(0.94);
@@ -812,6 +813,29 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
 }
 .booking-modal h4 {
   margin-bottom: 0.5rem;
+}
+
+.booking-modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.4rem;
+  border: none;
+  background: transparent;
+  color: #36769d;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.booking-modal__close:focus-visible {
+  outline: 2px solid #8acfe5;
+  outline-offset: 2px;
 }
 
 @keyframes bookingOverlayFade {
@@ -905,6 +929,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
 }
 .booking-form input[type=text],
 .booking-form input[type=email],
+.booking-form input[type=tel],
 .booking-form select,
 .booking-form textarea {
   width: 24rem;
@@ -968,3 +993,5 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   text-decoration: underline;
   font-weight: 600;
 }
+
+/*# sourceMappingURL=main.css.map */
