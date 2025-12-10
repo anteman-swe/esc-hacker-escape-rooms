@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicons-->
@@ -23,7 +23,7 @@
       sizes="192x192"
       href="resources/esc-favicon-192x192.png"
     />
-    <link 
+    <link
       rel="icon"
       type="image/png"
       sizes="512x512"
@@ -35,20 +35,70 @@
       href="resources/esc-apple-touch-icon.png"
     />
     <!-- Styling -->
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/challenges.css" />
-    <link rel="stylesheet" type="text/css" href="css/filter-panel.css">
-    <title>[Esc] Hacker Escape Rooms - Contact us</title>
-    <!--  Meta tags for social media-->
+
+    <title>[Esc] Hacker Escape Rooms</title>
     <meta property="og:title" content="[Esc] Hacker Escape Rooms" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/resources/hacker-image.png" />
-    <meta property="og:url" content="https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/" />
-    <meta property="og:description" content="Challenge yourself and your teammates with our hacker challenges. Visit our site or our premises to see all our challenges!" />
-</head>
-<body>
-    <h1>Contact Page</h1>
-    
-</body>
+    <meta
+      property="og:image"
+      content="https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/resources/hacker-image.png"
+    />
+    <meta
+      property="og:url"
+      content="https://anteman-swe.github.io/esc-hacker-escape-rooms/dist/"
+    />
+    <meta
+      property="og:description"
+      content="Challenge yourself and your teammates with our hacker challenges. Visit our site or our premises to see all our challenges!"
+    />
+  </head>
+  <body class="body-container">
+    <header class="header">
+      <div class="header__logo-head-cont">
+        <img
+          src="resources/esc-header-icon.png"
+          alt="ESC"
+          class="header__logo"
+          data-type="home"
+        />
+        <h1 class="header__headline">Hacker Escape Rooms</h1>
+      </div>
+      <input class="hamburgerbox" type="checkbox" id="overlay-input" />
+      <label for="overlay-input" class="hamburger-button">
+        <span></span>
+      </label>
+      <div class="navigation-dimmer"></div>
+      <nav class="navigation">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a
+              href="challenges.html?filter=online"
+              target="_self"
+              data-type="online"
+              >Play online</a
+            >
+          </li>
+          <li class="navigation__item">
+            <a
+              href="challenges.html?filter=onsite"
+              target="_self"
+              data-type="on-site"
+              >Play on-site</a
+            >
+          </li>
+          <li class="navigation__item">
+            <a href="storypage.html" target="_self" data-type="story"
+              >The story</a
+            >
+          </li>
+          <li class="navigation__item">
+            <a href="contact.html" target="_self" data-type="contact"
+              >Contact us</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </body>
 </html>
