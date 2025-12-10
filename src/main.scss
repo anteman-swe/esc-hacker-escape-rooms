@@ -402,7 +402,7 @@ input[type="checkbox"],
   }
 
   &__type {
-    width: 2rem;
+    width: 3rem;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -453,6 +453,21 @@ input[type="checkbox"],
 
 .rating {
   letter-spacing: 0.5rem;
+}
+
+.load-indicator {
+  width: 100%;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  &__spinner {
+    border: 20px solid vars.$color-dark-blue;
+    border-radius: 50%;
+    border-top: 20px solid transparent;
+    width: 60px;
+    height: 60px;
+    animation: rotation 1s linear infinite;
+  }
 }
 
 .information {
