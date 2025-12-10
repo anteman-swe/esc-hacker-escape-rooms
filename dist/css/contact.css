@@ -999,3 +999,9 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   text-decoration: underline;
   font-weight: 600;
 }
+
+.contact {
+  padding: 4rem 1.5rem 6rem;
+  font-family: "Roboto";
+  text-align: center;
+}

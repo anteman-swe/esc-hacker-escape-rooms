@@ -1,2 +1,8 @@
 @use "vars";
 @use "main" as *;
+
+.contact {
+  padding: 4rem 1.5rem 6rem;
+  font-family: vars.$main-font;
+  text-align: center;
+}
