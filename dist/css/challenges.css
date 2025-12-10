@@ -81,7 +81,7 @@
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 .cards-grid .card__type {
-  width: 2rem;
+  width: 3rem;
   position: absolute;
   top: 1rem;
   right: 1rem;

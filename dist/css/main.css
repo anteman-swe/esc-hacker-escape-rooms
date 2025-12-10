@@ -452,7 +452,7 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 .card__type {
-  width: 2rem;
+  width: 3rem;
   position: absolute;
   top: 1rem;
   right: 1rem;
