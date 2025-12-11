@@ -1043,6 +1043,13 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   font-family: inherit;
   font-size: 1rem;
 }
+.contact__input:focus-visible, .contact__textarea:focus-visible {
+  outline: none;
+  border-color: #36769d;
+  box-shadow: 0 0 0 0.1rem rgba(54, 118, 157, 0.3);
+  transform: translateY(-0.35rem);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
 .contact__textarea {
   min-height: 5rem;
   resize: vertical;
