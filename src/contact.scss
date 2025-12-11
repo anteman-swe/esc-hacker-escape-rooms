@@ -29,12 +29,12 @@
   }
   &__field {
     text-align: left;
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
   &__label {
     display: block;
     margin-bottom: 0.25rem;
-    font-family: 500;
+    font-weight: 500;
   }
   &__input,
   &__textarea {
@@ -48,5 +48,16 @@
   &__textarea {
     min-height: 5rem;
     resize: vertical;
+  }
+  &__submit {
+    @include vars.secondary(medium);
+    margin-top: 0.75rem;
+    width: 100%;
+    align-self: center;
+  }
+}
+@include vars.breakpoint(vars.$small-to-large) {
+  .contact {
+    padding-top: 5rem;
   }
 }
