@@ -1082,4 +1082,31 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   .contact {
     padding-top: 5rem;
   }
+  .contact__form {
+    max-width: 32rem;
+    padding: 2.5rem 3.5rem 3.5rem;
+  }
+  .contact__input, .contact__textarea {
+    font-size: 1.05rem;
+    padding: 0.75rem 1rem;
+  }
+  .contact__textarea {
+    min-height: 7rem;
+  }
+}
+@media screen and (min-width: 100rem) {
+  .contact {
+    padding-top: 5rem;
+  }
+  .contact__form {
+    max-width: 40rem;
+    padding: 3.5rem 4rem 4rem;
+  }
+  .contact__input, .contact__textarea {
+    font-size: 1.15rem;
+    padding: 0.75rem 1.05rem;
+  }
+  .contact__textarea {
+    min-height: 7rem;
+  }
 }
