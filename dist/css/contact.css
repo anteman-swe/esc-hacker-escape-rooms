@@ -1060,6 +1060,19 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   color: #021928;
   background-color: #8acfe5;
   border: none;
+  transform: translateY(0);
+  box-shadow: 0 0 0.75rem 0.1rem transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.contact__submit:hover, .contact__submit:focus-visible {
+  box-shadow: 0 0.25rem 0.1em rgba(15, 15, 15, 0.384);
+  transform: translateY(-0.2em);
+}
+.contact__submit:active {
+  transform: translateY(0);
+  box-shadow: 0 0.25em 0.35em -0.25em rgba(15, 15, 15, 0.384);
+}
+.contact__submit {
   margin-top: 0.75rem;
   width: 100%;
   align-self: center;

@@ -51,6 +51,7 @@
   }
   &__submit {
     @include vars.secondary(medium);
+    @include vars.button-raise();
     margin-top: 0.75rem;
     width: 100%;
     align-self: center;
