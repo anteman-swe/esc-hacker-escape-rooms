@@ -629,6 +629,14 @@ input[type="checkbox"],
   }
 }
 
+@include vars.breakpoint(vars.$extra-large-screen) {
+  .body-container {
+    max-width: vars.$extra-large-screen;
+  }
+  .header {
+    max-width: vars.$extra-large-screen;
+  }
+}
 @include vars.breakpoint(vars.$small-to-large) {
   .secondary-nav__btn--primary,
   .card__button,
