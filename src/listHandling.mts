@@ -2,13 +2,29 @@ import type { oneChallenge, multipleChallenges } from "./interfaces.mjs";
 
 let topRatedChalls: Array<oneChallenge> = new Array(3).fill({});
 
-async function fetchChallengesAndSaveToLocal() {
+let errorCard: oneChallenge = {
+  "id": 0,
+  "type": "error",
+  "title": "error",
+  "description": "error",
+  "minParticipants": 0,
+  "maxParticipants": 0,
+  "rating": 0,
+  "image": "",
+  "labels": [""]
+}
+
+async function fetchChallengesAndSaveToLocal(loadIndicator: HTMLElement) {
+  
   try {
+    loadIndicator.style.display =  'flex';
     const url: string =
       "https://lernia-sjj-assignments.vercel.app/api/challenges";
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
+      errorCard.id = -1;
+      errorCard.description = `Response status: ${response.status}`;
+      return [errorCard];
     }
     const data: multipleChallenges = await response.json();
     const challengesList: Array<oneChallenge> = data.challenges;
@@ -16,9 +32,11 @@ async function fetchChallengesAndSaveToLocal() {
     localStorage.setItem("savedChallenges", JSON.stringify(challengesList));
     localStorage.setItem("lastFetch", JSON.stringify(Date.now()));
 
+    loadIndicator.style.display = 'none';
     return challengesList;
   } catch (error: any) {
-    console.error(error.message);
+    errorCard.description = ` ${error.message}`;
+    return [errorCard]
   }
 }
 
@@ -33,19 +51,18 @@ const checkIntervall = (): boolean => {
   return timeNow - lastFetchTime < 30000;
 };
 
-export function getChallengeList(): Array<oneChallenge> {
+export function getChallengeList(loadIndicator: HTMLElement): Array<oneChallenge> {
   let tempChallengeArray: Array<oneChallenge> = [];
   if (localStorage.getItem("savedChallenges") && checkIntervall()) {
     const tempStorage: string | null = localStorage.getItem("savedChallenges");
     if (tempStorage) {
       tempChallengeArray = JSON.parse(tempStorage);
     } else {
-      console.error(
-        "Problem has arised with challenges saved in localStorage."
-      );
+      errorCard.description = "Problem has arised with challenges saved in localStorage.";
+      tempChallengeArray = [errorCard];
     }
   } else {
-    const tempArray: unknown = fetchChallengesAndSaveToLocal();
+    const tempArray: unknown = fetchChallengesAndSaveToLocal(loadIndicator);
     tempChallengeArray = tempArray as Array<oneChallenge>;
   }
   return tempChallengeArray;
@@ -58,17 +75,21 @@ export function sortOutTopRated(inputArray: Array<oneChallenge>): Array<oneChall
         if (tempTopThree) {
         topRatedChalls = JSON.parse(tempTopThree);
         } else {
-        throw new Error(
-            "Problem has arised with top three list saved in localStorage"
-        );
+        // throw new Error(
+        //     "Problem has arised with top three list saved in localStorage"
+        // );
+        errorCard.description = "Problem has arised with top three list saved in localStorage";
+        return[errorCard];
         }
-    } else {
+    } else if (!(inputArray[0]?.type === 'error')) {
         const sortedArray: Array<oneChallenge> = [...inputArray].sort(
         (a, b) => b.rating - a.rating
         );
         newTopThree  = sortedArray.slice(0, 3);
         topRatedChalls = newTopThree;
         localStorage.setItem("savedTopThree", JSON.stringify(newTopThree));
+    } else {
+      topRatedChalls = [errorCard];
     }
     return topRatedChalls;
 }

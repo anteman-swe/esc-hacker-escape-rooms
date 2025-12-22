@@ -36,12 +36,16 @@ const initialTypeParam = rawTypeParam === "on-site" ? "onsite" : rawTypeParam;
 let allChallenges = [];
 let baseChallenges = [];
 
+let errorWithCards = false;
+
 // Filter-element
 const onlineCheckbox = document.querySelector("#f-online");
 const onsiteCheckbox = document.querySelector("#f-onsite");
 
 const filterCheckboxLabels = document.querySelectorAll("#filters .filter-checkbox");
 const ratingWidgets = document.querySelectorAll(".rating-widget");
+const minRatingWidget = document.querySelector('.rating-widget[data-role="min"]');
+const maxRatingWidget = document.querySelector('.rating-widget[data-role="max"]');
 const tagButtons = document.querySelectorAll(".tag-pill");
 const searchInput = document.querySelector("#f-query");
 const resetBtn = document.querySelector("#filterReset");
@@ -80,6 +84,10 @@ async function initFilters() {
     allChallenges = Array.isArray(list) ? list : [];
     baseChallenges = [...allChallenges];
 
+    if (baseChallenges[0].type === "error") {
+      errorWithCards = true;
+    }
+
     // default: båda på
     onlineCheckbox.checked = true;
     onsiteCheckbox.checked = true;
@@ -109,7 +117,7 @@ async function initFilters() {
     applyFilters();
 
   } catch {
-    cardsContainer.innerHTML = "<p>Could not load challenges</p>";
+    cardsContainer.innerHTML = `<p class="loading-fail">Could not load challenges from remote with error message: ${baseChallenges[0].description}</p>`;
   }
 }
 
@@ -128,44 +136,59 @@ function setupFilterEvents() {
 
     // Rating-filter (stjärnor)
   ratingWidgets.forEach((widget) => {
-    widget.addEventListener("click", (e) => {
-      const target = e.target;
-      if (!target.classList.contains("star")) return;
+  widget.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!target.classList.contains("star")) return;
 
-      const val = Number(target.dataset.value);
-      const role = widget.dataset.role; // "min" eller "max"
+    const val = Number(target.dataset.value);
+    const role = widget.dataset.role;
 
-      if (role === "min") {
-        minRating = (minRating === val) ? 0 : val;
-        updateStarUI(widget, minRating);
-      } else if (role === "max") {
-        maxRating = (maxRating === val) ? 5 : val;
-        updateStarUI(widget, maxRating);
+    if (role === "min") {
+      const newMin = (minRating === val) ? 0 : val;
+      minRating = newMin;
+
+      if (minRating > maxRating) {
+        maxRating = minRating;
+        if (maxRatingWidget) updateStarUI(maxRatingWidget, maxRating);
       }
-      
-      applyFilters();
+
+      updateStarUI(widget, minRating);
+
+    } else if (role === "max") {
+      const newMax = (maxRating === val) ? 5 : val;
+      maxRating = newMax;
+
+      if (maxRating < minRating) {
+        minRating = maxRating;
+        if (minRatingWidget) updateStarUI(minRatingWidget, minRating);
+      }
+
+      updateStarUI(widget, maxRating);
+    }
+
+    applyFilters();
+  });
+  // hover: förhandsvisa rating
+  const stars = widget.querySelectorAll(".star");
+
+  stars.forEach((star) => {
+    star.addEventListener("mouseenter", () => {
+      const hoverVal = Number(star.dataset.value);
+
+      stars.forEach((s) => {
+        const v = Number(s.dataset.value);
+        s.classList.toggle("is-active", v <= hoverVal);
+      });
     });
 
-    // hover: förhandsvisa rating
-    const stars = widget.querySelectorAll(".star");
-
-    stars.forEach((star) => {
-      star.addEventListener("mouseenter", () => {
-        const hoverVal = Number(star.dataset.value);
-
-        stars.forEach((s) => {
-          const v = Number(s.dataset.value);
-          s.classList.toggle("is-active", v <= hoverVal);
-        });
-      });
-
-      star.addEventListener("mouseleave", () => {
-        const role = widget.dataset.role;
-        const value = role === "min" ? minRating : maxRating;
-        updateStarUI(widget, value);
-      });
+    star.addEventListener("mouseleave", () => {
+      const role = widget.dataset.role;
+      const value = role === "min" ? minRating : maxRating;
+      updateStarUI(widget, value);
     });
   });
+});
+
 
   // Taggar
   tagButtons.forEach((btn) => {
@@ -250,7 +273,8 @@ function applyTagFilter(list) {
 
 function applyTextFilter(list) {
   const q = searchInput.value.toLowerCase().trim();
-  if (!q) return list;
+  if (!q || q.length < 3) return list;
+
 
   // Sök i title + description
   return list.filter(
@@ -271,9 +295,13 @@ function applyFilters() {
   filtered = applyTextFilter(filtered);
 
   // Om inga matchningar
-  if (!filtered.length) {
+  if (!filtered.length && !errorWithCards) {
     cardsContainer.removeAttribute('class');
     cardsContainer.innerHTML = '<p class="no-matches">No matching challenges</p>';
+    return;
+  } else if (errorWithCards) {
+    cardsContainer.removeAttribute('class');
+    cardsContainer.innerHTML = `<p class='loading-fail'>Challenge Cards failed to load with error message:  ${cardArray[0].description}</p>`;
     return;
   }
 

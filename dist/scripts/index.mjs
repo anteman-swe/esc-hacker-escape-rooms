@@ -6,6 +6,7 @@ const home = document.querySelector(".header__logo");
 const navigation = document.querySelector(".navigation");
 const allButtons = document.querySelectorAll("button");
 const card_section = document.querySelector(".card-container");
+const loadIndicator = document.querySelector('.load-indicator');
 const footer = document.querySelector(".footer");
 home.addEventListener("click", () => {
     window.location.assign(`./index.html`);
@@ -73,7 +74,6 @@ export function takeAction(event) {
                 break;
             case "filter":
                 // code for opening modal with filter form should be here
-                console.log("Filter is clicked! Should filter something!");
                 break;
             case "booking":
                 openBookingModal(targetId);
@@ -102,7 +102,7 @@ export function takeAction(event) {
 //     }
 // });
 // });
-let challengeArray = await getChallengeList();
+let challengeArray = await getChallengeList(loadIndicator);
 let topRatedChalls = sortOutTopRated(challengeArray);
 if (card_section) {
     putCardsInDOM(topRatedChalls, card_section);
