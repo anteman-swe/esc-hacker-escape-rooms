@@ -366,6 +366,13 @@ input[type="checkbox"],
   }
 }
 
+.loading-fail {
+  font-family: vars.$main-font;
+  font-size: 1.5rem;
+  color: red;
+  margin-bottom: 3rem;
+}
+
 .card-container {
   display: flex;
   overflow-x: scroll;

@@ -36,6 +36,8 @@ const initialTypeParam = rawTypeParam === "on-site" ? "onsite" : rawTypeParam;
 let allChallenges = [];
 let baseChallenges = [];
 
+let errorWithCards = false;
+
 // Filter-element
 const onlineCheckbox = document.querySelector("#f-online");
 const onsiteCheckbox = document.querySelector("#f-onsite");
@@ -82,6 +84,10 @@ async function initFilters() {
     allChallenges = Array.isArray(list) ? list : [];
     baseChallenges = [...allChallenges];
 
+    if (baseChallenges[0].type === "error") {
+      errorWithCards = true;
+    }
+
     // default: båda på
     onlineCheckbox.checked = true;
     onsiteCheckbox.checked = true;
@@ -111,7 +117,7 @@ async function initFilters() {
     applyFilters();
 
   } catch {
-    cardsContainer.innerHTML = "<p>Could not load challenges</p>";
+    cardsContainer.innerHTML = `<p class="loading-fail">Could not load challenges from remote with error message: ${baseChallenges[0].description}</p>`;
   }
 }
 
@@ -289,9 +295,13 @@ function applyFilters() {
   filtered = applyTextFilter(filtered);
 
   // Om inga matchningar
-  if (!filtered.length) {
+  if (!filtered.length && !errorWithCards) {
     cardsContainer.removeAttribute('class');
     cardsContainer.innerHTML = '<p class="no-matches">No matching challenges</p>';
+    return;
+  } else if (errorWithCards) {
+    cardsContainer.removeAttribute('class');
+    cardsContainer.innerHTML = `<p class='loading-fail'>Challenge Cards failed to load with error message:  ${cardArray[0].description}</p>`;
     return;
   }
 
