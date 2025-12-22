@@ -422,13 +422,6 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   }
 }
 
-.loading-fail {
-  font-family: "Roboto";
-  font-size: 1.5rem;
-  color: red;
-  margin-bottom: 3rem;
-}
-
 .card-container {
   display: flex;
   overflow-x: scroll;
@@ -1005,4 +998,123 @@ input[type=checkbox]:checked ~ .hamburger-button span:after,
   color: #36769d;
   text-decoration: underline;
   font-weight: 600;
+}
+
+.contact {
+  padding: 4rem 1.5rem 6rem;
+  font-family: "Roboto";
+  text-align: center;
+}
+.contact__title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0.5rem;
+}
+.contact__subtitle {
+  font-size: 1.5rem;
+  color: black;
+  margin-bottom: 2.5rem;
+}
+.contact__form {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 2rem 2.5rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.178);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.contact__field {
+  text-align: left;
+  font-size: 1rem;
+}
+.contact__label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+.contact__input, .contact__textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #b6bdb5;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.contact__input:focus-visible, .contact__textarea:focus-visible {
+  outline: none;
+  border-color: #36769d;
+  box-shadow: 0 0 0 0.1rem rgba(54, 118, 157, 0.3);
+  transform: translateY(-0.35rem);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.contact__textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+.contact__submit {
+  margin: 0;
+  font-family: "Roboto";
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  width: 11.3rem;
+  height: 2.7rem;
+  font-size: 1rem;
+  color: #021928;
+  background-color: #8acfe5;
+  border: none;
+  transform: translateY(0);
+  box-shadow: 0 0 0.75rem 0.1rem transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.contact__submit:hover, .contact__submit:focus-visible {
+  box-shadow: 0 0.25rem 0.1em rgba(15, 15, 15, 0.384);
+  transform: translateY(-0.2em);
+}
+.contact__submit:active {
+  transform: translateY(0);
+  box-shadow: 0 0.25em 0.35em -0.25em rgba(15, 15, 15, 0.384);
+}
+.contact__submit {
+  margin-top: 0.75rem;
+  width: 100%;
+  align-self: center;
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 44rem) {
+  .contact {
+    padding-top: 5rem;
+  }
+  .contact__form {
+    max-width: 32rem;
+    padding: 2.5rem 3.5rem 3.5rem;
+  }
+  .contact__input, .contact__textarea {
+    font-size: 1.05rem;
+    padding: 0.75rem 1rem;
+  }
+  .contact__textarea {
+    min-height: 7rem;
+  }
+}
+@media screen and (min-width: 100rem) {
+  .contact {
+    padding-top: 5rem;
+  }
+  .contact__form {
+    max-width: 40rem;
+    padding: 3.5rem 4rem 4rem;
+  }
+  .contact__input, .contact__textarea {
+    font-size: 1.15rem;
+    padding: 0.75rem 1.05rem;
+  }
+  .contact__textarea {
+    min-height: 7rem;
+  }
 }

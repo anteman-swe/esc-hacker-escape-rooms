@@ -11,8 +11,9 @@ const filterValue = infoParameters.get('type');
 // DOM Pointers
 const cards_container: HTMLElement = document.querySelector('.cards-grid') as HTMLElement;
 const tags_container: HTMLElement = document.querySelector('.tag-list') as HTMLElement;
+const loadIndicator: HTMLElement = document.querySelector('.load-indicator') as HTMLElement;
 
-challengeCards = await getChallengeList();
+challengeCards = await getChallengeList(loadIndicator);
 filterTags = tagsList(challengeCards);
 
 if(cards_container) {

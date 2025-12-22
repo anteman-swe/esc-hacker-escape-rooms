@@ -15,6 +15,7 @@ const allButtons: NodeListOf<HTMLButtonElement> =
 const card_section: HTMLElement = document.querySelector(
   ".card-container"
 ) as HTMLElement;
+const loadIndicator: HTMLElement = document.querySelector('.load-indicator') as HTMLElement;
 const footer: HTMLElement = document.querySelector(".footer") as HTMLElement;
 
 home.addEventListener("click", () => {
@@ -131,7 +132,7 @@ export function takeAction(event: Event): void {
 // });
 // });
 
-let challengeArray = await getChallengeList();
+let challengeArray = await getChallengeList(loadIndicator);
 let topRatedChalls = sortOutTopRated(challengeArray);
 if (card_section) {
   putCardsInDOM(topRatedChalls, card_section);
